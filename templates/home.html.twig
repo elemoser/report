@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Om Mig Själv</h1>
+    <p>
+        Hej! Mitt namn är Elena Moser.
+        Ursprungligen kommer jag från Schweiz men bor i Stockholm just nu.
+        Jag flyttade till Sverige 2017 för att plugga masterprogrammet i Språkvetenskap på Stockholm Universitet.
+        Jag har en stor passion för språk och är flytande i tyska, franska, engelska och svenska.
+        Dessutom pratar jag spanska och kan lite mandarin kinesiska.
+    </p>
+    <p>
+        Förutom att lära mig om världens språk och kulturer, tycker jag om att laga mat och prova olika kök. Hemma hos mig spendera jag min fritid med min sambo, böcker och min symaskin. Några gånger i veckan träffar jag mina kompisar antingen för att klättra på klättercentret eller göra någon annan fysisk aktivitet. Jag gillar också att vara ut i naturen och vandra i Sveriges nationalparker.
+    </p>
+    <p>
+        Jag har lite erfarenhet av programmering sedan tidigare. Några år sedan, lärde jag mig baskunskaper i HTML och CSS för att skapa min egen online-portfolio. Det var jättekul! När jag var student på Stockholms Universitet lärde jag mig LaTeX på egen hand. Efter studierna i språkvetenskap, hittade jag ett jobb på ett textanalys företag i Stockholm. Där lärde jag mig om NLP (Natural Language Processing), databehandling och började programmera med Python.
+    </p>
+    <p>
+        Förra året bestämde jag mig att byta min karriär och bli programmerare. Jag tycker att skapa webbplatser från grunden och att jobba med frontend är superspännande, kreativt och resultaten väldigt meriterande. Jag är mycket glad över möjligheten att plugga webbprogrammering och ivrigt att lära mig mer!
+    </p>
+
+    <div class="img-profile">
+        <a href="{{ asset('img/sunflower.jpg') }}">
+            <img src="{{ asset('img/sunflower.jpg') }}" alt="Picture of a sunflower">
+        </a>
+    </div>
+{% endblock %}

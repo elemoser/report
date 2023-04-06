@@ -1,0 +1,31 @@
+header {
+    background-color: #74A2DE;
+    margin-bottom: 1em;
+    padding: 1.5em 1em;
+    font-size: $base-font-size * 1.2;
+}
+
+.site-title {
+    font-size: $base-font-size * 2;
+}
+
+.nav-list {
+    margin-top: 0.9em;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    li {
+        list-style-type: none;
+    }
+
+    li a {
+        text-decoration: none;
+        color: #000;
+        
+    }
+
+    li a:hover {
+        border-bottom: 1px solid #CA8029;
+    }
+}

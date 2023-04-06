@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Report{% endblock %}
+
+{% block body %}
+    <h1>Report</h1>
+
+    <p>
+        På denna sidan samlar jag mina redovisningstexter för kursens kmom.
+    </p>
+
+    <ul class="nav-report">
+        <li><a href="#kmom01">Kmom01</a></li>
+        <li><a href="#kmom02">Kmom02</a></li>
+        <li><a href="#kmom03">Kmom03</a></li>
+        <li><a href="#kmom04">Kmom04</a></li>
+        <li><a href="#kmom05">Kmom05</a></li>
+        <li><a href="#kmom06">Kmom06</a></li>
+        <li><a href="#kmom10">Kmom07/10</a></li>
+    </ul>
+
+    <section>
+    <h2 id="kmom01">Kmom01</h2>
+    <p>
+        Jag har inte mycket erfarenhet av objektorienterad programmering.
+        Förra kvartalet gick jag kursen Algoritmer och datastrukturer med objektorienterad Python, där jag lärde mig grunderna i objektorienterad programmering med Python.
+        Jag tyckte att det var utmanande men mycket spännande och lärorik.
+    </p>
+    <p>
+        Hittills kan jag se många likheter mellan Python och PHP.
+        Precis som i Python definieras klasser i PHP med nyckelordet <i>class</i>.
+        Klasser kan innehålla en konstruktionsmetod (<code>__constructor()</code>) men behöver inte göra det.
+        Variabler inom en klass kallas <i>properties</i> och funktioner kallas <i>metoder</i>.
+        Precis som i Python kan properties vara av olika typer.
+        Vanligast är att properties är privata, vilket innebär att de endast kan användas inom klassen.
+        Om en property ska vara tillgänglig utanför klassens scope måste den definieras som en public klass.
+    </p>
+    <p>
+        På grund av likheterna var det relativt lätt att komma igång med klasser i PHP.
+        Jag stötte dock på många problem med ramverket symfony.
+        Det tog mig lång tid att få mina router att fungera korrekt.
+        Det tog ännu längre tid att skapa stilen med SASS, främst för att jag kör <code>npm run build</code> varje gång jag uppdaterar filerna.
+        Jag är säker på att det finns ett snabbare sätt, men jag har inte hittat någon bättre lösning ännu.
+        Det är därför att min crazy sida inte är så crazy ännu.
+        Även om jag är fortfarande förvirrad över vissa delar av kodstrukturen, tycker jag att jag har skapat en fin sida.
+        Jag hoppas att kodstrukturen och ramverket kommer att bli tydligare framöver.
+    </p>
+    <p>
+        Det finns mycket att lära mig in denna kurs.
+        Jag ser fram emot att finslipa mina färdigheter och lära mig om objektorienterad programmering med PHP. 
+        Jag är särskilt intresserad av att lära mig mer om testning, som är mycket viktig för utveckling av applikationer. 
+        Med testning ses till att en applikation inte går sönder när ändringar görs eller när nya funktioner läggs till
+        (<a href="https://phptherightway.com/#testing">PHP The Right Way</a>).
+    </p>
+    <p>
+        Min TIL för detta kmom handlar om <i>namespaces</i>.
+        Eftersom det kan förekomma att samma klassnamn används i två eller fler olika PHP bibliotek, kan det orsaka problem när båda används i samma namnområde. 
+        För att lösa detta problem har man infört namespaces.
+        Med namespaces kan två PHP-klasser med samma namn existera i separata PHP namespaces.
+    </p>
+    </section>
+
+    <h2 id="kmom02">Kmom02</h2>
+    <h2 id="kmom03">Kmom03</h2>
+    <h2 id="kmom04">Kmom04</h2>
+    <h2 id="kmom05">Kmom05</h2>
+    <h2 id="kmom06">Kmom06</h2>
+    <h2 id="kmom10">Kmom07/10</h2>
+{% endblock %}

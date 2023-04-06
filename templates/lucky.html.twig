@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Lucky{% endblock %}
+
+{% block body %}
+    <h1>Lucky number</h1>
+    <p>Your lucky number is ... {{number}}!</p>
+    <iframe src="{{ gif }}" width="480" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+{% endblock %}

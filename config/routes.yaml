@@ -1,0 +1,16 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+# the "app_lucky_number" route name is not important yet
+# report_lucky:
+#     path: /lucky
+#     controller: App\Controller\LuckyControllerTwig::lucky
+
+# report_report:
+#     path: /report
+#     controller: App\Controller\LuckyControllerTwig::report
+
+# report_api_quote:
+#     path: /api/quote
+#     controller: App\Controller\LuckyControllerJson::api_quote
