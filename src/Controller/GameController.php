@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+// use App\Card\Card;
+use App\Card\CardGraphic;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 // use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,7 +13,14 @@ class GameController extends AbstractController {
     #[Route("/card", name: "card_home")]
     public function card_home(): Response
     {
-        return $this->render('card_game/card.html.twig');
+        $card = new CardGraphic();
+
+        $data = [
+            "card" => $card->draw(),
+            "cardString" => $card->getAsString()
+        ];
+
+        return $this->render('card_game/card.html.twig', $data);
     }
 
     #[Route("/card/deck", name: "card_deck")]
