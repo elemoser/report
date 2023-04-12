@@ -66,6 +66,6 @@ class CardGraphic extends Card
 
     public function getAsString(): string
     {
-        return htmlentities($this->representation[join(" ", $this->value)]);
+        return $this->representation[join(" ", $this->value)];
     }
 }
