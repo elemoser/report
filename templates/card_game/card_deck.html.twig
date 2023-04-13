@@ -4,5 +4,11 @@
 
 {% block body %}
     <h1>Sorterade kort</h1>
+    <p>Antal kort: {{ deckCount }}</p>
+    <div>
+        {% for key, value in deckStrings %}
+        <span class="card" style="color: {{deckColors[key]}}">&#{{ value }}</span>
+        {% endfor %}
+    </div>
     <a href="{{ path('card_home') }}">Tillbaka till spelets landningssida</a>
 {% endblock %}

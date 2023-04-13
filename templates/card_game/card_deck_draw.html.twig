@@ -4,5 +4,7 @@
 
 {% block body %}
     <h1>Dra ett kort från kortleken</h1>
+    <p>Antal kort kvar: {{ deckCount }}</p>
+    <span class="card" style="color: {{ cardColor }}">&#{{ cardString }}</span>
     <a href="{{ path('card_home') }}">Tillbaka till spelets landningssida</a>
 {% endblock %}
