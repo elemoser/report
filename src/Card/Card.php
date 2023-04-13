@@ -5,18 +5,29 @@ namespace App\Card;
 class Card
 {
     protected $value;
+    public $suites;
+    public $minValue;
+    public $maxValue;
 
-    public function __construct()
+    public function __construct(
+        $suite = null,
+        $number = null
+    )
     {
-        $this->value = null;
-    }
+        $this->value = [];
+        $this->suites = ["hjärter", "klöver", "ruter", "spader"];
+        $this->minValue = 1;
+        $this->maxValue = 13;
 
-    public function draw(): array
-    {
-        $number = random_int(1, 13);
-        $suite = ["klöver", "ruter", "hjärter", "spader"];
-        $randSuite = array_rand($suite, 1);
-        
+        if ($suite == null) {
+            $randSuites = array_rand($this->suites, 1);
+            $suite = $this->suites[$randSuites];
+        }
+
+        if ($number == null) {
+            $number = random_int($this->minValue, $this->maxValue);
+        }
+
         if ($number == 1) {
             $number = "ess";
         }
@@ -33,13 +44,38 @@ class Card
             $number = "kung";
         }
 
-        $this->value = [$suite[$randSuite], $number];
+        $this->value = [$suite, $number];
+    }
+
+    public function draw(): array
+    {
+        // Generate a new random suite and number
+        $randSuites = array_rand($this->suites, 1);
+        $number = random_int($this->minValue, $this->maxValue);
+
+        if ($number == 1) {
+            $number = "ess";
+        }
+
+        if ($number == 11) {
+            $number = "knekt";
+        }
+
+        if ($number == 12) {
+            $number = "dam";
+        }
+
+        if ($number == 13) {
+            $number = "kung";
+        }
+
         // $this->value = ["klöver", "ess"];
+        $this->value = [$this->suites[$randSuites], $number];
 
         return $this->value;
     }
 
-    public function getValue()
+    public function getValue(): array
     {
         return $this->value;
     }
@@ -47,5 +83,16 @@ class Card
     public function getAsString(): string
     {
         return join(" ", $this->value);
+    }
+
+    public function getColor(): string
+    {
+        $color = "black";
+
+        if (in_array("ruter", $this->value) or in_array("hjärter", $this->value)) {
+            $color = "red";
+        }
+
+        return $color;
     }
 }

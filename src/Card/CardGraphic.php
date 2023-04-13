@@ -59,9 +59,12 @@ class CardGraphic extends Card
         "spader kung" => '127150;'
     ];
 
-    public function __construct()
+    public function __construct(
+        $suite = null,
+        $number = null
+    )
     {
-        parent::__construct();
+        parent::__construct($suite, $number);
     }
 
     public function getAsString(): string
