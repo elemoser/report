@@ -3,12 +3,32 @@
 {% block title %}Game{% endblock %}
 
 {% block body %}
-    <h1>Kortlek</h1>
-    <span class="card">&#{{ cardString }}</span>
+    <h1>Kortlek <span>&#{{ cardString }}</span></h1>
+
     <ul class="game-links">
         <li><a href="{{ path('card_deck') }}">Sorterade kort</a></li>
         <li><a href="{{ path('card_deck_shuffle') }}">Blandade kort</a></li>
         <li><a href="{{ path('card_deck_draw') }}">Dra ett kort från kortleken</a></li>
         <li><a href="{{ path('card_deck_draw_num', {num: 5}) }}">Dra ett antal kort från kortleken</a></li>
     </ul>
+
+    <h2>Klasser</h2>
+    <div>
+    <p>
+        För kortspelet har jag skapat fyra klasser: Card, CardGraphic, CardCollection och DeckOfCards.
+        UML visar egenskaperna och metoderna för varje klass samt deras förhållande till varandra.
+        Klassen Card innehåller en skyddad egenskap (jfr. value) och tre publika egenskaper (jfr. suites, minValue, maxValue).
+        Vidare innehåller klassen Card fyra publika metoder.
+        Klassen CardGraphic "extends" klassen Card och ärver alla dess egenskaper och metoder.
+        Denna klass innehåller också en skyddad egenskap (cf. representation) som innehåller de grafiska representationerna av korten.
+    </p>
+    <p>
+        Klassen CardCollection innehåller en skyddad egenskap (cf. cards) och åtta offentliga metoder.
+        Observera att CardCollection refererar till kortklassen.
+        Det finns ett kompositionsförhållande mellan dessa två klasser.
+        I metoderna add() och remove() skickas ett Card-objekt som argument.
+        Efter lärarnas råd försökte jag hålla kopplingen mellan klasserna så lös som möjligt.
+    </p>
+    <iframe frameborder="0" style="margin: 20px auto; width:100%; height:532px;" src="https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=UML_Kortlek.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1qIo7t2LJX73xQ3oK5V8UwLoNorSZuz_B%26export%3Ddownload"></iframe>
+    </div>
 {% endblock %}
