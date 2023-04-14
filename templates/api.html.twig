@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+{% block title %}API{% endblock %}
+
+{% block body %}
+    <h1>API</h1>
+    <p>I följande listas alla JSON routes som den här webbplatsen erbjuder.</p>
+
+    <form method="post" action="">
+    <div>
+        <h2>Dagens citat</h2>
+        <p>
+            Den här routen tar dig till en sida som visar ett JSON-objekt med dagens citat.
+            Är du nyfiken på dagens citat? Tryck på knappen nedan!
+        </p>
+        <input class="button blue-button" type="submit" name="quotes" value="api/quote"
+            onClick="this.form.action='{{ path('api_quote') }}';"
+        >
+    </div>
+    <div>
+        <h2>Sorterad kortlek</h2>
+        <p>
+            Den här routen tar dig till en sida som visar ett JSON-objekt med samtliga kort i kortleken sorterade per färg och värde.
+        </p>
+        <input class="button blue-button" type="submit" name="deckSorted" value="api/deck"
+            onClick="this.form.action='{{ path('api_deck_init') }}';"
+        >
+    </div>
+    <div>
+        <h2>Blandade kortlek</h2>
+        <p>
+            Den här routen tar dig till en sida som visar ett JSON-objekt med samtliga kort i kortleken när den har blandats.
+        </p>
+        <input class="button blue-button" type="submit" name="deckShuffled" value="api/deck/shuffle"
+            onClick="this.form.action='{{ path('api_deck_shuffle_post') }}';"
+        >
+    </div>
+    <div>
+        <h2>Dra ett kort från kortleken</h2>
+        <p>
+            Den här routen tar dig till en sida som visar ett JSON-objekt med ett slumpmässig kort från kortleken.
+            Det visas även antalet kort som är kvar i kortleken.
+        </p>
+        <input class="button blue-button" type="submit" name="drawCard" value="api/deck/draw"
+            onClick="this.form.action='{{ path('api_deck_draw_post') }}';"
+        >
+    </div>
+    <div>
+        <h2>Dra ett antal kort från kortleken</h2>
+        <p>
+            Den här routen tar dig till en sida som visar ett JSON-objekt med ett antal kort från kortleken.
+            Det visas även antalet kort som är kvar i kortleken.
+        </p>
+        <input class="input-field" type="number" name="num_cards" min="1" max="52" placeholder="2">
+        <input class="button blue-button" type="submit" name="drawCard" value="card/deck/draw/:number"
+            onClick="this.form.action='{{ path('api_deck_draw_num_post', {num: 5}) }}';"
+        >
+    </div>
+    </form>
+{% endblock %}
