@@ -11,9 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 // use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GameController extends AbstractController {
+class GameController extends AbstractController
+{
     #[Route("/card", name: "card_home")]
-    public function card_home(): Response
+    public function cardHome(): Response
     {
         $card = new CardGraphic("hjärter", "ess");
 
@@ -25,10 +26,10 @@ class GameController extends AbstractController {
     }
 
     #[Route("/card/deck", name: "card_deck")]
-    public function card_deck(): Response
+    public function cardDeck(): Response
     {
-        $card = new Card;
-        $deck = new DeckOfCards;
+        $card = new Card();
+        $deck = new DeckOfCards();
 
         foreach ($card->suites as $suite) {
             for ($i = $card->minValue; $i <= $card->maxValue; $i++) {
@@ -46,10 +47,10 @@ class GameController extends AbstractController {
     }
 
     #[Route("/card/deck/shuffle", name: "card_deck_shuffle")]
-    public function card_deck_shuffle(): Response
+    public function cardDeckShuffle(): Response
     {
-        $card = new Card;
-        $deck = new DeckOfCards;
+        $card = new Card();
+        $deck = new DeckOfCards();
 
         foreach ($card->suites as $suite) {
             for ($i = $card->minValue; $i <= $card->maxValue; $i++) {
@@ -69,11 +70,11 @@ class GameController extends AbstractController {
     }
 
     #[Route("/card/deck/draw", name: "card_deck_draw")]
-    public function card_deck_draw(): Response
+    public function cardDeckDraw(): Response
     {
         // Create a deck of cards
-        $card = new Card;
-        $deck = new DeckOfCards;
+        $card = new Card();
+        $deck = new DeckOfCards();
 
         foreach ($card->suites as $suite) {
             for ($i = $card->minValue; $i <= $card->maxValue; $i++) {
@@ -94,11 +95,11 @@ class GameController extends AbstractController {
     }
 
     #[Route("/card/deck/draw/{num<\d+>}", name: "card_deck_draw_num")]
-    public function card_deck_draw_num(int $num): Response
+    public function cardDeckDrawNum(int $num): Response
     {
         // Create a deck of cards
-        $card = new Card;
-        $deck = new DeckOfCards;
+        $card = new Card();
+        $deck = new DeckOfCards();
 
         foreach ($card->suites as $suite) {
             for ($i = $card->minValue; $i <= $card->maxValue; $i++) {
@@ -107,7 +108,7 @@ class GameController extends AbstractController {
         }
 
         // Draw random cards
-        $randomCards = new CardCollection;
+        $randomCards = new CardCollection();
         $randomCardsFromDeck = $deck->draw($num);
 
         foreach ($randomCardsFromDeck as $randCard) {

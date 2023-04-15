@@ -4,7 +4,8 @@ namespace App\Card;
 
 use App\Card\Card;
 
-class CardCollection {
+class CardCollection
+{
     protected $cards;
 
     public function __construct()
@@ -81,7 +82,7 @@ class CardCollection {
 
         if (is_int($randIndexes)) {
             array_push($randCards, $this->cards[$randIndexes]);
-                unset($this->cards[$randIndexes]);
+            unset($this->cards[$randIndexes]);
         }
 
 

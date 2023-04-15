@@ -12,8 +12,7 @@ class Card
     public function __construct(
         $suite = null,
         $number = null
-    )
-    {
+    ) {
         $this->value = [];
         $this->suites = ["hjärter", "klöver", "ruter", "spader"];
         $this->minValue = 1;

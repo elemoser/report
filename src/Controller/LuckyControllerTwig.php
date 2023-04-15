@@ -12,7 +12,7 @@ class LuckyControllerTwig extends AbstractController
     #[Route("/lucky", name: "lucky")]
     public function lucky(): Response
     {
-        $random_number = random_int(0, 9);
+        $randomNumber = random_int(0, 9);
 
         $numbers = [
             "ZERO",
@@ -40,10 +40,10 @@ class LuckyControllerTwig extends AbstractController
             '9' => "https://giphy.com/embed/26gsjCWitFy3euTeM"
         ];
 
-        $gif = $gifs[strval($random_number)];
+        $gif = $gifs[strval($randomNumber)];
 
         $data = [
-            "number" => $numbers[$random_number],
+            "number" => $numbers[$randomNumber],
             "gif" => $gif
         ];
 
@@ -85,11 +85,11 @@ class LuckyControllerTwig extends AbstractController
             "Do one thing every day that scares you. (Eleanor Roosevelt)",
             "Happiness is not something ready made. It comes from your own actions. (Dalai Lama XIV)"
         ];
-        $rand_quote = array_rand($quotes, 1);
+        $randQuote = array_rand($quotes, 1);
 
         $data = [
             'dagens-datum' => $today,
-            'citat' => $quotes[$rand_quote],
+            'citat' => $quotes[$randQuote],
         ];
 
         // return new JsonResponse($data);

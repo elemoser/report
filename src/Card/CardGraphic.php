@@ -62,8 +62,7 @@ class CardGraphic extends Card
     public function __construct(
         $suite = null,
         $number = null
-    )
-    {
+    ) {
         parent::__construct($suite, $number);
     }
 
