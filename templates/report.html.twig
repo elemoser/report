@@ -60,7 +60,96 @@
     </p>
     </section>
 
+    <section>
     <h2 id="kmom02">Kmom02</h2>
+    <p>
+    Detta kursmoment lärde vi oss om de objektorienterade konstruktionerna arv, komposition, interface och trait.
+    </p>
+
+    <p>
+    <b>Arv</b> är en relation mellan två klasser, där den ena klassen ärver egenskaper och metoder från den andra klassen.
+    Detta innebär att den ärvande klassen tar över all funktionalitet från den förälder-klassen, plus att den kan lägga till sin egen funktionalitet.
+    I PHP implementeras arv med hjälp av nyckelordet "extends".
+    </p>
+
+    <p>
+    <b>Komposition</b> är en annan typ av relation mellan klasser.
+    Man pratar om komposition när en klass innehåller eller anropar en annan klass som en del av sin struktur.
+    Istället för att ärva från en klass, skapar man en instans av den andra klassen inuti den första klassen.
+    Detta kallas för hög koppling (high coupling).
+    Det är också möjligt att skicka in en klass i en metod av en annan klass.
+    Detta kallas för lös koppling (loose coupling).
+    Med komposition kan man skapa mer flexibla och modulära klasser.
+    </p>
+
+    <p>
+    Ett <b>interface</b> är en samling av metoder som en klass måste implementera.
+    Detta kan användas för att tvinga klasser att följa en viss struktur eller för att skapa abstrakta typer som andra klasser kan implementera.
+    I PHP definieras ett interface med nyckelordet "interface".
+    </p>
+
+    <p>
+    Ett <b>trait</b> är en samling av metoder som kan återanvändas av flera klasser.
+    Detta är användbart om man har en del kod som behöver återanvändas på flera ställen,
+    men som inte är lämpligt att lägga i en bas-klass eller ett interface.
+    I PHP definieras en trait med nyckelordet "trait" och inkluderas i en klass med hjälp av nyckelordet "use".
+    </p>
+
+    <p>
+    För detta kursmomentets uppgift skapade jag fyra klasser: <code>Card</code>, <code>CardGraphic</code>, <code>CardCollection</code> och <code>DeckOfCards</code>.
+    <b>Card</b> klassen representerar ett spelkort. Den har egenskaper för kortets färg,
+    lägsta och högsta värde och en konstruktör som slumpmässigt tilldelar kortet en färg och ett värde om inget anges.
+    Den har också metoder för att rita ett nytt kort, hämta kortets värde, hämta en strängrepresentation av kortet och hämta kortets färg.
+    </p>
+
+    <p>
+    <b>CardGraphic</b> ärver från Card-klassen och har ytterligare en privat egenskap $representation som är en array som mappar varje möjligt kortvärde till en motsvarande Unicode-teckenrepresentation av kortets färg och nummer.
+    Istället för att returnera en sträng, returnerar metoden <code>getAsString()</code> i denna klassan en Unicode-teckenrepresentationen av kortets färg och nummer.
+    </p>
+
+    <p>
+    Klassen <b>CardCollection</b> representerar en samling spelkort, med metoder för att lägga till och ta bort kort, blanda samlingen, få fram antalet kort, få fram värden, färger och strängar för korten och slumpmässigt dra ett visst antal kort från samlingen.
+    Klassen använder ett Card-objekt som parameter för vissa metoder.
+    </p>
+
+    <p>
+    Klassen <b>DeckOfCards</b> ärver från klassen CardCollection och representerar en komplett kortlek. Den har en metod <code>isCompleteDeck()</code> som kontrollerar om kortleken har alla 52 kort. Metoden beräknar det förväntade antalet kort baserat på kortets min- och maxvärden och jämför det med det faktiska antalet kort i kortleken.
+    </p>
+
+    <p>
+    Jag upplevde det som mycket användbart att skapa ett UML-diagram över klasserna innan jag började koda.
+    Genom att visualisera klasserna på detta sätt fick jag en bättre förståelse för deras hierarkiska struktur och relationer till varandra.
+    Jag uppdaterade diagrammet även under arbetet med koden, när jag såg inkonsekvenser eller behov av förbättringar. 
+    </p>
+
+    <p>
+    För att ta itu med några av de svårare delarna av uppgifter har jag funnit det användbart att använda pseudokod.
+    Jag har dock lagt märke till att jag tenderar att radera min pseudokod “as I go along”, så det finns ofta väldigt lite kvar när jag har skrivit färdigt koden.
+    Därför kan det hända att man bara hittar några få spridda rader pseudokod i mina filer.
+    </p>
+
+    <p>
+    Jag tycker att jag på det hela taget gjorde ett bra jobb.
+    Jag lyckades till exempel hitta ett sätt att skapa en lös koppling mellan Card/CardGraphic-klassen och CardCollection/DeckOfCards-klassen, vilket var en större utmaning än väntat.
+    Det finns dock fortfarande utrymme för förbättringar.
+    Till exempel är DeckOfCards-klassen för närvarande onödig.
+    Jag skulle kunna använda CardCollection-klassen i stället, eftersom i slutändan använde jag inte metoden <code>isCompleteDeck()</code> i DeckOfCards.
+    Särskiljning kan dock komma till nytta i framtiden.
+    </p>
+
+    <p>
+    Min TIL handlar om “loose coupling high cohesion” eller på svenska “lös koppling hög kohesion”.
+    Lös koppling och hög kohesion är två principer för programvarudesign som bidrar till att skapa robust och underhållbar kod.
+    Med <i>lös koppling</i> avses i vilken grad komponenterna i ett system är oberoende och inte beroende av varandra för att fungera.
+    I ett löst kopplat system har ändringar som görs i en komponent minimal inverkan på andra komponenter.
+    Detta gör det lättare att ändra, testa och underhålla systemet som helhet.
+    Lös koppling uppnås genom att man använder väldefinierade gränssnitt och minimerar beroenden mellan komponenterna (såsom klasser).
+    Med <i>hög kohesion</i> avses i vilken grad elementen inom en komponent är relaterade till varandra och arbetar tillsammans för att uppnå en enda, väldefinierad uppgift eller ett väldefinierat syfte. En komponent med hög sammanhållning är inriktad på ett specifikt och väldefinierat ansvar och har ett klart och tydligt gränssnitt mot andra komponenter. Detta gör det lättare att resonera om, testa och underhålla komponenten.
+    Tillsammans kan lös koppling och hög sammanhållning leda till system som är modulära,
+    flexibla och motståndskraftiga mot förändringar.
+    </p>
+    </section>
+
     <h2 id="kmom03">Kmom03</h2>
     <h2 id="kmom04">Kmom04</h2>
     <h2 id="kmom05">Kmom05</h2>
