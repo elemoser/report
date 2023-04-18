@@ -6,6 +6,9 @@ use App\Card\Card;
 
 class CardCollection
 {
+    /**
+     * @var array<Card> $cards
+     */
     protected $cards;
 
     public function __construct()
@@ -36,11 +39,17 @@ class CardCollection
         shuffle($this->cards);
     }
 
-    public function getCount(): int
+    /**
+     * @return int
+     */
+    public function getCount()
     {
         return count($this->cards);
     }
 
+    /**
+     * @return array<int<0, max>, array<string>>
+     */
     public function getValues(): array
     {
         $values = [];
@@ -50,6 +59,9 @@ class CardCollection
         return $values;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getStrings(): array
     {
         $values = [];
@@ -59,6 +71,9 @@ class CardCollection
         return $values;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getColors(): array
     {
         $values = [];
@@ -68,7 +83,10 @@ class CardCollection
         return $values;
     }
 
-    public function draw($number = 1): array
+    /**
+     * @return array<Card>
+     */
+    public function draw(int $number = 1): array
     {
         $randCards = [];
         $randIndexes = array_rand($this->cards, $number);
