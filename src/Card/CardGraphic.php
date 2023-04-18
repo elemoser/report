@@ -4,6 +4,9 @@ namespace App\Card;
 
 class CardGraphic extends Card
 {
+    /**
+     * @var array<string, string> $representation
+     */
     private $representation = [
         "klöver ess" => '127185;',
         "klöver 2" => '127186;',
@@ -60,13 +63,16 @@ class CardGraphic extends Card
     ];
 
     public function __construct(
-        $suite = null,
-        $number = null
+        string $suite = null,
+        int $number = null
     ) {
         parent::__construct($suite, $number);
     }
 
-    public function getAsString(): string
+    /**
+     * @return string
+     */
+    public function getAsString()
     {
         return $this->representation[join(" ", $this->value)];
     }
