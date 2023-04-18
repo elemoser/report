@@ -16,7 +16,7 @@ class GameController extends AbstractController
     #[Route("/card", name: "card_home")]
     public function cardHome(): Response
     {
-        $card = new CardGraphic("hjärter", "ess");
+        $card = new CardGraphic("hjärter", 1);
 
         $data = [
             "cardString" => $card->getAsString()
