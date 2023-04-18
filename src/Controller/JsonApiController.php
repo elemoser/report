@@ -39,10 +39,18 @@ class JsonApiController extends AbstractController
         $deck = $session->get("deck");
 
         $data = [
-            "DeckSize" => $deck->getCount(),
-            "CardsInDeck" => $deck->getStrings(),
-            "CardColors" => $deck->getColors()
+            "DeckSize" => 0,
+            "CardsInDeck" => [],
+            "CardColors" => []
         ];
+
+        if ($deck instanceof DeckOfCards) {
+            $data = [
+                "DeckSize" => $deck->getCount(),
+                "CardsInDeck" => $deck->getStrings(),
+                "CardColors" => $deck->getColors()
+            ];
+        }
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
@@ -57,7 +65,9 @@ class JsonApiController extends AbstractController
     ): Response {
         $deck = $session->get("deck");
 
-        $deck->shuffle();
+        if ($deck instanceof DeckOfCards) {
+            $deck->shuffle();
+        }
 
         $session->set("deck", $deck);
 
@@ -71,16 +81,20 @@ class JsonApiController extends AbstractController
     ): Response {
         $deck = $session->get("deck");
 
-        $deckSize = $deck->getCount();
+        $deckSize = 0;
 
-        if ($deckSize >= 1) {
-            $randomCards = new CardCollection();
-            $randomCard = $deck->draw();
-            $randomCards->add($randomCard[0]);
+        if ($deck instanceof DeckOfCards) {
+            $deckSize = $deck->getCount();
 
-            $session->set("drawn_cards", $randomCards);
-            $session->set("deck", $deck);
-            return $this->redirectToRoute('api_deck_draw_get');
+            if ($deckSize >= 1) {
+                $randomCards = new CardCollection();
+                $randomCard = $deck->draw();
+                $randomCards->add($randomCard[0]);
+
+                $session->set("drawn_cards", $randomCards);
+                $session->set("deck", $deck);
+                return $this->redirectToRoute('api_deck_draw_get');
+            }
         }
 
         return $this->redirectToRoute('api_deck_init');
@@ -92,28 +106,31 @@ class JsonApiController extends AbstractController
         SessionInterface $session
     ): Response {
 
-        $num = $request->request->get('num_cards');
+        $num = (int) $request->request->get('num_cards');
 
         $deck = $session->get("deck");
-        $deckSize = $deck->getCount();
 
         // Draw random cards
         if (!$num) {
             $num = 2;
         }
 
-        if ($deckSize >= $num) {
-            $randomCards = new CardCollection();
-            $randomCardsFromDeck = $deck->draw($num);
+        if ($deck instanceof DeckOfCards) {
+            $deckSize = $deck->getCount();
 
-            foreach ($randomCardsFromDeck as $randCard) {
-                $randomCards->add($randCard);
+            if ($deckSize >= $num) {
+                $randomCards = new CardCollection();
+                $randomCardsFromDeck = $deck->draw($num);
+
+                foreach ($randomCardsFromDeck as $randCard) {
+                    $randomCards->add($randCard);
+                }
+
+                $session->set("drawn_cards", $randomCards);
+                $session->set("deck", $deck);
+
+                return $this->redirectToRoute('api_deck_draw_get');
             }
-
-            $session->set("drawn_cards", $randomCards);
-            $session->set("deck", $deck);
-
-            return $this->redirectToRoute('api_deck_draw_get');
         }
 
         return $this->redirectToRoute('api_deck_init');
@@ -127,18 +144,28 @@ class JsonApiController extends AbstractController
         $drawnCards = $session->get("drawn_cards");
 
         $data = [
-            "DeckSize" => $deck->getCount(),
+            "DeckSize" => 0,
+            "CardsDrawn" => [],
+            "CardsColor" => []
         ];
 
-        // var_dump($drawnCards);
+        if ($deck instanceof DeckOfCards) {
+            $data = [
+                "DeckSize" => $deck->getCount(),
+            ];
+        }
 
-        // if (count($drawnCards) === 1) {
-        //     $data["CardDrawn"] = $drawnCards[0]->getAsString();
-        //     $data["CardsColor"] = $drawnCards[0]->getColor();
-        // } else {
-        $data["CardsDrawn"] = $drawnCards->getStrings();
-        $data["CardsColor"] = $drawnCards->getColors();
-        // }
+        if ($drawnCards instanceof CardCollection) {
+            // var_dump($drawnCards);
+
+            // if (count($drawnCards) === 1) {
+            //     $data["CardDrawn"] = $drawnCards[0]->getAsString();
+            //     $data["CardsColor"] = $drawnCards[0]->getColor();
+            // } else {
+            $data["CardsDrawn"] = $drawnCards->getStrings();
+            $data["CardsColor"] = $drawnCards->getColors();
+            // }
+        }
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
