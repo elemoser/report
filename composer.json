@@ -1,4 +1,6 @@
 {
+    "name": "elmo/report",
+    "description": "Webapplication with PHP and Symfony acc. MVC",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
