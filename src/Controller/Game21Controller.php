@@ -25,4 +25,18 @@ class Game21Controller extends AbstractController
         return $this->render('game21/game21_doc.html.twig');
     }
 
+    #[Route("/game/play", name: "game_play")]
+    public function gamePlay(): Response
+    {
+        // render a template
+        return $this->render('game21/game21_doc.html.twig');
+    }
+
+    #[Route("/game/draw", name: "game_draw_card", methods: ["POST"])]
+    public function gameDraw(): Response
+    {
+        // render a template
+        return $this->redirectToRoute('game_play');
+    }
+
 }
