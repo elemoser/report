@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game21{% endblock %}
+
+{% block body %}
+    <h1>Dokumentation</h1>
+
+    <h2>Klasser</h2>
+    <div>
+    <p>
+        Fundera igenom vilka klasser du behöver för att implementera spelet. Beskriv klasserna i text med klassens namn och en mening som beskriver vad klassens syfte är. Håll det kort och enkelt.
+    </p>
+
+    <h2>Flödesschema</h2>
+    <div>
+    <p>
+        Skapa ett flödesschema som representerar hur du tänker lösa grunderna i spelet. Resultatet kan du placera som en bild i webbsidan för dokumentationen. Det behöver inte vara en komplett lösning, en dellösning räcker bra.
+    </p>
+    </div>
+    {# <iframe frameborder="0" style="margin: 20px auto; width:100%; height:532px;" src="https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=UML_Kortlek.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1qIo7t2LJX73xQ3oK5V8UwLoNorSZuz_B%26export%3Ddownload"></iframe> #}
+    </div>
+
+    <h2>Psuedokod</h2>
+    <div>
+    <p>
+        Skapa psuedokod som visar hur du tänker lösa delar av spelet. Du kan spara resultatet som text eller bild men visa upp det i webbsidan för dokumentationen. Det behöver inte vara en komplett lösning, en dellösning räcker bra.
+    </p>
+    </div>
+
+    <a href="{{ path('game_home') }}">Tillbaka till spelets landningssida</a>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game21{% endblock %}
+
+{% block body %}
+    <h1>Tjugoett</h1>
+
+    <div>
+    <p>Välkommen, här kan du spela Tjugoett!</p>
+    </div>
+
+    <h2>Spelregler</h2>
+    <div>
+    <p>
+    I Tjugoett, a.k.a 21, är målet att få en hand med ett totalt värde som är närmare 21 än dealerns (d.v.s. bankens) hand utan att gå över 21.
+    Korten 2 till 10 har värdet som motsvarar sitt nummer, knektar har värdet 11, damer har värdet 12 och kungar har värdet 13
+    och ess kan räknas som antingen 1 eller 14 beroende på vilket som är fördelaktigare för spelaren.
+    </p>
+    <p>
+    Spelet börjar med att visa den tomma spelplanen.
+    Spelaren får spela först och ta det första kortet.
+    Efter detta kan spelaren bestämma att stanna eller ta ytterligare ett kort.
+    Totalt får spelaren ta två kort.
+    Om spelaren får över 21, vinner dealern.
+    Om spelaren får under 21, är det dealerns tur.
+    Dealern kan då plocka ett till två kort.
+    Spelaren vinner om dealern får över 21 eller om hens korthand är närmare 21.
+    Dealern vinner om hens korthand är närmare 21 eller om båda korthand är lika.
+    </p>
+    <p>
+    Det här spelet skapades av elmo22 inom ramen för kmom03.
+    För mer information om skapandet av detta spel, besök <a href="{{ path('game_doc') }}">dokumentationssidan</a>.
+    </p>
+    <a class="button blue-button" href="">Starta</a>
+    {# <iframe frameborder="0" style="margin: 20px auto; width:100%; height:532px;" src="https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=UML_Kortlek.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1qIo7t2LJX73xQ3oK5V8UwLoNorSZuz_B%26export%3Ddownload"></iframe> #}
+    </div>
+{% endblock %}
