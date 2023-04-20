@@ -27,7 +27,7 @@ class Game21
     public function __construct()
     {
         $this->queue = [];
-        $this->next = null;
+        $this->next = -1;
     }
 
     public function addCardDeck(DeckOfCards $deck): void
@@ -47,9 +47,11 @@ class Game21
      */
     public function getNextInQueue()
     {
-        if (is_int($this->next) && $this->next < $this->queue) {
+        if ($this->next < count($this->queue)) {
             $this->next = $this->next + 1;
-        } else {
+        }
+
+        if ($this->next < count($this->queue)) {
             $this->next = 0;
         }
 
@@ -80,7 +82,9 @@ class Game21
 
         $drawnCards = $this->deck->draw($num);
 
-        for ($i = 0; $i <= $drawnCards; $i++) {
+        $drawnCardsLength = count($drawnCards);
+
+        for ($i = 0; $i <= $drawnCardsLength; $i++) {
             $currentPlayer->addCard($drawnCards[$i]);
         }
 
@@ -88,38 +92,110 @@ class Game21
     }
 
     /**
+     * @return array<string, int>
+     */
+    protected function getPlayerHandValues(Player $player)
+    {
+        $handValues = $player->getHandValues();
+
+        $sumTotals = ["ess is 1" => 0, "ess is 14" => 0];
+
+        foreach ($handValues as $cardValues) {
+            switch ($cardValues[1]) {
+                case "ess":
+                    $sumTotals["ess is 1"] += 1;
+                    $sumTotals["ess is 14"] += 14;
+                    break;
+                case "kung":
+                    $sumTotals["ess is 1"] += 13;
+                    $sumTotals["ess is 14"] += 13;
+                    break;
+                case "dam":
+                    $sumTotals["ess is 1"] += 12;
+                    $sumTotals["ess is 14"] += 12;
+                    break;
+                case "knekt":
+                    $sumTotals["ess is 1"] += 11;
+                    $sumTotals["ess is 14"] += 11;
+                    break;
+                default:
+                    $sumTotals["ess is 1"] += intval($cardValues[1]);
+                    $sumTotals["ess is 14"] += intval($cardValues[1]);
+            }
+        }
+
+        return $sumTotals;
+    }
+
+    /**
      * @return int
      */
     protected function computeHandTotal(Player $player)
     {
+        $sumTotals = $this->getPlayerHandValues($player);
 
-        // $player->getHandValues()
+        // if ($sumTotals["ess is 1"] > 21 && $sumTotals["ess is 14"] > 21)
+        // if ($sumTotals["ess is 1"] < 21 && $sumTotals["ess is 14"] > 21)
+        $result = $sumTotals["ess is 1"];
 
-        // sum hand values
-        // convert
-        // ess = 1 or 14
-        // king = 13
-        // queen = 12
-        // jack = 11
+        if ($sumTotals["ess is 1"] > 21 && $sumTotals["ess is 14"] < 21) {
+            $result = $sumTotals["ess is 14"];
+        }
 
-        // return total
+        if ($sumTotals["ess is 1"] < 21 && $sumTotals["ess is 14"] < 21) {
+            $one = 21 - $sumTotals["ess is 1"];
+            $fourteen = 21 - $sumTotals["ess is 14"];
+            // if ($a == $b || $a < $b)
+            $result = $sumTotals["ess is 1"];
+
+            if ($one > $fourteen) {
+                $result = $sumTotals["ess is 14"];
+            }
+        }
+
+        return $result;
     }
 
-    public function checkWinStatus(): void
+        /**
+     * @return array<string, string>
+     */
+    public function checkWinStatus()
     {
-        // foreach $player in $queue
-        // $this->computeHandTotal()
-        // and save in $report = ["player name" => total]
+        $report = [];
+        $winner = [""];
+        $loser = [""];
 
-        // for item in $report
-        // if player's hand > 21
-        // that player looses
+        foreach ($this->queue as $player) {
+            if (count($player->getHandAsString())) {
+                $report[$player->name] = $this->computeHandTotal($player);
+            }
+        }
 
-        // check closest to 21
-        // by doing 21 - total for all items in $report
-        // and save in $diff ["player name" => 21 - total]
-        
-        // sort or get min() from array ?
-        // and by doing so get player that is closest to 21
+        foreach ($report as $key=>$value) {
+            if ($value < 21) {
+                array_push($winner, $key);
+            }
+
+            if ($value < 21) {
+                array_push($loser, $key);
+            }
+        }
+
+        if (count($winner) > 1) {
+            $diff = [];
+            foreach ($report as $key=>$value) {
+                $diff[$key] = 21 - $value;
+            }
+            sort($diff);
+            $winner = array_keys($diff);
+
+            if (count($diff) != count(array_unique($diff))) {
+                $winner = ["bank"];
+                unset($diff["bank"]);
+                $loser = array_keys($diff);
+            }
+        }
+
+        return ["winner" => $winner[0], "loser" => $loser[0]];
     }
 }

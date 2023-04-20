@@ -8,13 +8,19 @@ use App\Card\CardCollection;
 class Player
 {
     /**
+     * @var string $name
+     */
+    public $name;
+
+    /**
      * @var CardCollection $cardHand
      */
     protected $cardHand;
 
-    public function __construct()
+    public function __construct(string $name)
     {
-        $this->cardHand = new CardCollection;
+        $this-> name = $name;
+        $this->cardHand = new CardCollection();
     }
 
     public function addCard(Card $newCard): void
@@ -35,14 +41,10 @@ class Player
     }
 
     /**
-     * @return int
+     * @return array<int<0, max>, array<string>>
      */
     public function getHandValues()
     {
-        // return the current sum of all cards
-        // in the cardHand
-        
-        // for card in cardHand get card->getValues()
-        // append to $cardHandValues
+        return $this->cardHand->getValues();
     }
 }
