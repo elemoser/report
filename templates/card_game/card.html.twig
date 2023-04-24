@@ -6,8 +6,8 @@
     <h1>Kortlek <span>&#{{ cardString }}</span></h1>
 
     <ul class="game-links">
-        <li><a href="{{ path('card_deck') }}">Sorterade kort</a></li>
-        <li><a href="{{ path('card_deck_shuffle') }}">Blandade kort</a></li>
+        <li><a href="{{ path('card_init', {route: 'card_deck'}) }}">Sorterade kort</a></li>
+        <li><a href="{{ path('card_init',{route: 'card_deck_shuffle'}) }}">Blandade kort</a></li>
         <li><a href="{{ path('card_deck_draw') }}">Dra ett kort från kortleken</a></li>
         <li><a href="{{ path('card_deck_draw_num', {num: 5}) }}">Dra ett antal kort från kortleken</a></li>
     </ul>

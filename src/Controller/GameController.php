@@ -8,11 +8,30 @@ use App\Card\CardCollection;
 use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-// use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GameController extends AbstractController
 {
+    #[Route("/card/init/{route}", name: "card_init")]
+    public function cardInit(
+        string $route,
+        SessionInterface $session
+    ): Response {
+        $card = new Card();
+        $deck = new DeckOfCards();
+
+        foreach ($card->suites as $suite) {
+            for ($i = $card->minValue; $i <= $card->maxValue; $i++) {
+                $deck->add(new CardGraphic($suite, $i));
+            }
+        }
+
+        $session->set("deck", $deck);
+
+        return $this->redirectToRoute($route);
+    }
+
     #[Route("/card", name: "card_home")]
     public function cardHome(): Response
     {
@@ -26,100 +45,104 @@ class GameController extends AbstractController
     }
 
     #[Route("/card/deck", name: "card_deck")]
-    public function cardDeck(): Response
+    public function cardDeck(SessionInterface $session): Response
     {
-        $card = new Card();
-        $deck = new DeckOfCards();
-
-        foreach ($card->suites as $suite) {
-            for ($i = $card->minValue; $i <= $card->maxValue; $i++) {
-                $deck->add(new CardGraphic($suite, $i));
-            }
-        }
+        $deck = $session->get("deck");
 
         $data = [
-            "deckCount" => $deck->getCount(),
-            "deckStrings" => $deck->getStrings(),
-            "deckColors" => $deck->getColors()
+            "deckCount" => 0,
+            "deckStrings" => [],
+            "deckColors" => []
         ];
+
+        if ($deck instanceof DeckOfCards) {
+            $data["deckCount"] = $deck->getCount();
+            $data["deckStrings"] = $deck->getStrings();
+            $data["deckColors"] = $deck->getColors();
+        }
 
         return $this->render('card_game/card_deck.html.twig', $data);
     }
 
     #[Route("/card/deck/shuffle", name: "card_deck_shuffle")]
-    public function cardDeckShuffle(): Response
+    public function cardDeckShuffle(SessionInterface $session): Response
     {
-        $card = new Card();
-        $deck = new DeckOfCards();
-
-        foreach ($card->suites as $suite) {
-            for ($i = $card->minValue; $i <= $card->maxValue; $i++) {
-                $deck->add(new CardGraphic($suite, $i));
-            }
-        }
-
-        $deck->shuffle();
+        $deck = $session->get("deck");
 
         $data = [
-            "deckCount" => $deck->getCount(),
-            "deckStrings" => $deck->getStrings(),
-            "deckColors" => $deck->getColors()
+            "deckCount" => 0,
+            "deckStrings" => [],
+            "deckColors" => []
         ];
+
+        if ($deck instanceof DeckOfCards) {
+            $deck->shuffle();
+            $data["deckCount"] = $deck->getCount();
+            $data["deckStrings"] = $deck->getStrings();
+            $data["deckColors"] = $deck->getColors();
+        }
 
         return $this->render('card_game/card_deck_shuffle.html.twig', $data);
     }
 
     #[Route("/card/deck/draw", name: "card_deck_draw")]
-    public function cardDeckDraw(): Response
+    public function cardDeckDraw(SessionInterface $session): Response
     {
         // Create a deck of cards
-        $card = new Card();
-        $deck = new DeckOfCards();
-
-        foreach ($card->suites as $suite) {
-            for ($i = $card->minValue; $i <= $card->maxValue; $i++) {
-                $deck->add(new CardGraphic($suite, $i));
-            }
-        }
-
-        // Remove random card from deck
-        $randomCardFromDeck = $deck->draw();
+        $deck = $session->get("deck");
 
         $data = [
-            "cardString" => $randomCardFromDeck[0]->getAsString(),
-            "cardColor" => $randomCardFromDeck[0]->getColor(),
-            "deckCount" => $deck->getCount()
+            "deckCount" => 0,
+            "deckString" => [],
+            "deckColor" => []
         ];
+
+        // Remove random card from deck
+        if ($deck instanceof DeckOfCards) {
+            if ($deck->getCount() < 1) {
+                return $this->redirect('/card/init/card_deck_draw');
+            }
+
+            $randomCardFromDeck = $deck->draw();
+            $data["cardString"] = $randomCardFromDeck[0]->getAsString();
+            $data["cardColor"] = $randomCardFromDeck[0]->getColor();
+            $data["deckCount"] = $deck->getCount();
+        }
 
         return $this->render('card_game/card_deck_draw.html.twig', $data);
     }
 
     #[Route("/card/deck/draw/{num<\d+>}", name: "card_deck_draw_num")]
-    public function cardDeckDrawNum(int $num): Response
-    {
+    public function cardDeckDrawNum(
+        int $num,
+        SessionInterface $session
+    ): Response {
         // Create a deck of cards
-        $card = new Card();
-        $deck = new DeckOfCards();
-
-        foreach ($card->suites as $suite) {
-            for ($i = $card->minValue; $i <= $card->maxValue; $i++) {
-                $deck->add(new CardGraphic($suite, $i));
-            }
-        }
-
-        // Draw random cards
-        $randomCards = new CardCollection();
-        $randomCardsFromDeck = $deck->draw($num);
-
-        foreach ($randomCardsFromDeck as $randCard) {
-            $randomCards->add($randCard);
-        }
+        $deck = $session->get("deck");
 
         $data = [
-            "cardStrings" => $randomCards->getStrings(),
-            "cardColors" => $randomCards->getColors(),
-            "deckCount" => $deck->getCount()
+            "deckCount" => 0,
+            "cardStrings" => [],
+            "cardColors" => []
         ];
+
+        // Draw random cards
+        if ($deck instanceof DeckOfCards) {
+            if ($deck->getCount() < $num) {
+                return $this->redirect('/card/init/card_deck_draw_num');
+            }
+
+            $randomCards = new CardCollection();
+            $randomCardsFromDeck = $deck->draw($num);
+
+            foreach ($randomCardsFromDeck as $randCard) {
+                $randomCards->add($randCard);
+            }
+
+            $data["cardStrings"] = $randomCards->getStrings();
+            $data["cardColors"] = $randomCards->getColors();
+            $data["deckCount"] = $deck->getCount();
+        }
 
         return $this->render('card_game/card_deck_draw_num.html.twig', $data);
     }
