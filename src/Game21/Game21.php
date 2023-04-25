@@ -15,9 +15,9 @@ class Game21
     protected $queue;
 
     /**
-     * @var int $next
+     * @var int $currentInQueue
      */
-    protected $next;
+    protected $currentInQueue;
 
     /**
      * @var DeckOfCards $deck
@@ -27,7 +27,7 @@ class Game21
     public function __construct()
     {
         $this->queue = [];
-        $this->next = -1;
+        $this->currentInQueue = 0;
     }
 
     public function addCardDeck(DeckOfCards $deck): void
@@ -43,19 +43,28 @@ class Game21
     // public function removePlayer(Player $player): void
 
     /**
-     * @return int
+     * @return Player
      */
-    public function getNextInQueue()
+    public function getCurrentPlayerInQueue()
     {
-        if ($this->next < count($this->queue)) {
-            $this->next = $this->next + 1;
+        return  $this->queue[$this->currentInQueue];
+    }
+
+    /**
+     * @return Player
+     */
+    public function getNextPlayerInQueue()
+    {
+        //
+        if ($this->currentInQueue < count($this->queue)) {
+            $this->currentInQueue += 1;
         }
 
-        if ($this->next < count($this->queue)) {
-            $this->next = 0;
+        if ($this->currentInQueue >= count($this->queue)) {
+            $this->currentInQueue = 0;
         }
 
-        return $this->next;
+        return $this->getCurrentPlayerInQueue();
     }
 
     /**
@@ -63,7 +72,7 @@ class Game21
      */
     public function getPlayerHand()
     {
-        $currentPlayer = $this->queue[$this->next];
+        $currentPlayer = $this->queue[$this->currentInQueue];
         $currentHand = [];
 
         if ($currentPlayer instanceof Player) {
@@ -78,13 +87,13 @@ class Game21
      */
     public function drawNewCard(int $num = 1)
     {
-        $currentPlayer = $this->queue[$this->next];
+        $currentPlayer = $this->queue[$this->currentInQueue];
 
         $drawnCards = $this->deck->draw($num);
 
         $drawnCardsLength = count($drawnCards);
 
-        for ($i = 0; $i <= $drawnCardsLength; $i++) {
+        for ($i = 0; $i < $drawnCardsLength; $i++) {
             $currentPlayer->addCard($drawnCards[$i]);
         }
 
@@ -94,7 +103,7 @@ class Game21
     /**
      * @return array<string, int>
      */
-    protected function getPlayerHandValues(Player $player)
+    public function computeHandTotal(Player $player)
     {
         $handValues = $player->getHandValues();
 
@@ -130,9 +139,9 @@ class Game21
     /**
      * @return int
      */
-    protected function computeHandTotal(Player $player)
+    public function getHandTotal(Player $player)
     {
-        $sumTotals = $this->getPlayerHandValues($player);
+        $sumTotals = $this->computeHandTotal($player);
 
         // if ($sumTotals["ess is 1"] > 21 && $sumTotals["ess is 14"] > 21)
         // if ($sumTotals["ess is 1"] < 21 && $sumTotals["ess is 14"] > 21)
@@ -162,40 +171,54 @@ class Game21
     public function checkWinStatus()
     {
         $report = [];
-        $winner = [""];
-        $loser = [""];
+        $winners = [];
+        $losers = [];
 
         foreach ($this->queue as $player) {
-            if (count($player->getHandAsString())) {
-                $report[$player->name] = $this->computeHandTotal($player);
+            if ($player->getHandCount() > 0) {
+                $report[$player->name] = $this->getHandTotal($player);
             }
         }
 
         foreach ($report as $key=>$value) {
-            if ($value < 21) {
-                array_push($winner, $key);
+            if ($value <= 21) {
+                array_push($winners, $key);
             }
 
-            if ($value < 21) {
-                array_push($loser, $key);
+            if ($value > 21) {
+                array_push($losers, $key);
             }
         }
 
-        if (count($winner) > 1) {
+        if (count($winners) > 1) {
             $diff = [];
             foreach ($report as $key=>$value) {
                 $diff[$key] = 21 - $value;
             }
-            sort($diff);
-            $winner = array_keys($diff);
+
+            asort($diff);
+            $ranked = array_keys($diff);
+            $winners = [$ranked[0]];
+            $losers = [$ranked[1]];
 
             if (count($diff) != count(array_unique($diff))) {
-                $winner = ["bank"];
+                $winners = ["bank"];
                 unset($diff["bank"]);
-                $loser = array_keys($diff);
+                $losers = array_keys($diff);
             }
         }
 
-        return ["winner" => $winner[0], "loser" => $loser[0]];
+        if (count($winners) == 0) {
+            $winners = [""];
+            if (count($losers) > 0) {
+                $winners = ["bank"];
+            }
+        }
+
+        if (count($losers) == 0) {
+            $losers = [""];
+        }
+
+        return ["winner" => $winners[0], "loser" => $losers[0]];
     }
 }

@@ -47,4 +47,14 @@ class Player
     {
         return $this->cardHand->getValues();
     }
+
+    /**
+     * @return int
+     */
+    public function getHandCount()
+    {
+        // return all the cards in the current hand
+        // as strings, if possible with their respective color
+        return $this->cardHand->getCount();
+    }
 }

@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game21{% endblock %}
+
+{% block body %}
+    <h1>Tjugoett</h1>
+
+    <p>It's {{currentPlayer}}'s turn.</p>
+
+    <div>
+        <div>
+            {% for card in playerCards %}
+            <span class="card">&#{{card}}</span>
+            {% endfor %}
+
+            <p>Card total: {{playerCardTotal}}</p>
+
+            {% if playerCards|length < 2 %}
+            <form action="{{ path('game_draw_card') }}" method="POST">
+                <input class="button blue-button" type="submit" value="Dra ett kort">
+            </form>
+            {% endif %}
+
+            {% if currentPlayer != "bank" %}
+            <form action="{{ path('game_bank') }}" method="POST">
+                <input class="button blue-button" type="submit" value="Avsluta tur">
+            </form>
+            {% endif %}
+        </div>
+
+        <div>
+            {% for card in bankCards %}
+            <span class="card">&#{{card}}</span>
+            {% endfor %}
+
+            <p>Card total: {{bankCardTotal}}</p>
+        </div>
+    </div>
+
+    <p>Winner: {{winner}}</p>
+    <p>Loser: {{loser}}</p>
+
+    <div>
+        <a class="button blue-button" href="{{ path('game_init') }}">Starta om</a>
+        <a class="button blue-button" href="{{ path('game_home') }}">Avsluta</a>
+    </div>
+{% endblock %}
