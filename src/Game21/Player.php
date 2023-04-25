@@ -35,8 +35,6 @@ class Player
      */
     public function getHandAsString()
     {
-        // return all the cards in the current hand
-        // as strings, if possible with their respective color
         return $this->cardHand->getStrings();
     }
 
@@ -49,12 +47,18 @@ class Player
     }
 
     /**
+     * @return array<string>
+     */
+    public function getHandColors()
+    {
+        return $this->cardHand->getColors();
+    }
+
+    /**
      * @return int
      */
     public function getHandCount()
     {
-        // return all the cards in the current hand
-        // as strings, if possible with their respective color
         return $this->cardHand->getCount();
     }
 }

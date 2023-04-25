@@ -76,7 +76,13 @@ class Game21
         $currentHand = [];
 
         if ($currentPlayer instanceof Player) {
-            $currentHand = $currentPlayer->getHandAsString();
+            $cardNames = $currentPlayer->getHandAsString();
+            $cardColors = $currentPlayer->getHandColors();
+            $cardTotal = $currentPlayer->getHandCount();
+
+            for ($i = 0; $i < $cardTotal; $i++) {
+                $currentHand[$cardNames[$i]] = $cardColors[$i];
+            }
         }
 
         return $currentHand;
@@ -103,7 +109,7 @@ class Game21
     /**
      * @return array<string, int>
      */
-    public function computeHandTotal(Player $player)
+    protected function computeHandTotal(Player $player)
     {
         $handValues = $player->getHandValues();
 

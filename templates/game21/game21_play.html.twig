@@ -7,13 +7,12 @@
 
     <p>It's {{currentPlayer}}'s turn.</p>
 
-    <div>
+    <div class="cols-2">
         <div>
-            {% for card in playerCards %}
-            <span class="card">&#{{card}}</span>
+            <h3>Your card total: {{playerCardTotal}}</h3>
+            {% for card, color in playerCards %}
+            <span class="card" style="color: {{color}}">&#{{card}}</span>
             {% endfor %}
-
-            <p>Card total: {{playerCardTotal}}</p>
 
             {% if playerCards|length < 2 %}
             <form action="{{ path('game_draw_card') }}" method="POST">
@@ -29,11 +28,10 @@
         </div>
 
         <div>
-            {% for card in bankCards %}
-            <span class="card">&#{{card}}</span>
+            <h3>The Bank's card total: {{bankCardTotal}}</h3>
+            {% for card, color in bankCards %}
+            <span class="card" style="color: {{color}}">&#{{card}}</span>
             {% endfor %}
-
-            <p>Card total: {{bankCardTotal}}</p>
         </div>
     </div>
 
