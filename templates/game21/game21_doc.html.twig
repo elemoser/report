@@ -5,18 +5,38 @@
 {% block body %}
     <h1>Dokumentation</h1>
 
+    <p>Här på sidan hittar du all dokumentation som har skapats för spelet 21,
+    inklusive ett UML-diagram och en kort beskrivning av de skapade klasserna,
+    ett flödesschema för spelet samt pseudokod för en metod som kontrollerar vem som har vunnit eller förlorat.
+    </p>
+
     <h2>Klasser</h2>
     <div>
     <p>
-        Fundera igenom vilka klasser du behöver för att implementera spelet. Beskriv klasserna i text med klassens namn och en mening som beskriver vad klassens syfte är. Håll det kort och enkelt.
+        För det här spelet skapade jag tre klasser som antingen ärver från eller använder de klasser som skapades för det enkla <a class="link" href="{{ path('card_home') }}">kortspelet i kmom02</a>.
+        För att representera spelarna i spelet skapade jag klasserna Player och Bank.
+        Player-klassen representerar en spelare i Tjugoett spelet.
+        Den har egenskaper för spelarens namn och dennes aktuella korthand (representerad som ett CardCollection-objekt).
+        Klassen har metoder för att lägga till ett nytt kort till handen, hämta handen som en array av strängar, hämta handens värden, färger och antal.
+        Bank-klassen ärver från Player-klassen.
+        Den enda skillnaden mellan de två klasserna är att Bank har standardnamnet "bank", medan ett namn måste anges när man initierar en ny Player.
     </p>
+    <p>
+        För att representera spelet skapade jag en klass Game21.
+        Den här klassen har metoder för att lägga till spelare i spelet, lägga till kortlekar, dra nya kort och beräkna en spelares totala hand.
+        Den har också metoder för att hämta den aktuella och nästa spelare i kön och för att hämta den aktuella spelarens hand som en array.
+        Klassen använder sig av klasserna Player och DeckOfCards.
+        Nedan visas ett UML-diagram för de klasser som nämns ovan.
+        Observera att jag använde UML-diagrammet som en riktlinje när jag kodade, men att jag gjorde ändringar när jag fann det nödvändigt. 
+    </p>
+    <iframe frameborder="0" style="width:100%;height:1036px;" src="https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&page-id=2WVLxLC2BJvlH6kW8c5t&title=UML_Kortlek.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1qIo7t2LJX73xQ3oK5V8UwLoNorSZuz_B%26export%3Ddownload"></iframe>
+    </div>
 
     <h2>Flödesschema</h2>
     <div>
     <p>
         Nedan visas flödesschemat jag skapade för att representerar hur jag tänkte för att lösa grunderna i Tjugoett spelet.
     </p>
-    </div>
     <iframe frameborder="0" style="width:100%;height:655px;" src="https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&page-id=jzGJfJnaShjbMTXZ_vHA&title=UML_Kortlek.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1qIo7t2LJX73xQ3oK5V8UwLoNorSZuz_B%26export%3Ddownload"></iframe>
     </div>
 
