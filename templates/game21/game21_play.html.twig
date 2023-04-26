@@ -28,9 +28,11 @@
     <div class="cols-2 flex-center">
         <div>
             <h3>Your card total: {{playerCardTotal}}</h3>
-            {% for card, color in playerCards %}
-            <span class="card" style="color: {{color}}">&#{{card}}</span>
+            <div class="">
+            {% for string, colorValues in playerCards %}
+            <span title="{{colorValues[1]}}" class="card" style="color: {{colorValues[0]}}">&#{{string}}</span>
             {% endfor %}
+            </div>
 
             <form method="post" action="">
                 <p>
@@ -52,9 +54,11 @@
 
         <div>
             <h3>The Bank's card total: {{bankCardTotal}}</h3>
-            {% for card, color in bankCards %}
-            <span class="card" style="color: {{color}}">&#{{card}}</span>
+            <div class="">
+            {% for string, colorValues in bankCards %}
+            <span title="{{colorValues[1]}}" class="card" style="color: {{colorValues[0]}}">&#{{string}}</span>
             {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

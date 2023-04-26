@@ -76,12 +76,13 @@ class Game21
         $currentHand = [];
 
         if ($currentPlayer instanceof Player) {
-            $cardNames = $currentPlayer->getHandAsString();
+            $cardStrings = $currentPlayer->getHandAsString();
             $cardColors = $currentPlayer->getHandColors();
+            $cardValues = $currentPlayer->getHandValues();
             $cardTotal = $currentPlayer->getHandCount();
 
             for ($i = 0; $i < $cardTotal; $i++) {
-                $currentHand[$cardNames[$i]] = $cardColors[$i];
+                $currentHand[$cardStrings[$i]] = [$cardColors[$i], implode(" ", $cardValues[$i])];
             }
         }
 
