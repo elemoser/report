@@ -99,14 +99,18 @@ class Game21Controller extends AbstractController
     #[Route("/game/draw", name: "game_draw_card", methods: ["POST"])]
     public function gameDraw(SessionInterface $session): Response
     {
-        // $totalCardsPlayed = 0;
+        $totalCardsPlayed = 0;
         $game = $session->get("game");
 
         if ($game instanceof Game21) {
             $currentPlayer = $game->getCurrentPlayerInQueue();
             $session->set("player_cards", $game->drawNewCard());
             $session->set("player_card_total", $game->getHandTotal($currentPlayer));
-            // $totalCardsPlayed = $currentPlayer->getHandCount();
+            $totalCardsPlayed = $currentPlayer->getHandCount();
+        }
+
+        if ($totalCardsPlayed >=2) {
+            $game->getNextPlayerInQueue();
         }
 
         return $this->redirectToRoute('game_play');
@@ -120,12 +124,19 @@ class Game21Controller extends AbstractController
         if ($game instanceof Game21) {
             $currentPlayer = $game->getCurrentPlayerInQueue();
 
-            if ($currentPlayer != "bank") {
+            if ($currentPlayer->name != "bank") {
                 $game->getNextPlayerInQueue();
                 $currentPlayer = $game->getCurrentPlayerInQueue();
             }
 
-            $session->set("bank_cards", $game->drawNewCard(2));
+            $game->drawNewCard();
+            $total = $game->getHandTotal($currentPlayer);
+
+            if ($total < 10) {
+                $game->drawNewCard();
+            }
+
+            $session->set("bank_cards", $game->getPlayerHand());
             $session->set("bank_card_total", $game->getHandTotal($currentPlayer));
         }
 

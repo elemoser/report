@@ -42,7 +42,7 @@
                         onClick="this.form.action='{{ path('game_draw_card') }}';"
                     >
                     {% endif %}
-                    {% if currentPlayer != "bank" and playerCards|length > 0 %}
+                    {% if playerCards|length > 0 and not loser %}
                     <input class="button blue-button" type="submit" name="endRound"
                         value="Avsluta tur"
                         onClick="this.form.action='{{ path('game_bank') }}';"
