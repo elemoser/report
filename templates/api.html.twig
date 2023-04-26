@@ -56,5 +56,14 @@
             onClick="this.form.action='{{ path('api_deck_draw_num_post', {num: 5}) }}';"
         >
     </div>
+        <div>
+        <h2>Kolla den aktuella ställningen för spelet</h2>
+        <p>
+            Den här routen tar dig till en sida som visar ett JSON-objekt med den aktuella ställningen för spelet Tjugoett.
+        </p>
+        <input class="button blue-button" type="submit" name="game21" value="api/game"
+            onClick="this.form.action='{{ path('api_game21') }}';"
+        >
+    </div>
     </form>
 {% endblock %}
