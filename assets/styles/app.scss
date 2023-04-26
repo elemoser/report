@@ -64,11 +64,26 @@ code {
     }
 }
 
+.link {
+    color: #000;
+    font-style: italic;
+    border-bottom: 1px solid #CA8029;
+    text-decoration: none;
+}
+
+.link:hover {
+    border-bottom: 2px solid #CA8029;
+}
+
+.link:visited {
+    color: #000;
+}
+
 .card {
     font-size: 200px;
 }
 
-// 2 cols
+// Column layouts
 .cols-2 {
     display: flex;
     flex-direction: row;
@@ -80,6 +95,16 @@ code {
         width: 45%;
         border-top: 1px solid #CA8029;
     }
+}
+
+.flex-col1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.flex-center {
+    justify-content: center;
 }
 
 .game-links,
@@ -95,3 +120,26 @@ code {
     }
 }
 
+.message-box {
+    margin: 1rem;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 5px;
+    font-size: $base-font-size * 1.3;
+}
+
+.info {
+    background-color: #bce5f8;
+}
+
+.success {
+    background-color: #e0f2c0;
+}
+
+.warning {
+    background-color: #fffac0;
+}
+
+.error {
+    background-color: #f3b9b9;
+}

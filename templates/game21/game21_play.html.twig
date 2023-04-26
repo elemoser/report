@@ -3,28 +3,51 @@
 {% block title %}Game21{% endblock %}
 
 {% block body %}
-    <h1>Tjugoett</h1>
+    <div class="flex-row spread" style="display: flex; flex-direction: row; justify-content: space-between">
+        <h1>Tjugoett</h1>
+        <div>
+            <a class="button lila-button" href="{{ path('game_init') }}">Starta om</a>
+            <a class="button" href="{{ path('game_home') }}">&#10005;</a>
+        </div>
+    </div>
 
+    {% if loser == "bank" %}
+    <div class="message-box success">
+    <p>Congratulation you won &#129395;</p>
+    </div>
+    {% elseif winner == "bank" %}
+    <div class="message-box warning">
+    <p>The bank won... better luck next time &#128540;</p>
+    </div>
+    {% else %}
+    <div class="message-box info">
     <p>It's {{currentPlayer}}'s turn.</p>
+    </div>
+    {% endif %}
 
-    <div class="cols-2">
+    <div class="cols-2 flex-center">
         <div>
             <h3>Your card total: {{playerCardTotal}}</h3>
             {% for card, color in playerCards %}
             <span class="card" style="color: {{color}}">&#{{card}}</span>
             {% endfor %}
 
-            {% if playerCards|length < 2 %}
-            <form action="{{ path('game_draw_card') }}" method="POST">
-                <input class="button blue-button" type="submit" value="Dra ett kort">
+            <form method="post" action="">
+                <p>
+                    {% if currentPlayer != "bank" and playerCards|length < 2 %}
+                    <input class="button blue-button" type="submit" name="draw"
+                        value="Dra ett kort"
+                        onClick="this.form.action='{{ path('game_draw_card') }}';"
+                    >
+                    {% endif %}
+                    {% if currentPlayer != "bank" and playerCards|length > 0 %}
+                    <input class="button blue-button" type="submit" name="endRound"
+                        value="Avsluta tur"
+                        onClick="this.form.action='{{ path('game_bank') }}';"
+                    >
+                    {% endif %}
+                </p>
             </form>
-            {% endif %}
-
-            {% if currentPlayer != "bank" %}
-            <form action="{{ path('game_bank') }}" method="POST">
-                <input class="button blue-button" type="submit" value="Avsluta tur">
-            </form>
-            {% endif %}
         </div>
 
         <div>
@@ -33,13 +56,5 @@
             <span class="card" style="color: {{color}}">&#{{card}}</span>
             {% endfor %}
         </div>
-    </div>
-
-    <p>Winner: {{winner}}</p>
-    <p>Loser: {{loser}}</p>
-
-    <div>
-        <a class="button blue-button" href="{{ path('game_init') }}">Starta om</a>
-        <a class="button blue-button" href="{{ path('game_home') }}">Avsluta</a>
     </div>
 {% endblock %}

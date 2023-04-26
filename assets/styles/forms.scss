@@ -61,3 +61,39 @@
     background-image: none;
     box-shadow: inset 0 2px 4px #0019b0;
 }
+
+.lila-button {
+    color: #fff;
+    background-color: #502F4C;
+    background-image: linear-gradient(#70587C, #502F4C);
+    border-color: #502F4C;
+}
+
+.lila-button:hover {
+    background-color: #502F4C;
+    background-image: none;
+}
+
+.lila-button:active {
+    background-color: #502F4C;
+    background-image: none;
+    box-shadow: inset 0 2px 4px #70587C;
+}
+
+.orange-button {
+    color: #fff;
+    background-color: #c5700f;
+    background-image: linear-gradient(#ca8029, #c5700f);
+    border-color: #c5700f;
+}
+
+.orange-button:hover {
+    background-color: #c5700f;
+    background-image: none;
+}
+
+.orange-button:active {
+    background-color: #c5700f;
+    background-image: none;
+    box-shadow: inset 0 2px 4px #ca8029;
+}

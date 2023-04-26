@@ -1,7 +1,13 @@
 footer {
-    border-top: 1px solid #CA8029;
-    color: #CA8029;
+    // border-top: 1px solid #74A2DE;
     margin: 2em 0;
     padding: 1.5em 1em;
     font-size: $base-font-size * 0.8;
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 5px;
+    border-image-source: linear-gradient(to left, #74A2DE, #CA8029);
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
 }
