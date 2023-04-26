@@ -68,7 +68,7 @@ class Game21
     }
 
     /**
-     * @return array<string>
+     * @return array<string, array<int, string>>
      */
     public function getPlayerHand()
     {
@@ -90,7 +90,7 @@ class Game21
     }
 
     /**
-     * @return array<string>
+     * @return array<string, array<int, string>>
      */
     public function drawNewCard(int $num = 1)
     {

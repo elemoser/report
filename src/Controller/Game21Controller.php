@@ -107,10 +107,9 @@ class Game21Controller extends AbstractController
             $session->set("player_cards", $game->drawNewCard());
             $session->set("player_card_total", $game->getHandTotal($currentPlayer));
             $totalCardsPlayed = $currentPlayer->getHandCount();
-        }
-
-        if ($totalCardsPlayed >=2) {
-            $game->getNextPlayerInQueue();
+            if ($totalCardsPlayed >=2) {
+                $game->getNextPlayerInQueue();
+            }
         }
 
         return $this->redirectToRoute('game_play');

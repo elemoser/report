@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Card\Card;
 use App\Card\CardCollection;
 use App\Card\DeckOfCards;
+use App\Game21\Game21;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -169,8 +170,7 @@ class JsonApiController extends AbstractController
     #[Route("/api/game", name: "api_game21", methods: ['POST'])]
     public function apiGame21(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $data = [
             "currentPlayer" => "",
             "playerCards" => [],
@@ -181,8 +181,13 @@ class JsonApiController extends AbstractController
             "loser" => ""
         ];
 
+        $game = null;
+
         if ($session->has("game")) {
             $game = $session->get("game");
+        }
+
+        if ($game instanceof Game21) {
             $currentPlayer = $game->getCurrentPlayerInQueue();
             $data["currentPlayer"] = $currentPlayer->name;
             $winStatus = $game->checkWinStatus();
