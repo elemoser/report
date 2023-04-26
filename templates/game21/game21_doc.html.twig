@@ -23,9 +23,49 @@
     <h2>Psuedokod</h2>
     <div>
     <p>
-        Skapa psuedokod som visar hur du tänker lösa delar av spelet. Du kan spara resultatet som text eller bild men visa upp det i webbsidan för dokumentationen. Det behöver inte vara en komplett lösning, en dellösning räcker bra.
+        {# Skapa psuedokod som visar hur du tänker lösa delar av spelet. #}
+        Nedan visas pseudokod för hur jag tänkte att kontrollera vem som vann spelet.
+        Med hjälp av denna pseudokod skapade jag metoden <code>checkWinStatus</code> i Game21-klassen.
+        Observera dock att jag gjorde justeringar när jag kodade metoden.
     </p>
+    <pre class="code-block">
+        <b>Game21->checkWinStatus</b>
+
+        define array[string, int] named $report
+
+        for each $player in $this->queue
+            if $player has at least one card in $cardHand then
+                call $this->computeHandTotal($player)
+                save returned value of type int in $report with key $player->name
+            endif
+        endfor
+
+        define array[string] $winner
+        define array[string] $loser
+
+        for $key, $value in $report
+            if $value is greater than 21 then
+                add $key to $loser
+            else (if $value is lower than 21)
+                add $key to $winner
+            endif
+        endfor
+
+        if length of $winner is greater than 1 then
+            define array $diff
+            for $key, $value in $report
+                assign $diff[$key] is 21 - $value
+            endfor
+            sort $diff according to values in ascending order
+            if values in $diff are equal
+                $winner is $player with the name “bank” 
+                $loser is $diff without "bank"
+            endif
+        endif
+
+        return $winner
+    </pre>
     </div>
 
-    <a href="{{ path('game_home') }}">Tillbaka till spelets landningssida</a>
+    <a class="button orange-button" href="{{ path('game_home') }}">Tillbaka till spelets landningssida</a>
 {% endblock %}
