@@ -13,10 +13,10 @@
         <li><a class="button lila-button" href="#kmom01">Kmom01</a></li>
         <li><a class="button lila-button" href="#kmom02">Kmom02</a></li>
         <li><a class="button lila-button" href="#kmom03">Kmom03</a></li>
-        <li><a class="button lila-button" href="#kmom04">Kmom04</a></li>
-        <li><a class="button lila-button" href="#kmom05">Kmom05</a></li>
-        <li><a class="button lila-button" href="#kmom06">Kmom06</a></li>
-        <li><a class="button lila-button" href="#kmom10">Kmom07/10</a></li>
+        <li><a class="button" href="#kmom04">Kmom04</a></li>
+        <li><a class="button" href="#kmom05">Kmom05</a></li>
+        <li><a class="button" href="#kmom06">Kmom06</a></li>
+        <li><a class="button" href="#kmom10">Kmom07/10</a></li>
     </ul>
 
     <section>
@@ -151,6 +151,43 @@
     </section>
 
     <h2 id="kmom03">Kmom03</h2>
+    <section>
+    <p>
+        Detta kursmoment utvecklade jag ett kortspel som heter Tjugoett från grunden.
+        För att säkerställa en välstrukturerad kod och en smidig spelupplevelse började jag med att skapa ett flödesschema, pseudokod och ett UML-klassdiagram. 
+        Dessa verktyg hjälpte mig att konceptualisera och modellera spelmekaniken samt planera kodstrukturen i förväg.
+        Jag upptäckte att användningen av dem var avgörande för problemlösning och för att säkerställa en god implementering av spelet.
+    </p>
+    <p>
+        UML-diagrammet var ett viktigt verktyg för att planera de klasser som krävdes för mitt projekt.
+        Förutom de tre klasser som jag skapade för den sista kmoms-uppgiften lade jag till ytterligare tre klasser som alla beskrivs på spelets dokumentationssida.
+        Flödesschemat och pseudokoden var också till hjälp för att förstå spelets flöde och villkoren för att vinna/förlora, som du också hittar på <a class="link" href="{{ path('game_doc') }}">dokumentationssidan</a>.
+    </p>
+    <p>
+        Jag är nöjd med hur jag strukturerade min kod och hur mitt spel blev.
+        Det finns dock några element som planerats i UML-diagrammet
+        och flödesschemat som jag har tagit bort eller planerar att ta bort eftersom de är onödiga i det här läget.
+        Till exempel fördefinierar klassen <code>Bank</code> endast spelarens namn till "bank" utan att definiera några andra klasspecifika egenskaper eller metoder,
+        och jag tror att det kanske inte behövs. Samma gäller för metoderna <code>removeCard</code> och <code>removePlayer</code> som definieras i UML-diagrammet.
+        Jag implementerade dem aldrig, eftersom det visade sig att de var nödvändiga.
+    </p>
+    <p>
+        Andra delar av koden kan förbättras.
+        Till exempel klarar inte metoden <code>checkWinStatus</code> i klassen <code>Game21</code> phpmd-testet på grund av att den innehåller för många if-satser och for-loopar.
+        Även om jag har ägnat en del tid åt att refaktorera koden för att göra den mindre komplex har jag inte hittat någon lösning som fungerar ännu.
+        Tills vidare måste jag ignorera dessa varningsmeddelanden.
+    </p>
+    <p>
+        När det kommer till mitt arbete med Symfony kan jag säga att jag initialt stötte på många problem med rendering, vilket gjorde mig frustrerad och överväldigad.
+        Men efter att ha arbetat med Symfony i tre kursmoment har jag nu utvecklat en större bekvämlighet och säkerhet i min förståelse för hur ramverket fungerar.
+    </p>
+    <p>
+        Min TIL handlar om cyklomatisk komplexitet (d.v.s. <i>cyclomatic complexity</i>),
+        vilket är ett mått som används för att mäta komplexiteten hos ett program.
+        Den beräknas utifrån antalet oberoende vägar i ett programs källkod.
+        En högre cyklomatisk komplexitet indikerar att ett program är mer komplext och kan vara svårare att testa, underhålla och förstå.
+    </p>
+    </section>
     <h2 id="kmom04">Kmom04</h2>
     <h2 id="kmom05">Kmom05</h2>
     <h2 id="kmom06">Kmom06</h2>
