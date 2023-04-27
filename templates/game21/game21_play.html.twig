@@ -13,21 +13,21 @@
 
     {% if loser == "bank" %}
     <div class="message-box success">
-    <p>Congratulation you won &#129395;</p>
+    <p>Grattis till att du vann &#129395;</p>
     </div>
     {% elseif winner == "bank" %}
     <div class="message-box warning">
-    <p>The bank won... better luck next time &#128540;</p>
+    <p>Banken vann... bättre tur nästa gång &#128540;</p>
     </div>
     {% else %}
     <div class="message-box info">
-    <p>It's {{currentPlayer}}'s turn.</p>
+    <p>{{currentPlayer}} spelar...</p>
     </div>
     {% endif %}
 
     <div class="cols-2 flex-center">
         <div>
-            <h3>Your card total: {{playerCardTotal}}</h3>
+            <h3>Ditt totalt antal kort: {{playerCardTotal}}</h3>
             <div class="">
             {% for string, colorValues in playerCards %}
             <span title="{{colorValues[1]}}" class="card" style="color: {{colorValues[0]}}">&#{{string}}</span>
@@ -53,7 +53,7 @@
         </div>
 
         <div>
-            <h3>The Bank's card total: {{bankCardTotal}}</h3>
+            <h3>Bankens totalt antal kort: {{bankCardTotal}}</h3>
             <div class="">
             {% for string, colorValues in bankCards %}
             <span title="{{colorValues[1]}}" class="card" style="color: {{colorValues[0]}}">&#{{string}}</span>
