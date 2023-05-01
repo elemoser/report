@@ -29,6 +29,8 @@ yarn-error.log
 tools/
 .php-cs-fixer.cache
 .php-cs-fixer.dist.php
+.phpdoc/
 
 phpmd.xml
 phpstan.neon
+phpdoc.xml

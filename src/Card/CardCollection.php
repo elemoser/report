@@ -48,7 +48,7 @@ class CardCollection
     }
 
     /**
-     * @return array<int<0, max>, array<string>>
+     * @return array<int, array<string>>
      */
     public function getValues(): array
     {
