@@ -23,10 +23,8 @@ class CardCollection
 
     public function remove(Card $card): void
     {
-        // Find the index of the Card object
-        $index = array_search($card, $this->cards);
-        // Remove the Card object
-        if ($index) {
+        if (in_array($card, $this->cards)) {
+            $index = array_search($card, $this->cards);
             unset($this->cards[$index]);
             // Reindex array?
             // $this->cards = array_values($this->cards);
