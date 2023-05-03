@@ -1,93 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683113778">
-  <project timestamp="1683113778">
+<coverage generated="1683121533">
+  <project timestamp="1683121533">
     <file name="/Users/elena/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="14" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="38" coveredelements="38"/>
       </class>
-      <line num="27" type="method" name="__construct" visibility="public" complexity="3" crap="3" count="10"/>
-      <line num="31" type="stmt" count="10"/>
-      <line num="32" type="stmt" count="10"/>
-      <line num="33" type="stmt" count="10"/>
-      <line num="34" type="stmt" count="10"/>
-      <line num="36" type="stmt" count="10"/>
-      <line num="37" type="stmt" count="4"/>
-      <line num="38" type="stmt" count="4"/>
-      <line num="41" type="stmt" count="10"/>
-      <line num="42" type="stmt" count="4"/>
-      <line num="45" type="stmt" count="10"/>
-      <line num="47" type="stmt" count="10"/>
-      <line num="53" type="method" name="convertCardNumberToString" visibility="protected" complexity="5" crap="5" count="10"/>
-      <line num="55" type="stmt" count="10"/>
-      <line num="57" type="stmt" count="10"/>
-      <line num="58" type="stmt" count="1"/>
-      <line num="61" type="stmt" count="10"/>
-      <line num="62" type="stmt" count="1"/>
-      <line num="65" type="stmt" count="10"/>
-      <line num="66" type="stmt" count="2"/>
-      <line num="69" type="stmt" count="10"/>
-      <line num="70" type="stmt" count="2"/>
-      <line num="73" type="stmt" count="10"/>
+      <line num="27" type="method" name="__construct" visibility="public" complexity="3" crap="3" count="15"/>
+      <line num="31" type="stmt" count="15"/>
+      <line num="32" type="stmt" count="15"/>
+      <line num="33" type="stmt" count="15"/>
+      <line num="34" type="stmt" count="15"/>
+      <line num="36" type="stmt" count="15"/>
+      <line num="37" type="stmt" count="8"/>
+      <line num="38" type="stmt" count="8"/>
+      <line num="41" type="stmt" count="15"/>
+      <line num="42" type="stmt" count="8"/>
+      <line num="45" type="stmt" count="15"/>
+      <line num="47" type="stmt" count="15"/>
+      <line num="53" type="method" name="convertCardNumberToString" visibility="protected" complexity="5" crap="5" count="15"/>
+      <line num="55" type="stmt" count="15"/>
+      <line num="57" type="stmt" count="15"/>
+      <line num="58" type="stmt" count="4"/>
+      <line num="61" type="stmt" count="15"/>
+      <line num="62" type="stmt" count="4"/>
+      <line num="65" type="stmt" count="15"/>
+      <line num="66" type="stmt" count="3"/>
+      <line num="69" type="stmt" count="15"/>
+      <line num="70" type="stmt" count="3"/>
+      <line num="73" type="stmt" count="15"/>
       <line num="79" type="method" name="draw" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="82" type="stmt" count="1"/>
       <line num="83" type="stmt" count="1"/>
       <line num="85" type="stmt" count="1"/>
       <line num="88" type="stmt" count="1"/>
       <line num="90" type="stmt" count="1"/>
-      <line num="96" type="method" name="getValue" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="98" type="stmt" count="2"/>
-      <line num="104" type="method" name="getAsString" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="106" type="stmt" count="1"/>
-      <line num="112" type="method" name="getColor" visibility="public" complexity="3" crap="3" count="1"/>
-      <line num="114" type="stmt" count="1"/>
-      <line num="116" type="stmt" count="1"/>
-      <line num="117" type="stmt" count="1"/>
-      <line num="120" type="stmt" count="1"/>
+      <line num="96" type="method" name="getValue" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="98" type="stmt" count="4"/>
+      <line num="104" type="method" name="getAsString" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="106" type="stmt" count="3"/>
+      <line num="112" type="method" name="getColor" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="114" type="stmt" count="2"/>
+      <line num="116" type="stmt" count="2"/>
+      <line num="117" type="stmt" count="2"/>
+      <line num="120" type="stmt" count="2"/>
       <metrics loc="123" ncloc="94" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="38" coveredelements="38"/>
     </file>
     <file name="/Users/elena/dbwebb-kurser/mvc/me/report/src/Card/CardCollection.php">
       <class name="App\Card\CardCollection" namespace="global">
-        <metrics complexity="16" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="5" elements="38" coveredelements="8"/>
+        <metrics complexity="16" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="29" elements="38" coveredelements="38"/>
       </class>
-      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="4"/>
-      <line num="16" type="stmt" count="4"/>
-      <line num="19" type="method" name="add" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="21" type="stmt" count="2"/>
-      <line num="24" type="method" name="remove" visibility="public" complexity="2" crap="2.15" count="1"/>
+      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="9"/>
+      <line num="16" type="stmt" count="9"/>
+      <line num="19" type="method" name="add" visibility="public" complexity="1" crap="1" count="7"/>
+      <line num="21" type="stmt" count="7"/>
+      <line num="24" type="method" name="remove" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="26" type="stmt" count="1"/>
       <line num="27" type="stmt" count="1"/>
-      <line num="29" type="stmt" count="1"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="36" type="method" name="shuffle" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="45" type="method" name="getCount" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="47" type="stmt" count="3"/>
-      <line num="53" type="method" name="getValues" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="55" type="stmt" count="0"/>
-      <line num="56" type="stmt" count="0"/>
-      <line num="57" type="stmt" count="0"/>
-      <line num="59" type="stmt" count="0"/>
-      <line num="65" type="method" name="getStrings" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="67" type="stmt" count="0"/>
-      <line num="68" type="stmt" count="0"/>
-      <line num="69" type="stmt" count="0"/>
-      <line num="71" type="stmt" count="0"/>
-      <line num="77" type="method" name="getColors" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="79" type="stmt" count="0"/>
-      <line num="80" type="stmt" count="0"/>
-      <line num="81" type="stmt" count="0"/>
-      <line num="83" type="stmt" count="0"/>
-      <line num="89" type="method" name="draw" visibility="public" complexity="4" crap="20" count="0"/>
-      <line num="91" type="stmt" count="0"/>
-      <line num="92" type="stmt" count="0"/>
-      <line num="94" type="stmt" count="0"/>
-      <line num="95" type="stmt" count="0"/>
-      <line num="96" type="stmt" count="0"/>
-      <line num="97" type="stmt" count="0"/>
-      <line num="101" type="stmt" count="0"/>
-      <line num="102" type="stmt" count="0"/>
-      <line num="103" type="stmt" count="0"/>
-      <line num="107" type="stmt" count="0"/>
-      <metrics loc="110" ncloc="87" classes="1" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="5" elements="38" coveredelements="8"/>
+      <line num="28" type="stmt" count="1"/>
+      <line num="34" type="method" name="shuffle" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="43" type="method" name="getCount" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="45" type="stmt" count="6"/>
+      <line num="51" type="method" name="getValues" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="53" type="stmt" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="57" type="stmt" count="2"/>
+      <line num="63" type="method" name="getStrings" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="65" type="stmt" count="2"/>
+      <line num="66" type="stmt" count="2"/>
+      <line num="67" type="stmt" count="2"/>
+      <line num="69" type="stmt" count="2"/>
+      <line num="75" type="method" name="getColors" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="77" type="stmt" count="1"/>
+      <line num="78" type="stmt" count="1"/>
+      <line num="79" type="stmt" count="1"/>
+      <line num="81" type="stmt" count="1"/>
+      <line num="87" type="method" name="draw" visibility="public" complexity="4" crap="4" count="1"/>
+      <line num="89" type="stmt" count="1"/>
+      <line num="90" type="stmt" count="1"/>
+      <line num="92" type="stmt" count="1"/>
+      <line num="93" type="stmt" count="1"/>
+      <line num="94" type="stmt" count="1"/>
+      <line num="95" type="stmt" count="1"/>
+      <line num="99" type="stmt" count="1"/>
+      <line num="100" type="stmt" count="1"/>
+      <line num="101" type="stmt" count="1"/>
+      <line num="105" type="stmt" count="1"/>
+      <metrics loc="108" ncloc="87" classes="1" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="29" elements="38" coveredelements="38"/>
     </file>
     <file name="/Users/elena/dbwebb-kurser/mvc/me/report/src/Card/CardGraphic.php">
       <class name="App\Card\CardGraphic" namespace="global">
@@ -598,6 +598,6 @@
       </class>
       <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="13" loc="1314" ncloc="1181" classes="11" methods="61" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="458" coveredstatements="40" elements="519" coveredelements="52"/>
+    <metrics files="13" loc="1312" ncloc="1181" classes="11" methods="61" coveredmethods="18" conditionals="0" coveredconditionals="0" statements="458" coveredstatements="64" elements="519" coveredelements="82"/>
   </project>
 </coverage>
