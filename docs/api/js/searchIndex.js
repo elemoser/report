@@ -303,7 +303,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game21\\Bank\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "The\u0020constructor\u0020takes\u0020no\u0020parameters.",
             "url": "classes/App-Game21-Bank.html#method___construct"
         },                {
             "fqsen": "\\App\\Game21\\Game21",
@@ -375,6 +375,51 @@ Search.appendIndex(
             "name": "deck",
             "summary": "",
             "url": "classes/App-Game21-Game21.html#property_deck"
+        },                {
+            "fqsen": "\\App\\Game21\\Player",
+            "name": "Player",
+            "summary": "",
+            "url": "classes/App-Game21-Player.html"
+        },                {
+            "fqsen": "\\App\\Game21\\Player\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "The\u0020constructor\u0020takes\u0020one\u0020parameter.",
+            "url": "classes/App-Game21-Player.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Game21\\Player\u003A\u003AaddCard\u0028\u0029",
+            "name": "addCard",
+            "summary": "This\u0020method\u0020adds\u0020a\u0020Card\u0020instance\u0020to\u0020the\u0020\u0024cardHand\u0020property.",
+            "url": "classes/App-Game21-Player.html#method_addCard"
+        },                {
+            "fqsen": "\\App\\Game21\\Player\u003A\u003AgetHandAsString\u0028\u0029",
+            "name": "getHandAsString",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020suite\u0020and\u0020number\u0020as\u0020a\u0020string\u0020of\u0020each\u0020Card\u0020instance\u0020in\u0020the\u0020\u0024cardHand\u0020property.",
+            "url": "classes/App-Game21-Player.html#method_getHandAsString"
+        },                {
+            "fqsen": "\\App\\Game21\\Player\u003A\u003AgetHandValues\u0028\u0029",
+            "name": "getHandValues",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020suite\u0020and\u0020number\u0020of\u0020each\u0020Card\u0020instance\u0020in\u0020the\u0020\u0024cardHand\u0020property.",
+            "url": "classes/App-Game21-Player.html#method_getHandValues"
+        },                {
+            "fqsen": "\\App\\Game21\\Player\u003A\u003AgetHandColors\u0028\u0029",
+            "name": "getHandColors",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020color\u0020of\u0020each\u0020Card\u0020instance\u0020in\u0020the\u0020\u0024cardHand\u0020property.",
+            "url": "classes/App-Game21-Player.html#method_getHandColors"
+        },                {
+            "fqsen": "\\App\\Game21\\Player\u003A\u003AgetHandCount\u0028\u0029",
+            "name": "getHandCount",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020total\u0020amount\u0020of\u0020elements\u0020in\u0020the\u0020\u0024cardHand\u0020property.",
+            "url": "classes/App-Game21-Player.html#method_getHandCount"
+        },                {
+            "fqsen": "\\App\\Game21\\Player\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/App-Game21-Player.html#property_name"
+        },                {
+            "fqsen": "\\App\\Game21\\Player\u003A\u003A\u0024cardHand",
+            "name": "cardHand",
+            "summary": "",
+            "url": "classes/App-Game21-Player.html#property_cardHand"
         },                {
             "fqsen": "\\App\\Kernel",
             "name": "Kernel",

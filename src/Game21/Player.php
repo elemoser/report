@@ -17,12 +17,19 @@ class Player
      */
     protected $cardHand;
 
+    /**
+     * The constructor takes one parameter.
+     * @return void
+     */
     public function __construct(string $name)
     {
         $this-> name = $name;
         $this->cardHand = new CardCollection();
     }
 
+    /**
+     * This method adds a Card instance to the $cardHand property.
+     */
     public function addCard(Card $newCard): void
     {
         $this->cardHand->add($newCard);
@@ -31,6 +38,7 @@ class Player
     // public function removeCard(): void
 
     /**
+     * This method returns the suite and number as a string of each Card instance in the $cardHand property.
      * @return array<string>
      */
     public function getHandAsString()
@@ -39,7 +47,8 @@ class Player
     }
 
     /**
-     * @return array<int<0, max>, array<string>>
+     * This method returns the suite and number of each Card instance in the $cardHand property.
+     * @return array<int, array<string>>
      */
     public function getHandValues()
     {
@@ -47,6 +56,7 @@ class Player
     }
 
     /**
+     * This method returns the color of each Card instance in the $cardHand property.
      * @return array<string>
      */
     public function getHandColors()
@@ -55,6 +65,7 @@ class Player
     }
 
     /**
+     * This method returns the total amount of elements in the $cardHand property.
      * @return int
      */
     public function getHandCount()
