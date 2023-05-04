@@ -154,9 +154,10 @@ class Game21
         // if ($sumTotals["ess is 1"] < 21 && $sumTotals["ess is 14"] > 21)
         $result = $sumTotals["ess is 1"];
 
-        if ($sumTotals["ess is 1"] > 21 && $sumTotals["ess is 14"] < 21) {
-            $result = $sumTotals["ess is 14"];
-        }
+        // This case is impossible
+        // if ($sumTotals["ess is 1"] > 21 && $sumTotals["ess is 14"] < 21) {
+        //     $result = $sumTotals["ess is 14"];
+        // }
 
         if ($sumTotals["ess is 1"] < 21 && $sumTotals["ess is 14"] < 21) {
             $one = 21 - $sumTotals["ess is 1"];
@@ -172,7 +173,7 @@ class Game21
         return $result;
     }
 
-        /**
+    /**
      * @return array<string, string>
      */
     public function checkWinStatus()
