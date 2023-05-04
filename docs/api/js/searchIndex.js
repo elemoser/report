@@ -313,52 +313,52 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "The\u0020constructor\u0020takes\u0020no\u0020parameters.",
             "url": "classes/App-Game21-Game21.html#method___construct"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003AaddCardDeck\u0028\u0029",
             "name": "addCardDeck",
-            "summary": "",
+            "summary": "This\u0020method\u0020assigns\u0020an\u0020instance\u0020of\u0020a\u0020DeckOfCards\u0020to\u0020the\u0020\u0024deck\u0020property.",
             "url": "classes/App-Game21-Game21.html#method_addCardDeck"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003AaddPlayer\u0028\u0029",
             "name": "addPlayer",
-            "summary": "",
+            "summary": "This\u0020method\u0020adds\u0020an\u0020instance\u0020of\u0020a\u0020Player\u0020to\u0020the\u0020\u0024queue\u0020property.",
             "url": "classes/App-Game21-Game21.html#method_addPlayer"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003AgetCurrentPlayerInQueue\u0028\u0029",
             "name": "getCurrentPlayerInQueue",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020current\u0020Player\u0020in\u0020the\u0020\u0024queue.",
             "url": "classes/App-Game21-Game21.html#method_getCurrentPlayerInQueue"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003AgetNextPlayerInQueue\u0028\u0029",
             "name": "getNextPlayerInQueue",
-            "summary": "",
+            "summary": "This\u0020method\u0020assigns\u0020the\u0020next\u0020Player\u0020in\u0020\u0024queue\u0020to\u0020\u0024currentInQueue\u0020and\u0020returns\u0020it.",
             "url": "classes/App-Game21-Game21.html#method_getNextPlayerInQueue"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003AgetPlayerHand\u0028\u0029",
             "name": "getPlayerHand",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020an\u0020array\u0020with\u0020the\u0020string,\u0020color\u0020and\u0020value\u0020of\u0020all\u0020Cards\u0020in\u0020the\u0020currentInQueue\u0027s\u0020hand.",
             "url": "classes/App-Game21-Game21.html#method_getPlayerHand"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003AdrawNewCard\u0028\u0029",
             "name": "drawNewCard",
-            "summary": "",
+            "summary": "This\u0020methods\u0020removes\u0020a\u0020random\u0020Card\u0020from\u0020the\u0020\u0024deck\u0020and\u0020adds\u0020it\u0020to\u0020the\u0020\u0024currentInQueue\u0027s\u0020hand.\u0020It\u0020returns\u0020\u0024currentInQueue\u0027s\u0020hand.",
             "url": "classes/App-Game21-Game21.html#method_drawNewCard"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003AcomputeHandTotal\u0028\u0029",
             "name": "computeHandTotal",
-            "summary": "",
+            "summary": "This\u0020method\u0020computes\u0020the\u0020total\u0020of\u0020the\u0020\u0024currentInQueue\u0027s\u0020hand\u0020and\u0020returns\u0020the\u0020sum\u0020totals,\u0020for\u0020when\u0020ace\u0020has\u0020worth\u00201\u0020and\u0020for\u0020ace\u0020has\u0020worth\u002014.",
             "url": "classes/App-Game21-Game21.html#method_computeHandTotal"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003AgetHandTotal\u0028\u0029",
             "name": "getHandTotal",
-            "summary": "",
+            "summary": "This\u0020method\u0020checks\u0020which\u0020sum\u0020total\u0020from\u0020the\u0020method\u0020computeHantTotal\u0028\u0029\u0020is\u0020more\u0020favorable\u0020for\u0020\u0024currentInQueue\u0027s\u0020game.",
             "url": "classes/App-Game21-Game21.html#method_getHandTotal"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003AcheckWinStatus\u0028\u0029",
             "name": "checkWinStatus",
-            "summary": "",
+            "summary": "This\u0020method\u0020checks\u0020the\u0020winStatus\u0020of\u0020the\u0020game.",
             "url": "classes/App-Game21-Game21.html#method_checkWinStatus"
         },                {
             "fqsen": "\\App\\Game21\\Game21\u003A\u003A\u0024queue",

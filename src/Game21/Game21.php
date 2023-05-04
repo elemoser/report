@@ -24,17 +24,27 @@ class Game21
      */
     protected $deck;
 
+    /**
+     * The constructor takes no parameters.
+     * @return void
+     */
     public function __construct()
     {
         $this->queue = [];
         $this->currentInQueue = 0;
     }
 
+    /**
+     * This method assigns an instance of a DeckOfCards to the $deck property.
+     */
     public function addCardDeck(DeckOfCards $deck): void
     {
         $this->deck = $deck;
     }
 
+    /**
+     * This method adds an instance of a Player to the $queue property.
+     */
     public function addPlayer(Player $player): void
     {
         array_push($this->queue, $player);
@@ -43,6 +53,7 @@ class Game21
     // public function removePlayer(Player $player): void
 
     /**
+     * This method returns the current Player in the $queue.
      * @return Player
      */
     public function getCurrentPlayerInQueue()
@@ -51,6 +62,7 @@ class Game21
     }
 
     /**
+     * This method assigns the next Player in $queue to $currentInQueue and returns it.
      * @return Player
      */
     public function getNextPlayerInQueue()
@@ -68,6 +80,7 @@ class Game21
     }
 
     /**
+     * This method returns an array with the string, color and value of all Cards in the currentInQueue's hand.
      * @return array<string, array<int, string>>
      */
     public function getPlayerHand()
@@ -90,6 +103,7 @@ class Game21
     }
 
     /**
+     * This methods removes a random Card from the $deck and adds it to the $currentInQueue's hand. It returns $currentInQueue's hand.
      * @return array<string, array<int, string>>
      */
     public function drawNewCard(int $num = 1)
@@ -108,6 +122,7 @@ class Game21
     }
 
     /**
+     * This method computes the total of the $currentInQueue's hand and returns the sum totals, for when ace has worth 1 and for ace has worth 14.
      * @return array<string, int>
      */
     protected function computeHandTotal(Player $player)
@@ -144,6 +159,7 @@ class Game21
     }
 
     /**
+     * This method checks which sum total from the method computeHantTotal() is more favorable for $currentInQueue's game.
      * @return int
      */
     public function getHandTotal(Player $player)
@@ -174,6 +190,7 @@ class Game21
     }
 
     /**
+     * This method checks the winStatus of the game.
      * @return array<string, string>
      */
     public function checkWinStatus()
