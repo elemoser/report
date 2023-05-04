@@ -70,6 +70,7 @@ class CardGraphic extends Card
     }
 
     /**
+     * This method returns the $value, i.e. the $suite and $number, of the Card as a html code string.
      * @return string
      */
     public function getAsString()

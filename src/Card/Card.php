@@ -24,6 +24,10 @@ class Card
      */
     public $maxValue;
 
+    /**
+     * The constructor takes to optional parameters $suite and $number. If no arguments are passed, $suite and $number will be randomized.
+     * @return void
+     */
     public function __construct(
         string $suite = null,
         int $number = null
@@ -48,6 +52,7 @@ class Card
     }
 
     /**
+     * This method converts a given card number into the appropriate card name.
      * @return string
      */
     protected function convertCardNumberToString(int $integer)
@@ -74,6 +79,8 @@ class Card
     }
 
     /**
+     * This methods replaces the property $value with a new random suite and number,
+     * and returns the new $value.
      * @return array<string>
      */
     public function draw()
@@ -91,6 +98,7 @@ class Card
     }
 
     /**
+     * This method returns the $value, i.e. the $suite and $number, of the Card.
      * @return array<string>
      */
     public function getValue()
@@ -99,6 +107,7 @@ class Card
     }
 
     /**
+     * This method returns the $value, i.e. the $suite and $number, of the Card as a string.
      * @return string
      */
     public function getAsString()
@@ -107,6 +116,7 @@ class Card
     }
 
     /**
+     * This method returns the color of the card.
      * @return string
      */
     public function getColor()

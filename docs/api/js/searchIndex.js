@@ -8,32 +8,32 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "The\u0020constructor\u0020takes\u0020to\u0020optional\u0020parameters\u0020\u0024suite\u0020and\u0020\u0024number.\u0020If\u0020no\u0020arguments\u0020are\u0020passed,\u0020\u0024suite\u0020and\u0020\u0024number\u0020will\u0020be\u0020randomized.",
             "url": "classes/App-Card-Card.html#method___construct"
         },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003AconvertCardNumberToString\u0028\u0029",
             "name": "convertCardNumberToString",
-            "summary": "",
+            "summary": "This\u0020method\u0020converts\u0020a\u0020given\u0020card\u0020number\u0020into\u0020the\u0020appropriate\u0020card\u0020name.",
             "url": "classes/App-Card-Card.html#method_convertCardNumberToString"
         },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003Adraw\u0028\u0029",
             "name": "draw",
-            "summary": "",
+            "summary": "This\u0020methods\u0020replaces\u0020the\u0020property\u0020\u0024value\u0020with\u0020a\u0020new\u0020random\u0020suite\u0020and\u0020number,\nand\u0020returns\u0020the\u0020new\u0020\u0024value.",
             "url": "classes/App-Card-Card.html#method_draw"
         },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003AgetValue\u0028\u0029",
             "name": "getValue",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020\u0024value,\u0020i.e.\u0020the\u0020\u0024suite\u0020and\u0020\u0024number,\u0020of\u0020the\u0020Card.",
             "url": "classes/App-Card-Card.html#method_getValue"
         },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003AgetAsString\u0028\u0029",
             "name": "getAsString",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020\u0024value,\u0020i.e.\u0020the\u0020\u0024suite\u0020and\u0020\u0024number,\u0020of\u0020the\u0020Card\u0020as\u0020a\u0020string.",
             "url": "classes/App-Card-Card.html#method_getAsString"
         },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003AgetColor\u0028\u0029",
             "name": "getColor",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020color\u0020of\u0020the\u0020card.",
             "url": "classes/App-Card-Card.html#method_getColor"
         },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003A\u0024value",
@@ -118,12 +118,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Card\\CardGraphic\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "The\u0020constructor\u0020takes\u0020to\u0020optional\u0020parameters\u0020\u0024suite\u0020and\u0020\u0024number.\u0020If\u0020no\u0020arguments\u0020are\u0020passed,\u0020\u0024suite\u0020and\u0020\u0024number\u0020will\u0020be\u0020randomized.",
             "url": "classes/App-Card-CardGraphic.html#method___construct"
         },                {
             "fqsen": "\\App\\Card\\CardGraphic\u003A\u003AgetAsString\u0028\u0029",
             "name": "getAsString",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020\u0024value,\u0020i.e.\u0020the\u0020\u0024suite\u0020and\u0020\u0024number,\u0020of\u0020the\u0020Card\u0020as\u0020a\u0020html\u0020code\u0020string.",
             "url": "classes/App-Card-CardGraphic.html#method_getAsString"
         },                {
             "fqsen": "\\App\\Card\\CardGraphic\u003A\u003A\u0024representation",
