@@ -11,16 +11,26 @@ class CardCollection
      */
     protected $cards;
 
+    /**
+     * The constructor takes to no parameters.
+     * @return void
+     */
     public function __construct()
     {
         $this->cards = [];
     }
 
+    /**
+     * This methods adds a given Card instance to the $card property.
+     */
     public function add(Card $card): void
     {
         array_push($this->cards, $card);
     }
 
+    /**
+     * This methods removes a given Card instance from the $card property.
+     */
     public function remove(Card $card): void
     {
         if (in_array($card, $this->cards)) {
@@ -31,6 +41,9 @@ class CardCollection
         }
     }
 
+    /**
+     * This methods changes the order of the elements in the $card property.
+     */
     public function shuffle(): void
     {
         // Change the order of the cards array
@@ -38,6 +51,7 @@ class CardCollection
     }
 
     /**
+     * This method returns the total amount of elements in the property $cards.
      * @return int
      */
     public function getCount()
@@ -46,6 +60,7 @@ class CardCollection
     }
 
     /**
+     * This method returns an array containing the suite and number of each Card in the $cards property.
      * @return array<int, array<string>>
      */
     public function getValues(): array
@@ -58,6 +73,7 @@ class CardCollection
     }
 
     /**
+     * This method returns an array containing the suite and number as a string of each Card in the $cards property.
      * @return array<string>
      */
     public function getStrings(): array
@@ -70,6 +86,7 @@ class CardCollection
     }
 
     /**
+     * This method returns an array containing the color of each Card in the $cards property.
      * @return array<string>
      */
     public function getColors(): array
@@ -82,6 +99,7 @@ class CardCollection
     }
 
     /**
+     * This method removes a random Card from the $cards property and returns it.
      * @return array<Card>
      */
     public function draw(int $number = 1): array

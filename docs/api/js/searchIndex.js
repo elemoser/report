@@ -63,47 +63,47 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "The\u0020constructor\u0020takes\u0020to\u0020no\u0020parameters.",
             "url": "classes/App-Card-CardCollection.html#method___construct"
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003Aadd\u0028\u0029",
             "name": "add",
-            "summary": "",
+            "summary": "This\u0020methods\u0020adds\u0020a\u0020given\u0020Card\u0020instance\u0020to\u0020the\u0020\u0024card\u0020property.",
             "url": "classes/App-Card-CardCollection.html#method_add"
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003Aremove\u0028\u0029",
             "name": "remove",
-            "summary": "",
+            "summary": "This\u0020methods\u0020removes\u0020a\u0020given\u0020Card\u0020instance\u0020from\u0020the\u0020\u0024card\u0020property.",
             "url": "classes/App-Card-CardCollection.html#method_remove"
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003Ashuffle\u0028\u0029",
             "name": "shuffle",
-            "summary": "",
+            "summary": "This\u0020methods\u0020changes\u0020the\u0020order\u0020of\u0020the\u0020elements\u0020in\u0020the\u0020\u0024card\u0020property.",
             "url": "classes/App-Card-CardCollection.html#method_shuffle"
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003AgetCount\u0028\u0029",
             "name": "getCount",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020the\u0020total\u0020amount\u0020of\u0020elements\u0020in\u0020the\u0020property\u0020\u0024cards.",
             "url": "classes/App-Card-CardCollection.html#method_getCount"
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003AgetValues\u0028\u0029",
             "name": "getValues",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020an\u0020array\u0020containing\u0020the\u0020suite\u0020and\u0020number\u0020of\u0020each\u0020Card\u0020in\u0020the\u0020\u0024cards\u0020property.",
             "url": "classes/App-Card-CardCollection.html#method_getValues"
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003AgetStrings\u0028\u0029",
             "name": "getStrings",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020an\u0020array\u0020containing\u0020the\u0020suite\u0020and\u0020number\u0020as\u0020a\u0020string\u0020of\u0020each\u0020Card\u0020in\u0020the\u0020\u0024cards\u0020property.",
             "url": "classes/App-Card-CardCollection.html#method_getStrings"
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003AgetColors\u0028\u0029",
             "name": "getColors",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020an\u0020array\u0020containing\u0020the\u0020color\u0020of\u0020each\u0020Card\u0020in\u0020the\u0020\u0024cards\u0020property.",
             "url": "classes/App-Card-CardCollection.html#method_getColors"
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003Adraw\u0028\u0029",
             "name": "draw",
-            "summary": "",
+            "summary": "This\u0020method\u0020removes\u0020a\u0020random\u0020Card\u0020from\u0020the\u0020\u0024cards\u0020property\u0020and\u0020returns\u0020it.",
             "url": "classes/App-Card-CardCollection.html#method_draw"
         },                {
             "fqsen": "\\App\\Card\\CardCollection\u003A\u003A\u0024cards",
@@ -138,12 +138,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "The\u0020constructor\u0020takes\u0020to\u0020no\u0020parameters.",
             "url": "classes/App-Card-DeckOfCards.html#method___construct"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003AisCompleteDeck\u0028\u0029",
             "name": "isCompleteDeck",
-            "summary": "",
+            "summary": "This\u0020method\u0020returns\u0020true\u0020if\u0020the\u0020elements\u0020in\u0020\u0024cards\u0020from\u0020a\u0020complete\u0020deck\u0020of\u0020cards.",
             "url": "classes/App-Card-DeckOfCards.html#method_isCompleteDeck"
         },                {
             "fqsen": "\\App\\Controller\\Game21Controller",
