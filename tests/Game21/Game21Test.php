@@ -41,7 +41,7 @@ class Game21Test extends TestCase
     /**
      * Construct object and verify the default values are set correctly.
      */
-    public function testCreateObject()
+    public function testCreateObject(): void
     {
         $this->assertInstanceOf("\App\Game21\Game21", $this->game);
     }
@@ -50,7 +50,7 @@ class Game21Test extends TestCase
     /**
      * Test methods altering the queue of players in the game.
      */
-    public function testPlayerQueueInGame()
+    public function testPlayerQueueInGame(): void
     {
         $playerOne = new Player("player 1");
         $playerTwo = new Player("player 2");
@@ -74,7 +74,7 @@ class Game21Test extends TestCase
     /**
      * Test method getPlayerHand() and verify it is empty.
      */
-    public function testCurrentPlayerHandIsEmpty()
+    public function testCurrentPlayerHandIsEmpty(): void
     {
         $playerOne = new Player("player 1");
         $this->game->addPlayer($playerOne);
@@ -88,7 +88,7 @@ class Game21Test extends TestCase
     /**
      * Adding complete deck of cards to Game and verify new cards can be drawn.
      */
-    public function testCardDeckInGame()
+    public function testCardDeckInGame(): void
     {
         $playerOne = new Player("player 1");
         $this->game->addPlayer($playerOne);
@@ -109,7 +109,7 @@ class Game21Test extends TestCase
      * Test methods computeHandTotal() and getHandTotal()
      * when cards include an Ace and result with 14 is lower than 21.
      */
-    public function testHandTotalWithAceLower()
+    public function testHandTotalWithAceLower(): void
     {
         $cards = [
             new Card("ruter", 1),
@@ -132,7 +132,7 @@ class Game21Test extends TestCase
      * Test methods computeHandTotal() and getHandTotal()
      * when cards include an Ace and result with 14 is greater than 21.
      */
-    public function testHandTotalWithAceGreater()
+    public function testHandTotalWithAceGreater(): void
     {
         $cards = [
             new Card("ruter", 1),
@@ -155,7 +155,7 @@ class Game21Test extends TestCase
      * Test methods computeHandTotal() and getHandTotal()
      * when cards include no Ace and result is lower than 21.
      */
-    public function testHandTotalWithoutAceLower()
+    public function testHandTotalWithoutAceLower(): void
     {
         $cards = [
             new Card("ruter", 5),
@@ -178,7 +178,7 @@ class Game21Test extends TestCase
      * Test methods computeHandTotal() and getHandTotal()
      * when cards include no Ace and result is greater than 21.
      */
-    public function testHandTotalWithoutAceGreater()
+    public function testHandTotalWithoutAceGreater(): void
     {
         $cards = [
             new Card("hjärter", 13),
@@ -201,7 +201,7 @@ class Game21Test extends TestCase
      * Test methods winStatus().
      * Case: Player's card total < 21 and bank's card total = 0
      */
-    public function testNoLoserStatusYet()
+    public function testNoLoserStatusYet(): void
     {
         $cards = [
             new Card("spader", 1),
@@ -229,7 +229,7 @@ class Game21Test extends TestCase
      * Test methods winStatus().
      * Case: Player's card total > 21 and bank's card total = 0
      */
-    public function testPlayersHandTotalGreaterThan21()
+    public function testPlayersHandTotalGreaterThan21(): void
     {
         $cards = [
             new Card("hjärter", 13),
@@ -257,7 +257,7 @@ class Game21Test extends TestCase
      * Test methods winStatus().
      * Case: Player's card total < 21 and closer to 21 than bank
      */
-    public function testPlayersHandTotalCloserTo21()
+    public function testPlayersHandTotalCloserTo21(): void
     {
         $cards = [
             new Card("ruter", 1),
@@ -293,7 +293,7 @@ class Game21Test extends TestCase
      * Test methods winStatus().
      * Case: Player's card total < 21 and farther to 21 than bank
      */
-    public function testBanksHandTotalCloserTo21()
+    public function testBanksHandTotalCloserTo21(): void
     {
         $cards = [
             new Card("spader", 2),
@@ -329,7 +329,7 @@ class Game21Test extends TestCase
      * Test methods winStatus().
      * Case: Player's card total < 21 and bank's card total > 21
      */
-    public function testBanksHandTotalGreaterThan21()
+    public function testBanksHandTotalGreaterThan21(): void
     {
         $cards = [
             new Card("hjärter", 10),
@@ -366,7 +366,7 @@ class Game21Test extends TestCase
      * Test methods winStatus().
      * Case: Player's card total < 21 and equal to bank's card total
      */
-    public function testHandTotalEqual()
+    public function testHandTotalEqual(): void
     {
         $cards = [
             new Card("ruter", 10),

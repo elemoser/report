@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
  */
 class DeckOfCardsTest extends TestCase
 {
+    /**
+     * @var DeckOfCards $deck
+     */
     private $deck;
 
     protected function setUp(): void
@@ -26,7 +29,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Construct object without arguments and verify the default values are set correctly.
      */
-    public function testCreateObjectNoArguments()
+    public function testCreateObjectNoArguments(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
@@ -35,7 +38,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Test isCompleteDeck() method and verify output is the expected Boolean.
      */
-    public function testCompleteDeck()
+    public function testCompleteDeck(): void
     {
         $this->assertTrue($this->deck->isCompleteDeck());
     }
@@ -43,7 +46,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Test isCompleteDeck() method and verify output is the expected Boolean.
      */
-    public function testIncompleteDeck()
+    public function testIncompleteDeck(): void
     {
         $this->deck->draw(1);
 

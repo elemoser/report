@@ -12,7 +12,7 @@ class CardCollectionTest extends TestCase
     /**
      * Construct object without arguments and verify the default values are set correctly.
      */
-    public function testCreateObjectNoArguments()
+    public function testCreateObjectNoArguments(): void
     {
         $cards = new CardCollection();
         $cardsCount = $cards->getCount();
@@ -23,7 +23,7 @@ class CardCollectionTest extends TestCase
     /**
      * Test add() method and verify the added objects are in the $cards array.
      */
-    public function testMethodAddCard()
+    public function testMethodAddCard(): void
     {
         $cards = new CardCollection();
         $card1 = new Card();
@@ -37,7 +37,7 @@ class CardCollectionTest extends TestCase
     /**
      * Test remove() method and verify the removed objects are no longer in the $cards array.
      */
-    public function testMethodRemoveCard()
+    public function testMethodRemoveCard(): void
     {
         $cards = new CardCollection();
         $card = new Card();
@@ -50,7 +50,7 @@ class CardCollectionTest extends TestCase
     /**
      * Test getValues() method and verify output is a correct array of an array of strings.
      */
-    public function testMethodReturningValues()
+    public function testMethodReturningValues(): void
     {
         $cards = new CardCollection();
         $randNum = random_int(1, 52);
@@ -74,7 +74,7 @@ class CardCollectionTest extends TestCase
     /**
      * Test getStrings() method and verify output is a correct array of strings.
      */
-    public function testMethodReturningStrings()
+    public function testMethodReturningStrings(): void
     {
         $cards = new CardCollection();
         $randNum = random_int(1, 52);
@@ -97,7 +97,7 @@ class CardCollectionTest extends TestCase
     /**
      * Test getColors() method and verify output is a correct array of strings.
      */
-    public function testMethodReturningColors()
+    public function testMethodReturningColors(): void
     {
         $cards = new CardCollection();
         $randNum = random_int(1, 52);
@@ -120,7 +120,7 @@ class CardCollectionTest extends TestCase
     /**
      * Test shuffle() method and verify $cards are shuffled.
      */
-    public function testMethodShuffle()
+    public function testMethodShuffle(): void
     {
         $cards = new CardCollection();
         $randNum = random_int(1, 52);
@@ -141,16 +141,14 @@ class CardCollectionTest extends TestCase
     /**
      * Test draw() method and verify output is array of Card.
      */
-    public function testMethodDraw()
+    public function testMethodDraw(): void
     {
         $cards = new CardCollection();
         $testCards = [
             "hjärter" => 5,
-            "ruter" => 7,
             "klöver" => 10,
             "spader" => 1,
-            "ruter" => 12,
-            "spader" => 2
+            "ruter" => 12
         ];
 
         foreach ($testCards as $key => $value) {

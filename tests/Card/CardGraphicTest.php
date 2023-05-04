@@ -12,7 +12,7 @@ class CardGraphicTest extends TestCase
     /**
      * Construct object without arguments and verify the default values are set correctly.
      */
-    public function testCreateObjectNoArguments()
+    public function testCreateObjectNoArguments(): void
     {
         $card = new CardGraphic();
         $this->assertInstanceOf("\App\Card\CardGraphic", $card);
@@ -27,7 +27,7 @@ class CardGraphicTest extends TestCase
     /**
      * Construct object without arguments and verify output is a string.
      */
-    public function testMethodReturningCardAsString()
+    public function testMethodReturningCardAsString(): void
     {
         $randSuite = "hjärter";
         $randNumber = 9;

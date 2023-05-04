@@ -12,7 +12,7 @@ class CardTest extends TestCase
     /**
      * Construct object without arguments and verify the default values are set correctly.
      */
-    public function testCreateObjectNoArguments()
+    public function testCreateObjectNoArguments(): void
     {
         $card = new Card();
         $this->assertInstanceOf("\App\Card\Card", $card);
@@ -27,7 +27,7 @@ class CardTest extends TestCase
     /**
      * Construct object with arguments and verify the default values are set correctly.
      */
-    public function testCreateObjectWithArguments()
+    public function testCreateObjectWithArguments(): void
     {
         $suites = ["hjärter", "spader", "ruter", "klöver"];
         $randSuite = $suites[array_rand($suites, 1)];
@@ -47,7 +47,7 @@ class CardTest extends TestCase
     /**
      * Test getValue() method and verify the output is an array of strings.
      */
-    public function testMethodReturningCardValue()
+    public function testMethodReturningCardValue(): void
     {
         $suites = ["hjärter", "spader", "ruter", "klöver"];
         $randSuite = $suites[array_rand($suites, 1)];
@@ -84,7 +84,7 @@ class CardTest extends TestCase
     /**
      * Test getAsString() method and verify the output is a string.
      */
-    public function testMethodReturningCardValuesAsString()
+    public function testMethodReturningCardValuesAsString(): void
     {
         $suites = ["hjärter", "spader", "ruter", "klöver"];
         $randSuite = $suites[array_rand($suites, 1)];
@@ -99,7 +99,7 @@ class CardTest extends TestCase
     /**
      * Test getColor() method and verify the output is a string.
      */
-    public function testMethodReturningCardColor()
+    public function testMethodReturningCardColor(): void
     {
         $suites = ["hjärter", "spader", "ruter", "klöver"];
         $randSuite = $suites[array_rand($suites, 1)];
@@ -119,13 +119,13 @@ class CardTest extends TestCase
     /**
      * Test draw() method and verify the output is correct.
      */
-    public function testMethodDraw()
+    public function testMethodDraw(): void
     {
         $suites = ["hjärter", "spader", "ruter", "klöver"];
         $randSuite = $suites[array_rand($suites, 1)];
         $randNumber = random_int(1, 13);
         $card = new Card($randSuite, $randNumber);
-        $beforeDraw = $card->getValue();
+        // $beforeDraw = $card->getValue();
         $afterDraw = $card->draw();
 
         $this->assertIsArray($afterDraw);

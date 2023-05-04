@@ -39,7 +39,7 @@ class PlayerTest extends TestCase
     /**
      * Construct object and verify the default values are set correctly.
      */
-    public function testCreateObject()
+    public function testCreateObject(): void
     {
         $this->assertInstanceOf("\App\Game21\Player", $this->player);
         $this->assertNotInstanceOf("\App\Game21\Bank", $this->player);
@@ -49,7 +49,7 @@ class PlayerTest extends TestCase
     /**
      * Test getHandCount() method and verify the output is an integer.
      */
-    public function testMethodReturningHandCount()
+    public function testMethodReturningHandCount(): void
     {
         $this->assertIsInt($this->player->getHandCount());
         $this->assertEquals(0, $this->player->getHandCount());
@@ -58,7 +58,7 @@ class PlayerTest extends TestCase
     /**
      * Test addCard() method and verify the Card is added.
      */
-    public function testMethodAddCardToHand()
+    public function testMethodAddCardToHand(): void
     {
         $randInt = random_int(1, 52);
 
@@ -73,7 +73,7 @@ class PlayerTest extends TestCase
     /**
      * Test getHandAsString() method and verify the output is an array of string.
      */
-    public function testMethodReturningCardHandAsString()
+    public function testMethodReturningCardHandAsString(): void
     {
         $card = new Card($this->suite, $this->number);
         $this->player->addCard($card);
@@ -88,7 +88,7 @@ class PlayerTest extends TestCase
     /**
      * Test getHandValues() method and verify the output is an array of an array of strings.
      */
-    public function testMethodReturningCardHandValues()
+    public function testMethodReturningCardHandValues(): void
     {
         $card = new Card($this->suite, $this->number);
         $this->player->addCard($card);
@@ -104,7 +104,7 @@ class PlayerTest extends TestCase
     /**
      * Test getHandColors() method and verify the output is an array of string.
      */
-    public function testMethodReturningCardHandColors()
+    public function testMethodReturningCardHandColors(): void
     {
         $color = "black";
         $card = new Card($this->suite, $this->number);

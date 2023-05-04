@@ -12,7 +12,7 @@ class BankTest extends TestCase
     /**
      * Construct object and verify the default values are set correctly.
      */
-    public function testCreateObject()
+    public function testCreateObject(): void
     {
         $bank = new Bank();
         $this->assertInstanceOf("\App\Game21\Player", $bank);
