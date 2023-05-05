@@ -13,7 +13,7 @@
         <li><a class="button lila-button" href="#kmom01">Kmom01</a></li>
         <li><a class="button lila-button" href="#kmom02">Kmom02</a></li>
         <li><a class="button lila-button" href="#kmom03">Kmom03</a></li>
-        <li><a class="button" href="#kmom04">Kmom04</a></li>
+        <li><a class="button lila-button" href="#kmom04">Kmom04</a></li>
         <li><a class="button" href="#kmom05">Kmom05</a></li>
         <li><a class="button" href="#kmom06">Kmom06</a></li>
         <li><a class="button" href="#kmom10">Kmom07/10</a></li>
@@ -189,6 +189,53 @@
     </p>
     </section>
     <h2 id="kmom04">Kmom04</h2>
+    <section>
+    <p>
+        Under detta kursmoment lärde vi oss om enhetstestning med <i>phpunit</i>.
+        Eftersom jag hade tidigare erfarenhet av enhetstestning från kursen <i>Objektorienterad programmering med Python</i> var det ganska lätt att tillämpa begreppen på min kod med hjälp av phpunit.
+        Jag stötte dock på några utmaningar när jag satte upp miljön för enhetstestning med php.
+        Det tog mig nästan en dag vardera att installera Xdebug och phpunit, och det var ganska frustrerande.
+        När jag slutligen lyckades installera miljön kunde jag slutföra veckans uppgift utan problem.
+        Jag kunde uppnå en kodtäckning på 100 % för mina klasser Card och Game21 i php-code-coverage verktyget.
+    </p>
+    <p>
+        Generellt sett var min kod lätt att testa, och jag är nöjd med strukturen och skrivandet av min kod.
+        Klassen Game21 utgjorde dock en utmaning när det gällde enhetstestning.
+        Eftersom dess metoder är starkt beroende av andra klasser var testmetoderna för den här klassen mer komplexa än för de andra klasserna.
+        Testning av vissa metoder i Game21-klassen, som <code>getHandTotal()</code> och <code>checkWinStatus()</code>, visade sig vara särskilt utmanande på grund av behovet av att täcka in flera testfall.
+    </p>
+    <p>
+        Trots dessa utmaningar gjorde testprocessen det möjligt för mig att identifiera och korrigera flera brister och fel i min kod.
+        Jag har övervägt att ta bort eller skriva om vissa klasser och metoder för att förbättra testbarheten,
+        men jag tvekar att göra det eftersom min nuvarande kod fungerar och går bra att testa.
+        Jag vill inte riskera att bryta sönder något genom att göra stora ändringar.
+    </p>
+    <p>
+        Jag håller med att testbar kod kan vara ett tecken på "fin och ren kod", men de två begreppen är inte utbytbara.
+        Testbar kod är kod som har skrivits på ett sätt som gör det lätt att skriva tester för den.
+        Detta innebär att koden vanligtvis är modulär, löst kopplad och har väldefinierade gränssnitt.
+        Testbar kod är också vanligtvis välstrukturerad, med tydlig separering av problemområden och fokus på underhållbarhet.
+    </p>
+    <p>
+        Å andra sidan är "fin och ren kod" en mer subjektiv term som omfattar en bredare uppsättning principer.
+        Fin eller ren kod är kod som är lätt att läsa, lätt att förstå och lätt att ändra.
+        Det är kod som följer etablerade kodningsstandarder och bästa praxis, t.ex. namnkonventioner, kodformatering och kommentering.
+        Verktyg som php-cs-fixer, phpstan och phpmd hjälper oss att skriva “fin och ren” kod.
+    </p>
+    <p>
+        Testbar kod är ofta ren kod, men ren kod är inte nödvändigtvis testbar kod.
+        Det är möjligt att skriva ren kod som är svår att testa, t.ex. om koden är tätt kopplad eller saknar tydlig separation av problem.
+        Som diskuterats ovan stötte jag själv på det här problemet när jag skrev enhetstesterna för klasserna Player och Game21.
+    </p>
+    <p>
+        Min TIL för detta kmom handlar om PHPDoc, som är för PHP vad JSDoc är för JavaScript (som vi introducerades till i JavaScript kursen).
+        PHPDoc är alltså en dokumentationsstandard för PHP-kod.
+        Genom att använda PHPDoc-standard kan utvecklare enkelt generera API-dokumentation från koden
+        och hjälpa till att underlätta förståelsen av koden för andra utvecklare.
+        PHPDoc-formatet följer en specifik syntax som definierar vilken information som ska inkluderas i kommentarerna.
+        Vanligtvis inkluderar det information om funktioner och metoder, dessa indata och utdata, variabler och parametrar, samt deras datatyper och beskrivningar.
+    </p>
+    </section>
     <h2 id="kmom05">Kmom05</h2>
     <h2 id="kmom06">Kmom06</h2>
     <h2 id="kmom10">Kmom07/10</h2>
