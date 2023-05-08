@@ -1,5 +1,29 @@
 # Report
 
+## Application
+
+```
+# run application
+php -S localhost:8888 -t public
+```
+
+### Debug
+
+```
+# Show the routes
+php bin/console debug:router
+
+# Match a specific route
+php bin/console router:match /lucky/number
+
+# Clear the cache
+php bin/console cache:clear
+
+# Show available commands
+php bin/console
+
+```
+
 ## PHP Linter and Mess Detection
 
 TL;DR: To validate code use the following commands.
@@ -58,4 +82,27 @@ tools/phpstan/vendor/bin/phpstan analyse -l 9 src
 
 # with config file
 tools/phpstan/vendor/bin/phpstan
+```
+
+## Database
+
+```
+# Debug the dotenv (database connection)
+php bin/console debug:dotenv
+
+# create database
+php bin/console doctrine:database:create
+
+# create new entity class
+php bin/console make:entity
+
+# migration
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+
+# create Controller
+php bin/console make:controller ProductController
+
+# run SQL towards the database
+php bin/console dbal:run-sql 'SELECT * FROM product'
 ```
