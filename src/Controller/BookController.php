@@ -73,24 +73,30 @@ class BookController extends AbstractController
         $entityManager = $doctrine->getManager();
 
         foreach ($predefinedBooks as $item) {
-            $book = new Book();
+            $bookExists = $bookRepository->findOneBy(
+                ['ISBN' => $item["ISBN"]]
+            );
 
-            $book->setISBN($item["ISBN"]);
-            $book->setTitle($item["title"]);
-            $book->setAuthor($item["author"]);
-            $book->setImage($item["image"]);
-            // save the book
-            $entityManager->persist($book);
+            if (!$bookExists) {
+                $book = new Book();
+
+                $book->setISBN($item["ISBN"]);
+                $book->setTitle($item["title"]);
+                $book->setAuthor($item["author"]);
+                $book->setImage($item["image"]);
+                // save the book
+                $entityManager->persist($book);
+            }
         }
 
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        $allBooks = $bookRepository
-            ->findAll();
+        // $allBooks = $bookRepository
+        //     ->findAll();
 
-        return $this->json($allBooks);
-        // return $this->redirectToRoute('library');
+        // return $this->json($allBooks);
+        return $this->redirectToRoute('library');
     }
 
     #[Route('/book/reset', name: 'reset_book')]
@@ -114,5 +120,30 @@ class BookController extends AbstractController
         ->findAll();
 
         return $this->json($allBooks);
+    }
+
+    #[Route('/book/show', name: 'book_show_all')]
+    public function showAllBooks(
+        BookRepository $bookRepository
+    ): Response {
+        $books = $bookRepository
+            ->findAll();
+
+        $bookArray = [];
+
+        foreach ($books as $book) {
+            $bookArray[] = [
+                "id" => $book->getId(),
+                "ISBN" => $book->getISBN(),
+                "title" => $book->getTitle(),
+                "author" => $book->getAuthor(),
+                "image" => $book->getImage()
+            ];
+        }
+
+        $data = [];
+        $data["books"] = $bookArray;
+
+        return $this->render('book/read_many.html.twig', $data);
     }
 }

@@ -154,3 +154,28 @@ code {
 .error {
     background-color: #f3b9b9;
 }
+
+.library {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1.5rem;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: rgb(209, 227, 249);
+    border-radius: 10px;
+
+    a {
+        text-decoration: none;
+        box-shadow: 5px 5px 5px rgb(245, 245, 245, 0.2);
+    }
+
+    a:hover {
+        opacity: 0.5;
+    }
+
+    a img {
+        width: 200px;
+        height: 312px;
+        object-fit: cover;
+    }
+}

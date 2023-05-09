@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block body %}
+    <h1>Alla böcker ({{books|length}})</h1>
+    <div class="box box-blue">
+    <div class="library">
+    {% for book in books %}
+    <a href="{{ asset('img/books/') }}{{book.image}}"><img alt="{{book.title}}" src="{{ asset('img/books/') }}{{book.image}}"</a>
+    {% endfor %}
+    </div>
+    </div>
+    <a class="button orange-button" href="{{ path('library') }}">Tillbaka</a>
+{% endblock %}
