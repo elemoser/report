@@ -7,7 +7,7 @@
     <div class="box box-blue">
     <div class="library">
     {% for book in books %}
-    <a href="{{ asset('img/books/') }}{{book.image}}"><img alt="{{book.title}}" src="{{ asset('img/books/') }}{{book.image}}"</a>
+    <a href="{{ path('book_by_id', {id: book.id}) }}"><img alt="{{book.title}}" src="{{ asset('img/books/') }}{{book.image}}"></a>
     {% endfor %}
     </div>
     </div>

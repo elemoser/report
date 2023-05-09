@@ -146,4 +146,23 @@ class BookController extends AbstractController
 
         return $this->render('book/read_many.html.twig', $data);
     }
+
+    #[Route('/book/show/{id}', name: 'book_by_id')]
+    public function showPBookById(
+        BookRepository $bookRepository,
+        int $id
+    ): Response {
+        $book = $bookRepository
+            ->find($id);
+        
+        $data = [
+            "id" => $book->getId(),
+            "ISBN" => $book->getISBN(),
+            "title" => $book->getTitle(),
+            "author" => $book->getAuthor(),
+            "image" => $book->getImage()
+        ];
+
+        return $this->render('book/read_one.html.twig', $data);
+    }
 }
