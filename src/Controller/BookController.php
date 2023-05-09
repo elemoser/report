@@ -30,43 +30,43 @@ class BookController extends AbstractController
                 "ISBN" => "9781408855652",
                 "title" => "Harry Potter and the Philosopher's Stone",
                 "author" => "J.K. Rowling",
-                "image" => ""
+                "image" => "harry-potter-and-the-philosophers-stone.jpg"
             ],
             1 => [
                 "ISBN" => "9781408855669",
                 "title" => "Harry Potter and the Chamber of Secrets",
                 "author" => "J.K. Rowling",
-                "image" => ""
+                "image" => "harry-potter-and-the-chamber-of-secrets.jpg"
             ],
             2 => [
                 "ISBN" => "9781408855676",
                 "title" => "Harry Potter and the Prisoner of Azkaban",
                 "author" => "J.K. Rowling",
-                "image" => ""
+                "image" => "harry-potter-and-the-prisoner-of-azkaban.jpg"
             ],
             3 => [
                 "ISBN" => "9781408855683",
                 "title" => "Harry Potter and the Goblet of Fire",
                 "author" => "J.K. Rowling",
-                "image" => ""
+                "image" => "harry-potter-and-the-goblet-of-fire.jpg"
             ],
             4 => [
                 "ISBN" => "9781408855690",
                 "title" => "Harry Potter and the Order of the Phoenix",
                 "author" => "J.K. Rowling",
-                "image" => ""
+                "image" => "harry-potter-and-the-order-of-the-phoenix.jpg"
             ],
             5 => [
                 "ISBN" => "9781408855706",
                 "title" => "Harry Potter and the Half-Blood Prince",
                 "author" => "J.K. Rowling",
-                "image" => ""
+                "image" => "harry-potter-and-the-half-blood-prince.jpg"
             ],
             6 => [
                 "ISBN" => "9781408855713",
                 "title" => "Harry Potter and the Deathly Hallows",
                 "author" => "J.K. Rowling",
-                "image" => ""
+                "image" => "harry-potter-and-the-deathly-hallows.jpg"
             ]
         ];
 
