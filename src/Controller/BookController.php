@@ -6,6 +6,7 @@ use App\Entity\Book;
 use App\Repository\BookRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -116,10 +117,11 @@ class BookController extends AbstractController
             }
         }
 
-        $allBooks = $bookRepository
-        ->findAll();
+        // $allBooks = $bookRepository
+        // ->findAll();
 
-        return $this->json($allBooks);
+        // return $this->json($allBooks);
+        return $this->redirectToRoute('init_book');
     }
 
     #[Route('/book/show', name: 'book_show_all')]
@@ -164,5 +166,53 @@ class BookController extends AbstractController
         ];
 
         return $this->render('book/read_one.html.twig', $data);
+    }
+
+    #[Route('/book/add', name: 'book_add')]
+    public function addNewBook(): Response
+    {
+        return $this->render('book/add_one.html.twig');
+    }
+
+    #[Route('/book/create', name: 'book_create', methods: 'POST')]
+    public function createBook(
+        Request $request,
+        ManagerRegistry $doctrine,
+        BookRepository $bookRepository
+    ): Response {
+        $data = [
+            "isbn" => $request->request->get('isbn'),
+            "title" => $request->request->get('title'),
+            "author" => $request->request->get('author'),
+            "image" => $request->request->get('image')
+        ];
+
+        $entityManager = $doctrine->getManager();
+
+        $book = new Book();
+        $book->setISBN($data["isbn"]);
+        $book->setTitle($data["title"]);
+        $book->setAuthor($data["author"]);
+
+        if ($data["image"]) {
+            $book->setImage($data["image"]);
+        }
+
+        $entityManager->persist($book);
+
+        $entityManager->flush();
+
+        $success = $bookRepository->findOneBy(
+            ['ISBN' => $data["isbn"]]
+        );
+
+        if (!$success) {
+            return new Response('Adding book failed.');
+        }
+
+        $data["id"] = $success->getId();
+
+        // return new Response('Adding book succeeded.');
+        return $this->redirectToRoute('book_by_id', ['id' => $data["id"]]);
     }
 }

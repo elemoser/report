@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block body %}
+    <h1>Lägg till en ny bok</h1>
+    <form action="{{ path('book_create') }}" method="post">
+        <label class="input-label" for="isbn">ISBN</label>
+        <input class="input" id="isbn" name="isbn" type="text" minlength="10" maxlength="17" required>
+        <label class="input-label" for="title">Boktitel</label>
+        <input class="input" id="title" name="title" type="text" maxlength="255" required>
+        <label class="input-label" for="author">Författare</label>
+        <input class="input" id="author" name="author" type="text" maxlength="255" required>
+        <label class="input-label" for="image">Bild (namn eller URL)</label>
+        <input class="input" id="image" name="image" type="text" maxlength="255">
+        <input class="button lila-button" type="submit" value="Lägga till">
+    </form>
+    <a class="button" href="{{ path('library') }}">Avbryt</a>
+{% endblock %}
