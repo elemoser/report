@@ -5,13 +5,11 @@
 {% block body %}
     <h1>Bibliotek</h1>
     <img class="banner" alt="Library" src="{{ asset('img/susan-q-yin-2JIvboGLeho-unsplash.jpg') }}">
-    <div style="display: flex; flex-direction: row nowrap; justify-content: flex-start; gap: 0.5rem;">
+    <div class="flex-row flex-spread">
         <a class="button blue-button" href="{{ path('book_show_all') }}">Visa all böcker</a>
         <form class="form-inline" action="{{ path('book_search') }}" method="get">
             <input class="input-field" type="text" name="search" placeholder="Sök book med id" minlength="1">
             <input class="button" type="submit" value="&#128269;">
         </form>
-        <a class="button blue-button" href="{{ path('book_add') }}">Lägga till en bok</a>
-        <a class="button" title="reset" href="{{ path('reset_book') }}">&#8634;</a>
     </div>
 {% endblock %}

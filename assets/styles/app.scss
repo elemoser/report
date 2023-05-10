@@ -30,7 +30,7 @@ main {
 h1,
 h2,
 h3 {
-    margin: $magic-number 0;
+    margin: 1.2rem 0 $magic-number;
 }
 
 h2 {
@@ -106,6 +106,20 @@ code {
     justify-content: center;
 }
 
+.flex-row {
+    display: flex;
+    flex-direction: row nowrap;
+}
+
+.flex-spread {
+    justify-content: space-between;
+}
+
+.flex-end {
+    justify-content: end;
+    gap: 1rem;
+}
+
 .game-links,
 .nav-report {
     display: flex;
@@ -143,14 +157,25 @@ code {
     background-color: #f3b9b9;
 }
 
+.box {
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    width: fit-content;
+}
+
+.box-blue {
+    background-color: rgb(209, 227, 249);
+}
+
 .library {
     display: flex;
     flex-flow: row wrap;
-    gap: 1.5rem;
-    margin: 1rem auto;
-    padding: 1rem;
-    background-color: rgb(209, 227, 249);
-    border-radius: 10px;
+    gap: 1rem;
+    margin: 0 auto;
+    justify-content: center;
+    flex-basis: auto;
 
     a {
         text-decoration: none;
@@ -166,6 +191,21 @@ code {
     }
 
     a img {
+        width: 200px;
+        height: 312px;
+        object-fit: cover;
+    }
+}
+
+.book-link {
+    text-decoration: none;
+    box-shadow: 5px 5px 5px rgb(245, 245, 245, 0.2);
+    width: 200px;
+    height: 312px;
+    background-color: darkblue;
+    color: #fff;
+
+    img {
         width: 200px;
         height: 312px;
         object-fit: cover;

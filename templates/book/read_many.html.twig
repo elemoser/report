@@ -3,11 +3,17 @@
 {% block title %}Bibliotek{% endblock %}
 
 {% block body %}
+    <div class="flex-row flex-spread">
     <h1>Alla böcker ({{books|length}})</h1>
+    <div class="flex-row flex-end">
+        <a class="button blue-button" href="{{ path('book_add') }}">Lägga till en bok</a>
+        <a class="button" title="reset" href="{{ path('reset_book') }}">&#8634;</a>
+    </div>
+    </div>
     <div class="box box-blue">
     <div class="library">
     {% for book in books %}
-    <a href="{{ path('book_by_id', {id: book.id}) }}"><img alt="{{book.title}}" src="{{ asset('img/books/') }}{{book.image}}"></a>
+    <a href="{{ path('book_by_id', {id: book.id}) }}" title="{{book.title}}"><img alt="{{book.title}}" src="{{ asset('img/books/') }}{{book.image}}"></a>
     {% endfor %}
     </div>
     </div>

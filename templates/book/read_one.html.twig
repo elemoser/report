@@ -5,7 +5,7 @@
 {% block body %}
     <h1>{{title}}</h1>
     <div class="cols-2">
-        <a href="{{ asset('img/books/') }}{{image}}"><img alt="{{title}}" src="{{ asset('img/books/') }}{{image}}"></a>
+        <a class="book-link" href="{{ asset('img/books/') }}{{image}}"><img alt="{{title}}" src="{{ asset('img/books/') }}{{image}}"></a>
         <div>
         <h3>Produktinformation</h3>
         <p>Författare: {{author}}</p>
