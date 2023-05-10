@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block body %}
+    <h1>Uppdatera bokinformation</h1>
+    <form action="{{ path('book_alter') }}" method="post">
+        <input class="input" id="bookId" name="bookId" type="hidden" value="{{id}}">
+        <label class="input-label" for="isbn">ISBN</label>
+        <input class="input" id="isbn" name="isbn" type="text" minlength="10" maxlength="17" value="{{ISBN}}">
+        <label class="input-label" for="title">Boktitel</label>
+        <input class="input" id="title" name="title" type="text" maxlength="255" value="{{title}}">
+        <label class="input-label" for="author">Författare</label>
+        <input class="input" id="author" name="author" type="text" maxlength="255" value="{{author}}">
+        <label class="input-label" for="image">Bild (namn eller URL)</label>
+        <input class="input" id="image" name="image" type="text" maxlength="255" value="{{image}}">
+        <input class="button orange-button" type="submit" value="Uppdatera">
+    </form>
+    <a class="button" href="{{ path('library') }}">Avbryt</a>
+{% endblock %}

@@ -4,9 +4,15 @@
 
 {% block body %}
     <h1>{{title}}</h1>
-    <p>by {{author}}</p>
-    <a href="{{ asset('img/books/') }}{{image}}"><img alt="{{title}}" src="{{ asset('img/books/') }}{{image}}"></a>
-    <h3>Produktinformation</h3>
-    <p>ISBN: {{ISBN}}</p>
-    <a class="button orange-button" href="{{ path('book_show_all') }}">Tillbaka</a>
+    <div class="cols-2">
+        <a href="{{ asset('img/books/') }}{{image}}"><img alt="{{title}}" src="{{ asset('img/books/') }}{{image}}"></a>
+        <div>
+        <h3>Produktinformation</h3>
+        <p>Författare: {{author}}</p>
+        <p>ISBN: {{ISBN}}</p>
+        <a class="button lila-button" href="{{ path('book_update', {id: id}) }}">Uppdatera</a>
+        <a class="button lila-button" href="{{ path('library') }}">Radera</a>
+        </div>
+    </div>
+    <a class="button orange-button" href="{{ path('book_show_all') }}">Tillbaka till alla böcker</a>
 {% endblock %}

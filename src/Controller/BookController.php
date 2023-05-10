@@ -239,4 +239,54 @@ class BookController extends AbstractController
         // return new Response('Adding book succeeded.');
         return $this->redirectToRoute('book_by_id', ['id' => $data["id"]]);
     }
+
+    #[Route('/book/update/{id}', name: 'book_update')]
+    public function updateBook(
+        BookRepository $bookRepository,
+        int $id
+    ): Response {
+        $book = $bookRepository
+            ->find($id);
+
+        $data = [
+            "id" => $book->getId(),
+            "ISBN" => $book->getISBN(),
+            "title" => $book->getTitle(),
+            "author" => $book->getAuthor(),
+            "image" => $book->getImage()
+        ];
+
+        return $this->render('book/update.html.twig', $data);
+    }
+
+    #[Route('/book/alter', name: 'book_alter', methods:'post')]
+    public function alterBook(
+        Request $request,
+        BookRepository $bookRepository
+    ): Response {
+        $data = [
+            "id" => $request->request->get("bookId"),
+            "isbn" => $request->request->get("isbn"),
+            "title" => $request->request->get("title"),
+            "author" => $request->request->get("author"),
+            "image" => $request->request->get("image")
+        ];
+
+        $book = $bookRepository->find($data["id"]);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$data["id"]
+            );
+        }
+
+        $book->setISBN($data["isbn"]);
+        $book->setTitle($data["title"]);
+        $book->setAuthor($data["author"]);
+        $book->setImage($data["image"]);
+        $bookRepository->save($book, true);
+
+        // return new Response('Update book with id: '.$data["id"]);
+        return $this->redirectToRoute('book_by_id', ['id' => $data["id"]]);
+    }
 }
