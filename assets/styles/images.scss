@@ -1,0 +1,22 @@
+.img-profile,
+.img-course {
+    text-align: center;
+
+    a {
+        height: 300px;
+        text-decoration: none;
+
+        img {
+            height: inherit;
+        }
+    }
+}
+
+.banner {
+    margin: 1rem 0;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    opacity: 0.9;
+    background-color: #CA8029;
+}

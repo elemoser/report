@@ -16,6 +16,11 @@ form {
     margin: 1rem 1rem 100px;
 }
 
+.form-inline {
+    margin: 0;
+    padding: 0;
+}
+
 .input {
     font-size: $base-font-size;
     line-height: $base-line-height;
