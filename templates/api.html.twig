@@ -53,10 +53,10 @@
         </p>
         <input class="input-field" type="number" name="num_cards" min="1" max="52" placeholder="2">
         <input class="button blue-button" type="submit" name="drawCard" value="card/deck/draw/:number"
-            onClick="this.form.action='{{ path('api_deck_draw_num_post', {num: 5}) }}';"
+            onClick="this.form.action='{{ path('api_deck_draw_num_post', {num: 2}) }}';"
         >
     </div>
-        <div>
+    <div>
         <h2>Kolla den aktuella ställningen för spelet</h2>
         <p>
             Den här routen tar dig till en sida som visar ett JSON-objekt med den aktuella ställningen för spelet Tjugoett.
@@ -66,4 +66,24 @@
         >
     </div>
     </form>
+    <div>
+        <h2>Visa alla böcker i biblioteket</h2>
+        <p>
+            Den här routen tar dig till en sida som visar upp ett JSON-objekt med alla böcker i biblioteket.
+        </p>
+        <a class="button blue-button" href="{{ path('api_library') }}">api/library/books</a>
+    </div>
+    <div>
+        <h2>Kolla up en bok via dess ISBN nummer</h2>
+        <p>
+            Den här routen tar dig till en sida som visar ett JSON-objekt med en bok via dess ISBN nummer.
+        </p>
+        <form class="form-inline">
+        <input class="input-field" type="text" name="isbn" minlength="10" maxlength="17" placeholder="ISBN">
+        <input class="button blue-button" type="submit" value="api/library/books/<isbn>"
+            onClick="this.form.action='{{ path('api_book_isbn_post') }}';this.form.method='post';"
+        >
+        </form>
+    </div>
+
 {% endblock %}
