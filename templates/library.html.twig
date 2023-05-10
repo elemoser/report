@@ -7,4 +7,8 @@
     <a class="button blue-button" href="{{ path('book_show_all') }}">Visa all böcker i biblioteket</a>
     <a class="button blue-button" href="{{ path('book_add') }}">Lägga till en bok i biblioteket</a>
     <a class="button" title="reset" href="{{ path('reset_book') }}">&#8634;</a>
+    <form action="{{ path('book_search') }}" method="get">
+    <input class="input" type="text" name="search" placeholder="Sök book med id" minlength="1">
+    <input class="button lila-button" type="submit">
+    </form>
 {% endblock %}

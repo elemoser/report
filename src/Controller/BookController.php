@@ -150,7 +150,7 @@ class BookController extends AbstractController
     }
 
     #[Route('/book/show/{id}', name: 'book_by_id')]
-    public function showPBookById(
+    public function showBookById(
         BookRepository $bookRepository,
         int $id
     ): Response {
@@ -166,6 +166,30 @@ class BookController extends AbstractController
         ];
 
         return $this->render('book/read_one.html.twig', $data);
+    }
+
+    #[Route('/book/search', name: 'book_search', methods: 'get')]
+    public function searchBook(
+        Request $request,
+        BookRepository $bookRepository
+    ): Response {
+
+        $search = $request->query->get('search');
+
+        // var_dump($search);
+
+        $success = $bookRepository->findOneBy(
+            ['id' => intval($search)]
+        );
+
+        // var_dump($success);
+
+        if (!$success) {
+            return $this->redirectToRoute('library');
+        }
+
+        return $this->redirectToRoute('book_by_id', ['id' => $search]);
+        // return new Response('Search word: '.$search);
     }
 
     #[Route('/book/add', name: 'book_add')]
