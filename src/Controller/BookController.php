@@ -289,4 +289,37 @@ class BookController extends AbstractController
         // return new Response('Update book with id: '.$data["id"]);
         return $this->redirectToRoute('book_by_id', ['id' => $data["id"]]);
     }
+
+    #[Route('/book/delete/{id}', name: 'book_delete', methods: ['get', 'post'])]
+    public function deleteBook(
+        Request $request,
+        BookRepository $bookRepository,
+        int $id
+    ): Response {
+        $book = $bookRepository
+            ->find($id);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book found for id '.$id
+            );
+        }
+
+        $data = [
+            "id" => $book->getId(),
+            "ISBN" => $book->getISBN(),
+            "title" => $book->getTitle(),
+            "author" => $book->getAuthor(),
+            "image" => $book->getImage()
+        ];
+
+        $bookToDelete = $request->request->get("bookId");
+
+        if ($bookToDelete) {
+            $bookRepository->remove($book, true);
+            return $this->redirectToRoute('book_show_all');
+        }
+
+        return $this->render('book/delete.html.twig', $data);
+    }
 }

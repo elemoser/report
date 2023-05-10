@@ -11,7 +11,7 @@
         <p>Författare: {{author}}</p>
         <p>ISBN: {{ISBN}}</p>
         <a class="button lila-button" href="{{ path('book_update', {id: id}) }}">Uppdatera</a>
-        <a class="button lila-button" href="{{ path('library') }}">Radera</a>
+        <a class="button lila-button" href="{{ path('book_delete', {id: id}) }}">Radera</a>
         </div>
     </div>
     <a class="button orange-button" href="{{ path('book_show_all') }}">Tillbaka till alla böcker</a>

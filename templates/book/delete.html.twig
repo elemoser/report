@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block body %}
+    <h1>Uppdatera bokinformation</h1>
+    <div class="message-box warning">
+    <p>OBS du kommer att ta bort den här boken permanent från biblioteket!</p>
+    </div>
+    <form action="{{ path('book_delete', {id: id}) }}" method="post">
+        <input class="input" id="bookId" name="bookId" type="hidden" value="{{id}}">
+        <label class="input-label" for="isbn">ISBN</label>
+        <input class="input" id="isbn" name="isbn" type="text" value="{{ISBN}}" readonly>
+        <label class="input-label" for="title">Boktitel</label>
+        <input class="input" id="title" name="title" type="text" value="{{title}}" readonly>
+        <label class="input-label" for="author">Författare</label>
+        <input class="input" id="author" name="author" type="text" value="{{author}}" readonly>
+        <label class="input-label" for="image">Bild (namn eller URL)</label>
+        <input class="input" id="image" name="image" type="text" value="{{image}}" readonly>
+        <input class="button orange-button" type="submit" value="Radera">
+    </form>
+    <a class="button" href="{{ path('library') }}">Avbryt</a>
+{% endblock %}
