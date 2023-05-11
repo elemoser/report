@@ -143,7 +143,7 @@ class BookController extends AbstractController
         return $this->render('book/read_many.html.twig', $data);
     }
 
-    #[Route('/book/show/{id}', name: 'book_by_id')]
+    #[Route('/book/show/{idNumber}', name: 'book_by_id')]
     public function showBookById(
         BookRepository $bookRepository,
         int $idNumber
@@ -190,7 +190,7 @@ class BookController extends AbstractController
             return $this->redirectToRoute('library');
         }
 
-        return $this->redirectToRoute('book_by_id', ['id' => $search]);
+        return $this->redirectToRoute('book_by_id', ['idNumber' => $search]);
         // return new Response('Search word: '.$search);
     }
 
@@ -246,10 +246,10 @@ class BookController extends AbstractController
         $isbn = $success->getId();
 
         // return new Response('Adding book succeeded.');
-        return $this->redirectToRoute('book_by_id', ['id' => $isbn]);
+        return $this->redirectToRoute('book_by_id', ['idNumber' => $isbn]);
     }
 
-    #[Route('/book/update/{id}', name: 'book_update')]
+    #[Route('/book/update/{idNumber}', name: 'book_update')]
     public function updateBook(
         BookRepository $bookRepository,
         int $idNumber
@@ -301,10 +301,10 @@ class BookController extends AbstractController
         $book->setImage($image);
         $bookRepository->save($book, true);
 
-        return $this->redirectToRoute('book_by_id', ['id' => $idNumber]);
+        return $this->redirectToRoute('book_by_id', ['idNumber' => $idNumber]);
     }
 
-    #[Route('/book/delete/{id}', name: 'book_delete', methods: ['get', 'post'])]
+    #[Route('/book/delete/{idNumber}', name: 'book_delete', methods: ['get', 'post'])]
     public function deleteBook(
         Request $request,
         BookRepository $bookRepository,

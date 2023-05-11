@@ -7,7 +7,7 @@
     <div class="message-box warning">
     <p>OBS du kommer att ta bort den här boken permanent från biblioteket!</p>
     </div>
-    <form action="{{ path('book_delete', {id: id}) }}" method="post">
+    <form action="{{ path('book_delete', {idNumber: id}) }}" method="post">
         <input class="input" id="bookId" name="bookId" type="hidden" value="{{id}}">
         <label class="input-label" for="isbn">ISBN</label>
         <input class="input" id="isbn" name="isbn" type="text" value="{{ISBN}}" readonly>
