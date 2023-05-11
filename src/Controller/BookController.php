@@ -21,11 +21,10 @@ class BookController extends AbstractController
     }
 
     #[Route('/book/init', name: 'init_book')]
-    public function book_init(
+    public function bookInit(
         ManagerRegistry $doctrine,
         BookRepository $bookRepository
-    ): Response
-    {
+    ): Response {
         $predefinedBooks = [
             0 => [
                 "ISBN" => "9781408855652",
@@ -101,26 +100,21 @@ class BookController extends AbstractController
     }
 
     #[Route('/book/reset', name: 'reset_book')]
-    public function book_reset(
+    public function bookReset(
         BookRepository $bookRepository
-    ): Response
-    {
+    ): Response {
         $allBooks = $bookRepository
             ->findAll();
 
         foreach ($allBooks as $bookObj) {
-            $id = $bookObj->getId();
-            $book = $bookRepository->find($id);
-    
+            $idNumber = $bookObj->getId();
+            $book = $bookRepository->find($idNumber);
+
             if ($book) {
                 $bookRepository->remove($book, true);
             }
         }
 
-        // $allBooks = $bookRepository
-        // ->findAll();
-
-        // return $this->json($allBooks);
         return $this->redirectToRoute('init_book');
     }
 
@@ -152,18 +146,26 @@ class BookController extends AbstractController
     #[Route('/book/show/{id}', name: 'book_by_id')]
     public function showBookById(
         BookRepository $bookRepository,
-        int $id
+        int $idNumber
     ): Response {
-        $book = $bookRepository
-            ->find($id);
-        
         $data = [
-            "id" => $book->getId(),
-            "ISBN" => $book->getISBN(),
-            "title" => $book->getTitle(),
-            "author" => $book->getAuthor(),
-            "image" => $book->getImage()
+            "id" => "",
+            "ISBN" => "",
+            "title" => "",
+            "author" => "",
+            "image" => ""
         ];
+
+        $book = $bookRepository
+            ->find($idNumber);
+
+        if ($book) {
+            $data["id"] = $book->getId();
+            $data["ISBN"] = $book->getISBN();
+            $data["title"] = $book->getTitle();
+            $data["author"] = $book->getAuthor();
+            $data["image"] = $book->getImage();
+        }
 
         return $this->render('book/read_one.html.twig', $data);
     }
@@ -204,22 +206,29 @@ class BookController extends AbstractController
         ManagerRegistry $doctrine,
         BookRepository $bookRepository
     ): Response {
-        $data = [
-            "isbn" => $request->request->get('isbn'),
-            "title" => $request->request->get('title'),
-            "author" => $request->request->get('author'),
-            "image" => $request->request->get('image')
-        ];
+        $isbn = strval($request->request->get('isbn'));
+        $title = strval($request->request->get('title'));
+        $author = strval($request->request->get('author'));
+        $image = strval($request->request->get('image'));
 
         $entityManager = $doctrine->getManager();
 
         $book = new Book();
-        $book->setISBN($data["isbn"]);
-        $book->setTitle($data["title"]);
-        $book->setAuthor($data["author"]);
 
-        if ($data["image"]) {
-            $book->setImage($data["image"]);
+        if ($isbn) {
+            $book->setISBN($isbn);
+        }
+
+        if ($title) {
+            $book->setTitle($title);
+        }
+
+        if ($author) {
+            $book->setAuthor($author);
+        }
+
+        if ($image) {
+            $book->setImage($image);
         }
 
         $entityManager->persist($book);
@@ -227,34 +236,42 @@ class BookController extends AbstractController
         $entityManager->flush();
 
         $success = $bookRepository->findOneBy(
-            ['ISBN' => $data["isbn"]]
+            ['ISBN' => $isbn]
         );
 
         if (!$success) {
             return new Response('Adding book failed.');
         }
 
-        $data["id"] = $success->getId();
+        $isbn = $success->getId();
 
         // return new Response('Adding book succeeded.');
-        return $this->redirectToRoute('book_by_id', ['id' => $data["id"]]);
+        return $this->redirectToRoute('book_by_id', ['id' => $isbn]);
     }
 
     #[Route('/book/update/{id}', name: 'book_update')]
     public function updateBook(
         BookRepository $bookRepository,
-        int $id
+        int $idNumber
     ): Response {
-        $book = $bookRepository
-            ->find($id);
-
         $data = [
-            "id" => $book->getId(),
-            "ISBN" => $book->getISBN(),
-            "title" => $book->getTitle(),
-            "author" => $book->getAuthor(),
-            "image" => $book->getImage()
+            "id" => "",
+            "ISBN" => "",
+            "title" => "",
+            "author" => "",
+            "image" => ""
         ];
+
+        $book = $bookRepository
+            ->find($idNumber);
+
+        if ($book) {
+            $data["id"] = $book->getId();
+            $data["ISBN"] = $book->getISBN();
+            $data["title"] = $book->getTitle();
+            $data["author"] = $book->getAuthor();
+            $data["image"] = $book->getImage();
+        }
 
         return $this->render('book/update.html.twig', $data);
     }
@@ -264,44 +281,41 @@ class BookController extends AbstractController
         Request $request,
         BookRepository $bookRepository
     ): Response {
-        $data = [
-            "id" => $request->request->get("bookId"),
-            "isbn" => $request->request->get("isbn"),
-            "title" => $request->request->get("title"),
-            "author" => $request->request->get("author"),
-            "image" => $request->request->get("image")
-        ];
+        $idNumber = strval($request->request->get("bookId"));
+        $isbn = strval($request->request->get('isbn'));
+        $title = strval($request->request->get('title'));
+        $author = strval($request->request->get('author'));
+        $image = strval($request->request->get('image'));
 
-        $book = $bookRepository->find($data["id"]);
+        $book = $bookRepository->find($idNumber);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No product found for id '.$data["id"]
+                'No product found for id '.$idNumber
             );
         }
 
-        $book->setISBN($data["isbn"]);
-        $book->setTitle($data["title"]);
-        $book->setAuthor($data["author"]);
-        $book->setImage($data["image"]);
+        $book->setISBN($isbn);
+        $book->setTitle($title);
+        $book->setAuthor($author);
+        $book->setImage($image);
         $bookRepository->save($book, true);
 
-        // return new Response('Update book with id: '.$data["id"]);
-        return $this->redirectToRoute('book_by_id', ['id' => $data["id"]]);
+        return $this->redirectToRoute('book_by_id', ['id' => $idNumber]);
     }
 
     #[Route('/book/delete/{id}', name: 'book_delete', methods: ['get', 'post'])]
     public function deleteBook(
         Request $request,
         BookRepository $bookRepository,
-        int $id
+        int $idNumber
     ): Response {
         $book = $bookRepository
-            ->find($id);
+            ->find($idNumber);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id '.$id
+                'No book found for id '.$idNumber
             );
         }
 

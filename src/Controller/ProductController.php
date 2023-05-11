@@ -56,10 +56,10 @@ class ProductController extends AbstractController
     #[Route('/product/show/{id}', name: 'product_by_id')]
     public function showProductById(
         ProductRepository $productRepository,
-        int $id
+        int $idNumber
     ): Response {
         $product = $productRepository
-            ->find($id);
+            ->find($idNumber);
 
         return $this->json($product);
     }
@@ -67,13 +67,13 @@ class ProductController extends AbstractController
     #[Route('/product/delete/{id}', name: 'product_delete_by_id')]
     public function deleteProductById(
         ProductRepository $productRepository,
-        int $id
+        int $idNumber
     ): Response {
-        $product = $productRepository->find($id);
+        $product = $productRepository->find($idNumber);
 
         if (!$product) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'No product found for id '.$idNumber
             );
         }
 
@@ -105,14 +105,14 @@ class ProductController extends AbstractController
     #[Route('/product/update/{id}/{value}', name: 'product_update')]
     public function updateProduct(
         ProductRepository $productRepository,
-        int $id,
+        int $idNumber,
         int $value
     ): Response {
-        $product = $productRepository->find($id);
+        $product = $productRepository->find($idNumber);
 
         if (!$product) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'No product found for id '.$idNumber
             );
         }
 
