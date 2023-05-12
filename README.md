@@ -84,6 +84,22 @@ tools/phpstan/vendor/bin/phpstan analyse -l 9 src
 tools/phpstan/vendor/bin/phpstan
 ```
 
+### Phpmetrics
+
+A tool that reads the source code and creates an HTML report containing quality metrics on the code. This type of information can indicate the level of code quality or code complexity.
+
+```
+# to run phpmetrics
+tools/phpmetrics/vendor/bin/phpmetrics --config=phpmetrics.json
+
+# or with shortcut
+composer phpmetrics
+```
+
+### Scrutinizer
+
+A continuous integration (CI) service that checks out the code on every update of your GitHub/GitLab repo, executes the test suite and to analyzes the code. As a result, a few badges show the status of the code.
+
 ## Database
 
 ```
