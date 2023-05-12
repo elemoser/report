@@ -1,5 +1,10 @@
 # Report
 
+This project is created within the framework of the course *Objektorienterade webbteknologier* (a.k.a [mvc](https://dbwebb.se/kurser/mvc-v2)) at Blekinge Tekniska Högskolan.
+
+Below are the badges from the Scrutinizer analysis results:
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/elemoser/report/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/elemoser/report/?branch=main) [![Code Coverage](https://scrutinizer-ci.com/g/elemoser/report/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/elemoser/report/?branch=main) [![Build Status](https://scrutinizer-ci.com/g/elemoser/report/badges/build.png?b=main)](https://scrutinizer-ci.com/g/elemoser/report/build-status/main) [![Code Intelligence Status](https://scrutinizer-ci.com/g/elemoser/report/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
+
 ## Application
 
 ```
@@ -99,6 +104,8 @@ composer phpmetrics
 ### Scrutinizer
 
 A continuous integration (CI) service that checks out the code on every update of your GitHub/GitLab repo, executes the test suite and to analyzes the code. As a result, a few badges show the status of the code.
+
+
 
 ## Database
 
