@@ -1,0 +1,132 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block body %}
+    <h1>Metrics analys</h1>
+    <p>
+        I denna rapport kommer jag att analysera och diskutera kodkvaliteten i mitt PHP-projekt.
+        För att få en överblick över kodens kvalitet kommer jag att använda mig av rapporterna från verktygen <i>phpmetrics</i> och <i>Scrutinizer</i>.
+        Genom att definiera mätvärden och identifiera svagheter i koden kommer jag sedan att genomföra en serie förbättringar för att höja kodens kvalitet.
+        Slutligen kommer jag att generera nya rapporter baserat på den förbättrade koden och utvärdera om poängen från phpmetrics och Scrutinizer har förbättrats.
+        Resultaten av mina förbättringar kommer att diskuteras i avsnittet för diskussion.
+    </p>
+
+    <h2>Introduktion</h2>
+    <p>
+    {# Du förklarar de sex C:na och hur de kan påverka kodens kvalitet.
+    Exemplifiera, där det passar, med några mätvärden som är kopplad till din egen kod
+    och ge en kort förklaring av mätvärdet relaterat till kodkvalitet. #}
+        I detta avsnitt, föklarar jag de sex C:na om kodkvalitet och hur de kan påverka kodens kvalitet.
+    </p>
+
+    <h3>1. Codestyle</h3>
+
+    <h3>2. Coverage</h3>
+    <p>
+        Kodtäckning är en mätning av mängden källkod som har utförts av automatiserade tester.
+        Det syns i Scrutinizer-rapporten och kan också inkluderas i phpmetrics-rapporten genom konfiguration.
+        När automatiserade tester körs på kodbasen kan Scrutinizer identifiera vilka kodrader som utfördes och vilka som inte gjorde det.
+        Denna data används sedan för att beräkna kodtäckningen.
+        Den uttrycks som en procentandel av totalt antal kodrader som utfördes under testprocessen.
+        Kodtäckningsrapporter som genereras av Scrutinizer kan användas för att identifiera områden i koden som inte testas tillräckligt grundligt.
+        Högre täckning kan innebära att koden är väl testad, medan låg täckning vanligtvis innebär att koden inte är väl testad.
+        Genom att öka kodtäckningen kan man förbättra tillförlitligheten och kvaliteten på kodbasen samt minska risken för buggar och fel.
+    </p>
+
+    <h3>3. Complexity</h3>
+    <p>
+        Kodkomplexitet definieras med måttet <i>Cyclomatic Complexity</i>.
+        Cyklomatisk komplexitet är visas i både Scrutinizers och phpmetrics rapport.
+        Cyclomatic complexity kan användas för att uppskatta hur svårt det är att förstå,
+        testa och underhålla en kodbas.
+        Ju högre cyclomatisk komplexitet, desto mer komplext är programmet
+        och desto svårare kan det vara att underhålla och ändra det utan att orsaka buggar eller fel.
+        För att beräkna cyclomatisk komplexitet räknar man antalet beslut som finns i en kodbas, såsom "if"-satsar,
+        "while"-loopar, "for"-loopar och "case"-satser.
+        Sedan adderas 1 till resultatet för varje beslut samt 1 till resultatet för det övergripande flödet.
+        Slutresultatet ger antalet oberoende vägar genom koden.
+        Cyclomatic complexity är ett viktigt verktyg för att förbättra kodkvaliteten
+        och underhållbarheten genom att identifiera kod som är svårt att förstå och testa.
+    </p>
+
+    <h3>4. Cohesion</h3>
+    <p>
+        <i>Cohesion</i> refererar till graden av relation mellan olika delar av en modul eller en klass.
+        Det är ett mått på hur tätt relaterade olika funktioner och data i en modul eller klass är till varandra.
+        Cohesion finns i både Scrutinizers och phpmetrics rapport, ibland som <i>LCOM</i> ("Lack of Cohesion in Methods").
+        En hög cohesion innebär att alla funktioner och data i en modul eller klass är tätt kopplade till varandra
+        och har en specifik gemensam uppgift eller ansvar.
+        Detta innebär att alla delar av modulen eller klassen arbetar tillsammans för att uppfylla en enda uppgift,
+        vilket gör koden mer lättförståelig och underhållbar.
+        På motsatt sida, låg cohesion innebär att olika delar av en modul
+        eller klass är mindre relaterade till varandra och har olika ansvar och uppgifter.
+        Detta kan leda till att koden blir svårläst, svår att underhålla och svårt att testa.
+        Det är fördelaktigt att sträva efter hög cohesion i moduler och klasser för att skapa kod som är lätt att förstå och som fungerar på ett förutsägbart sätt.
+    </p>
+
+    <h3>5. Coupling</h3>
+    <p>
+        <i>Coupling</i> avser graden av ömsesidigt beroende mellan moduler eller klasser.
+        I både Scrutinizers och phpmetrics rapport anges den <i>afferent</i> och <i>efferent coupling</i> för klasserna.
+        Afferent coupling  (alltså inåtgående koppling) mäter antalet andra moduler som är beroende av en specifik modul eller klass.
+        Ju högre afferent koppling, desto mer använd och central är denna modul eller klass för resten av programmet.
+        Om denna modul eller klass skulle förändras, kan det påverka många andra delar av programmet.
+        Efferent coupling (alltså utåtgående koppling) mäter antalet andra moduler eller klasser som en specifik modul eller klass är beroende av.
+        Ju högre efferent koppling, desto mer beroende är denna modul eller klass på andra delar av programmet.
+        Om någon av de andra modulerna eller klasserna skulle ändras, kan det påverka funktionen och prestandan i denna modul eller klass.
+        En hög afferent koppling kan indikera att en modul eller klass har för många ansvarsområden och bör delas upp i mindre delar.
+        Å andra sidan kan en hög efferent koppling indikera att en modul eller klass behöver mer testning och skyddande åtgärder,
+        eftersom den har många beroenden som kan påverka dess funktion och prestanda.
+    </p>
+
+    <h3>6. CRAP</h3>
+    <p>
+        CRAP står för "Change Risk Analyzer and Predictor"
+        och det är ett numeriskt värde som används för att mäta komplexiteten i en kodruta eller en funktion.
+        CRAP-poäng kan ses i Scrutinizer-rapporten och i dashboarden i täckningsrapporten från phpunit.
+        CRAP-måttet beräknas genom att multiplicera två värden: kodtäckning och komplexitet som nämts ovan.
+        Ett högt CRAP indikerar allstå att en kodruta eller funktion har hög komplexitet och är dåligt täckt av automatiserade tester,
+        vilket är en bra indikation på att det behöver refaktoreras eller förbättras.
+        Genom att använda CRAP tillsammans med andra metoder för att mäta kodkvalitet och prestanda, kan utvecklare skapa en kodbas som är mer robust, lättläst och underhållbar.
+    </p>
+
+    <h2>Phpmetrics</h2>
+    <p>
+    {# Analysera dess rapport för din kod.
+    Använd mätvärdena för att hitta flaskhalsar och svaga punkter i din kod (minst 3 stycken).
+    Du vill hitta kod som har förbättringspotential.
+    Visualisera med någon representativ bild från rapporten. #}
+    </p>
+
+    <h2>Scrutinizer</h2>
+    <img alt="Scrutinizer badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/quality-score.png?b=main">
+    <img alt="Coverage badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/coverage.png?b=main">
+    <img alt="build badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/build.png?b=main">
+    {# <img alt="code intelligence badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/code-intelligence.svg?b=main"> #}
+
+    <p>
+    {# Analysera dess rapport för din kod. Gör på samma sätt som du gjorde med Phpmetrics. #}
+    </p>
+
+    <h2>Förbättringar</h2>
+    <p>
+    {# Väljer minst 3 förbättringar som du vill göra med din kod (gärna fler).
+    Exempel på förbättringar kan vara:
+        Fixa issues
+        Öka kodtäckning
+        Fokusera på kvalitetsindex i Scrutinizer
+        Minska komplexiteten i class/metod
+        Börja med att skriva om förbättringarna, vad du tänker göra, varför du väljer dem och hur du tror det kommer påverka mätvärdena för kvalitet.
+    Implementera sedan förbättringarna.
+    Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
+    Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar. #}
+    </p>
+
+    <h2>Diskussion</h2>
+    <p>
+    {# Kan man aktivt jobba med kodkvalitet och “clean code” på detta sättet?
+    Finns det fördelar och kanske nackdelar?
+    Ser du andra möjligheter att jobba mot “clean code”? #}
+    </p>
+{% endblock %}
