@@ -20,3 +20,19 @@
     opacity: 0.9;
     background-color: #CA8029;
 }
+
+.figure {
+    display: flex;
+    flex-direction: column;
+
+    img {
+        margin: 0 auto;
+    }
+}
+
+.figcaption {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    font-size: 0.8rem;
+}

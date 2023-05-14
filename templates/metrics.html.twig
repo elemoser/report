@@ -17,10 +17,22 @@
     {# Du förklarar de sex C:na och hur de kan påverka kodens kvalitet.
     Exemplifiera, där det passar, med några mätvärden som är kopplad till din egen kod
     och ge en kort förklaring av mätvärdet relaterat till kodkvalitet. #}
+        I den här undersökningen, bedömer jag kodens kvalitet enlight sex C om kodkvalitet som kan ses som sex steg till snyggare och bättre kod.
         I detta avsnitt, föklarar jag de sex C:na om kodkvalitet och hur de kan påverka kodens kvalitet.
     </p>
 
     <h3>1. Codestyle</h3>
+    <p>
+        Kodstil är en uppsättning regler och konventioner som används för att skriva läsbar och enhetlig kod.
+        Det handlar om att använda en standardiserad och konsekvent stil för variabelnamn, funktioner, kommentarer, indragning, blanksteg och annan formatering av koden.
+        En bra kodstil gör det enklare för utvecklare att läsa och förstå koden, särskilt om flera personer samarbetar på samma projekt.
+        Det hjälper också till att upprätthålla en hög kvalitetsstandard för koden och gör det lättare att genomföra förändringar och underhåll senare.
+
+        Det finns olika kodstilar som används inom olika programmeringsspråk och utvecklingsmiljöer.
+        Det är vanligt att använda kodstilsverktyg eller linters för att automatiskt kontrollera att koden följer den valda kodstilen.
+        I denna projekt används verktyg php-cs-fixer, phpstan och phpmd för att säkerställa en god kodstil.
+        Dessutom includerar Scrutinizer och phpmetrics olika mått för att ytterligare bedöma kodens kvalitet.
+    <p>
 
     <h3>2. Coverage</h3>
     <p>
@@ -91,15 +103,54 @@
         Genom att använda CRAP tillsammans med andra metoder för att mäta kodkvalitet och prestanda, kan utvecklare skapa en kodbas som är mer robust, lättläst och underhållbar.
     </p>
 
-    <h2>Phpmetrics</h2>
+    <h2>PhpMetrics</h2>
+    <p>
+        PhpMetrics är ett verktyg för att mäta och analysera koden i PHP-program.
+        Det hjälper utvecklare att mäta och övervaka kvaliteten på sin PHP-kod 
+        genom att ge en omfattande och visuell översikt över kodkomplexitet, underhållbarhet och prestanda.
+        PhpMetrics kan användas som en del av en CI/CD-pipeline eller som en fristående applikation för att utvärdera och förbättra kodkvaliteten.
+        Verktyget analyserar PHP-koden baserat på ett antal metriker som mäts på både fil- och projekt nivå.
+        PhpMetrics ger också en grafisk representation av kodmetrikerna och tillhandahåller diagram, grafer och tabeller som hjälper utvecklare att få en bättre förståelse av koden.
+        Detta kan hjälpa utvecklare att identifiera och åtgärda problem i koden och göra den mer läsbar, effektiv och hållbar.
+    </p>
+    <figure class="figure">
+        <img alt="Maintainability and Complexity Diagram" src="{{ asset('img/metrics/phpmetrics_maintainability_complexity.png') }}"
+        style="width: 400px;">
+        <figcaption class="figcaption">
+            Varje fil i projektet symboliseras av en cirkel.
+            Cirkelns storlek representerar den cyklomatiska komplexiteten.
+            Cirkelns färg representerar indexet för underhållbarhet.
+            Stora röda cirklar är sannolikt svårast att underhålla.
+        </figcaption>
+    </figure>
     <p>
     {# Analysera dess rapport för din kod.
     Använd mätvärdena för att hitta flaskhalsar och svaga punkter i din kod (minst 3 stycken).
     Du vill hitta kod som har förbättringspotential.
     Visualisera med någon representativ bild från rapporten. #}
+    Codestyle
+        > Under violations it shows that JsonApiController does not follow the single responsibility principle,
+        > Game21 has gone over the max Cyclomatic complexity
+    Coverage > Controllers have low test coverage
+    Complexity > Controllers have high complexity, average Cyclomatic Complexity per class 6.42
+    Cohesion > unsurprizingly JsonApiController has high LCOM
+    Coupling > Controllers hight efferent coupling, while Game classes higher afferent coupling > controller prone to instability
+
+    Förbättringar
+        > Do more testing especially of the Controller classes
+        > Spend some time on fixing violation errors or warnings
     </p>
 
     <h2>Scrutinizer</h2>
+    <p>
+        Scrutinizer är ett vertyg som erbjuder automatiserad kodgranskning och kontinuerlig integration för programvara.
+        Verktyget använder olika algoritmer och analyser för att kontrollera koden på flera nivåer, inklusive kodstil, säkerhet, prestanda och buggar.
+        När Scutinizer analyserar ens kod utför den en rad tester och returnerar en rapport som visar resultatet av varje test.
+        Rapporten inkluderar ofta en bedömning av kodkvaliteten och förslag på förbättringar.
+        Nedan visas Scrutinizers totala betyg för mitt projekt (vilket är ett tal mellan 0 (dåligt) och 10 (mycket bra)),
+        en procentuell poäng för kodtäckning och en flagga som visar om byggningen misslyckades eller godkändes.
+    </p>
+
     <img alt="Scrutinizer badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/quality-score.png?b=main">
     <img alt="Coverage badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/coverage.png?b=main">
     <img alt="build badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/build.png?b=main">
@@ -107,10 +158,20 @@
 
     <p>
     {# Analysera dess rapport för din kod. Gör på samma sätt som du gjorde med Phpmetrics. #}
+    Codestyle > there are 7 issues to fix
+        > worst rated PHP Operations are Game21::checkWinStatus()
+    Coverage > low coverage meaning more tests are needed
+    Complexity > most complex class Game21, most complext operation Game21::checkWinStatus
+    Cohesion
+    Coupling
+    CRAP > least tested PHP Operations with highest CRAP score
+    JsonApiController::apiGame21()
+    BookController::createBook()
+    Game21Controller::gamePlay()
+    JsonApiController::apiDeckDrawNumPost()
     </p>
 
     <h2>Förbättringar</h2>
-    <p>
     {# Väljer minst 3 förbättringar som du vill göra med din kod (gärna fler).
     Exempel på förbättringar kan vara:
         Fixa issues
@@ -121,7 +182,26 @@
     Implementera sedan förbättringarna.
     Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
     Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar. #}
+    <p>
+    Baserat på resultaten ovan har jag identifierat ett antal förbättringar för att öka kvaliteten på min kod.
+    Sammanfattningsvis kan man säga att ...
+
+    Nedan listar jag de förbättringar som jag vill utföra.
+    <ul>
+        <li>Öka kodtäckning genom att skapa en testsuite for Controller klasser</li>
+        <li>Dela upp JsonApiController klassen i flera klasser för att minksa LCOM och publika metoder (cf. phpmetrics rapporten)</li>
+        <li>Minska komplexiteten i Game21 class for metoden checkWinStatus()</li>
+        <li>Fixa issues identifierad av Scrutinizer</li>
+        <li></li>
+    </ul>
     </p>
+    <figure class="figure">
+        <img alt="Issues before improvements" src="{{ asset('img/metrics/scrutinizer_issues.png') }}"
+        style="width: 80%;">
+        <figcaption class="figcaption">
+            Problem i Scrutinizer före förbättringar.
+        </figcaption>
+    </figure>
 
     <h2>Diskussion</h2>
     <p>
