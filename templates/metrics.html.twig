@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Metrics analys</h1>
+    <article class="article">
     <p>
         I denna rapport kommer jag att analysera och diskutera kodkvaliteten i mitt PHP-projekt.
         För att få en överblick över kodens kvalitet kommer jag att använda mig av rapporterna från verktygen <i>phpmetrics</i> och <i>Scrutinizer</i>.
@@ -67,11 +68,11 @@
         <i>Cohesion</i> refererar till graden av relation mellan olika delar av en modul eller en klass.
         Det är ett mått på hur tätt relaterade olika funktioner och data i en modul eller klass är till varandra.
         Cohesion finns i både Scrutinizers och phpmetrics rapport, ibland som <i>LCOM</i> ("Lack of Cohesion in Methods").
-        En hög cohesion innebär att alla funktioner och data i en modul eller klass är tätt kopplade till varandra
+        En hög cohesion (men låg LCOM!) innebär att alla funktioner och data i en modul eller klass är tätt kopplade till varandra
         och har en specifik gemensam uppgift eller ansvar.
         Detta innebär att alla delar av modulen eller klassen arbetar tillsammans för att uppfylla en enda uppgift,
         vilket gör koden mer lättförståelig och underhållbar.
-        På motsatt sida, låg cohesion innebär att olika delar av en modul
+        På motsatt sida, låg cohesion (men hög LCOM!) innebär att olika delar av en modul
         eller klass är mindre relaterade till varandra och har olika ansvar och uppgifter.
         Detta kan leda till att koden blir svårläst, svår att underhålla och svårt att testa.
         Det är fördelaktigt att sträva efter hög cohesion i moduler och klasser för att skapa kod som är lätt att förstå och som fungerar på ett förutsägbart sätt.
@@ -113,32 +114,55 @@
         PhpMetrics ger också en grafisk representation av kodmetrikerna och tillhandahåller diagram, grafer och tabeller som hjälper utvecklare att få en bättre förståelse av koden.
         Detta kan hjälpa utvecklare att identifiera och åtgärda problem i koden och göra den mer läsbar, effektiv och hållbar.
     </p>
+    <p>
+        I PhpMetrics-rapporten framkommer några intressanta resultat.
+        Först och främst visas de <i>Violations</i> som hittats i koden.
+        I detta avsnitt framgår det att JsonApiController inte följer principen om ett enda ansvar, vilket inte är så konstigt eftersom klassen hanterar flera olika anrop och ansvarar för alla API-rutter.
+        Att bryta mot principen om enkel ansvarsskyldighet kan öka klassens komplexitet och göra det svårt att testa koden.
+        Det är inte överraskande att JsonApiController också har en hög LCOM-poäng (se <i>Coupling</i> avsnittet),
+        vilket innebär att klassen har låg sammanhållning/Cohesion.
+        En hög LCOM-poäng indikerar att metoderna i App\Controller\JsonApiController-klassen har mindre relation till varandra som gör klassen svårare att testa och underhålla.
+    </p>
+    <p>
+        En annan klass som framkommer som en <i>Violations</i> är App\Game21\Game21, vilket tyder på att koden är alltför komplex.
+        PhpMetrics uppskattar att den mest komplexa metoden i den här klassen har en cyklomatisk komplexitet på 12
+        (phpmd påpekar att en klass inte bör ha en komplexitet på mer än 10).
+        En möjlig lösning för att minska komplexiteten och göra klassen lättare att testa och mindre benägen för fel är att delegera viss kod till andra objekt eller dela upp metoden.
+    </p>
+    <p>
+        I <i>Violations</i>-avsnittet visas också att flera App\Controller-klasser kan vara felaktiga och innehålla buggar.
+        Detta kan bero på bristande testning. En titt på avsnittet <i>Unit testing</i> visar att de App\Controller-klasser som inte har enhetstestats är de mest komplexa och minst testade.
+        Den genomsnittliga cyklomatiska komplexiteten per klass är 6.42.
+        De mest komplexa klasserna inkluderar App\Controller\GameController, App\Controller\BookController, App\Controller\Game21Controller, App\Controller\JsonApiController och App\Game21\Game21.
+    </p>
     <figure class="figure">
         <img alt="Maintainability and Complexity Diagram" src="{{ asset('img/metrics/phpmetrics_maintainability_complexity.png') }}"
         style="width: 400px;">
         <figcaption class="figcaption">
             Varje fil i projektet symboliseras av en cirkel.
-            Cirkelns storlek representerar den cyklomatiska komplexiteten.
-            Cirkelns färg representerar indexet för underhållbarhet.
+            Cirkelns storlek representerar den cyklomatiska komplexiteten;
+            cirkelns färg representerar indexet för underhållbarhet.
             Stora röda cirklar är sannolikt svårast att underhålla.
+            De röda cirklarna i storleksordning är
+            App\Game21\Game21,
+            App\Controller\JsonApiController,
+            App\Controller\BookController,
+            App\Controller\Game21Controller and 
+            App\Controller\GameController.
         </figcaption>
     </figure>
+    <p>
+        PhpMetrics visar att App\Controller-klasser tenderar att ha hög utgående koppling/afferent coupling (beroende av andra klasser),
+        medan App\Card-klasser tenderar att ha hög inkommande koppling/efferent coupling (andra klasser är beroende av dem).
+        Detta innebär att många moduler och klasser är beroende av App\Card-klasserna, vilket gör att ändringar i dessa klasser påverkar resten av programmet och bör genomföras med försiktighet.
+        Å andra sidan är App\Controller-klasserna starkt beroende av andra klasser och moduler, vilket kan indikera att de har för mycket ansvar och bör delas upp i mindre delar. Det är tydligt att App\Controller-klasserna är känsliga för instabilitet.
+    </p>
     <p>
     {# Analysera dess rapport för din kod.
     Använd mätvärdena för att hitta flaskhalsar och svaga punkter i din kod (minst 3 stycken).
     Du vill hitta kod som har förbättringspotential.
     Visualisera med någon representativ bild från rapporten. #}
-    Codestyle
-        > Under violations it shows that JsonApiController does not follow the single responsibility principle,
-        > Game21 has gone over the max Cyclomatic complexity
-    Coverage > Controllers have low test coverage
-    Complexity > Controllers have high complexity, average Cyclomatic Complexity per class 6.42
-    Cohesion > unsurprizingly JsonApiController has high LCOM
-    Coupling > Controllers hight efferent coupling, while Game classes higher afferent coupling > controller prone to instability
-
-    Förbättringar
-        > Do more testing especially of the Controller classes
-        > Spend some time on fixing violation errors or warnings
+    Den viktigaste slutsatsen från PhpMetrics-rapporten är att det skulle vara fördelaktigt att testa mer, särskilt App\Controller-klasserna. Det skulle också vara bra att ägna lite tid åt att åtgärda fel eller varningar relaterade till överträdelserna.
     </p>
 
     <h2>Scrutinizer</h2>
@@ -151,57 +175,115 @@
         en procentuell poäng för kodtäckning och en flagga som visar om byggningen misslyckades eller godkändes.
     </p>
 
+    <figure class="">
     <img alt="Scrutinizer badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/quality-score.png?b=main">
     <img alt="Coverage badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/coverage.png?b=main">
     <img alt="build badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/build.png?b=main">
     {# <img alt="code intelligence badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/code-intelligence.svg?b=main"> #}
+    <figcaption class="figcaption">
+        Badges från Scrutinizer-rapporten.
+    </figcaption>
+    </figure>
 
     <p>
     {# Analysera dess rapport för din kod. Gör på samma sätt som du gjorde med Phpmetrics. #}
-    Codestyle > there are 7 issues to fix
-        > worst rated PHP Operations are Game21::checkWinStatus()
-    Coverage > low coverage meaning more tests are needed
-    Complexity > most complex class Game21, most complext operation Game21::checkWinStatus
-    Cohesion
-    Coupling
-    CRAP > least tested PHP Operations with highest CRAP score
-    JsonApiController::apiGame21()
-    BookController::createBook()
-    Game21Controller::gamePlay()
-    JsonApiController::apiDeckDrawNumPost()
+        Scrutinizer har gett min källkod ett betyg på 9,83, vilket indikerar att majoriteten av min kod anses vara av hög kvalitet.
+        Även om det är ett mycket bra betyg finns det fortfarande utrymme för förbättringar.
+        Liksom i PhpMetrics-rapporten, visar Scrutinizer-rapporten flera problem med kodkvaliteten.
+        Det mest allvarliga problemet uppstår i klassen App\Card\Card, där Scrutinizer identifierar en överträdelse av bästa praxis och ett potentiellt fel.
+        Dessa problem är av stor betydelse då många klasser är starkt kopplade till App\Card\Card-klassen, vilket vi tidigare har konstaterat i Coupling avsnittet av PhpMetrics-rapporten.
+        För att säkerställa programmets stabilitet är det därför viktigt att åtgärda de identifierade problemen.
+    </p>
+    <p>
+        Den andra badge:n från Scrutinizer visar att kodtäckningen är mycket låg.
+        Endast 24% av koden testas enligt Scrutinizer's uppskattning.
+        Enlight kodtäckningsrapporten från phpunit är 35,3% av alla functioner och metoder,
+        men bara 22,5% av all rader kod täckade med de nuvarande enhetstesterna.
+        Enligt kodtäckningsrapporten från phpunit täcker enhetstesterna endast 35,3% av alla funktioner och metoder, och endast 22,5% av alla kodrader.
+        Det finns alltså ett betydande gap mellan den nuvarande testtäckningen och den totala koden.
+        En god kodtäckning bör vara minst 70 % av koden.
+        För närvarande testas inte App\Controller-klasserna, som utgör en stor del av kodbasen.
+        Att lägga till testsviter för dessa klasser skulle sannolikt avsevärt öka kodtäckningen.
+    </p>
+    <figure class="figure">
+    <img style="width: 80‰;" alt="PhpUnit Coverage" src="{{ asset('img/metrics/phpunit_coverage_before.png') }}">
+    <figcaption style="width: fit-content;" class="figcaption">
+        Kodtäckning enligt PhpUnit.
+    </figcaption>
+    </figure>
+
+    <p>
+        Scrutinizer identifierar även andra svagheter i koden.
+        Enligt Scrutinizer är de minst testade PHP-operationerna med högst CRAP-poäng
+        App\Controller\JsonApiController::apiGame21(),
+        App\Controller\BookController::createBook(),
+        App\Controller\Game21Controller::gamePlay(),
+        och App\Controller\JsonApiController::apiDeckDrawNumPost().
+        Även här är det tydligt att App\Controller-klasserna behöver testas mer.
+        Dessutom skulle App\Controller\JsonApiController gynnas av att delas upp i mindre klasser med mer specifika ansvarsområden.
+        Samma gäller klassen App\Game21\Game21, som rankas som den mest komplexa klassen.
+        Scrutinizer rankar dessutom dess metod App\Game21\Game21::checkWinStatus() högst på listan över "Worst rated PHP operation".
+    </p>
+
+    <p>
+    De viktigaste slutsatserna från Scrutinizer-rapporten sammanfaller med resultaten från PhpMetrics-rapporten:
+    Generellt sett är testtäckningen låg och det finns behov av mer enhetstestning.
+    Särskilt App\Controller-klasserna skulle dra stor nytta av att bli bättre testade, då de visar hög komplexitet.
+    För att höja kodens kvalitet bör jag avsätta tid för att åtgärda de identifierade problemen i koden.
     </p>
 
     <h2>Förbättringar</h2>
-    {# Väljer minst 3 förbättringar som du vill göra med din kod (gärna fler).
-    Exempel på förbättringar kan vara:
-        Fixa issues
-        Öka kodtäckning
-        Fokusera på kvalitetsindex i Scrutinizer
-        Minska komplexiteten i class/metod
-        Börja med att skriva om förbättringarna, vad du tänker göra, varför du väljer dem och hur du tror det kommer påverka mätvärdena för kvalitet.
-    Implementera sedan förbättringarna.
-    Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
-    Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar. #}
+    <p>
+        I detta avsnitt presenterar jag de första åtgärderna som jag planerar att genomföra i min kod baserat på resultaten från tidigare avsnitt.
+        Efter att ha implementerat dessa förbättringar och genererat nya rapporter, kommer jag i nästa steg att diskutera de uppdaterade PhpMetrics- och Scrutinizer-rapporterna samt analysera hur förbättringarna har påverkat den nya analysen.
+    </p>
+    <h3>Före</h3>
     <p>
     Baserat på resultaten ovan har jag identifierat ett antal förbättringar för att öka kvaliteten på min kod.
-    Sammanfattningsvis kan man säga att ...
+    Sammanfattningsvis kan man säga att jag bör arbeta med att höja kodkvaliteten genom att åtgärda de identifierade problemen i PhpMetrics- och Scrutinizer-rapporterna.
+    Genom att göra detta kan jag göra koden ännu mer robust och lättare att underhålla.
 
-    Nedan listar jag de förbättringar som jag vill utföra.
+    En annan viktig förbättring är att öka kodtäckningen.
+    Genom att implementera testsviter, särskilt för App\Controller-klasserna,
+    kan jag höja kodtäckningen och minska risken för buggar och oväntade beteenden.
+
+    För att hantera komplexiteten i koden bör jag analysera och refaktorera de identifierade komplexa delarna,
+    särskilt i klassen App\Game21\Game21.
+    Detta kommer att göra koden mer läsbar och lättare att förstå, underhålla och testa.
+    Dessutom kan jag överväga att dela upp App\Controller\JsonApiController i mindre klasser för att förbättra kodens struktur och ansvarsfördelning.
+
+    Genom att genomföra dessa förbättringar hoppas jag att jag gör min kod mer robust, lättare att underhålla och testa.
+    Det kommer också att minska risken för buggar och felaktigt beteende.
+    </p>
+    <p>
+    Här är en sammanställning av de förbättringar jag planerar att genomföra:
     <ul>
-        <li>Öka kodtäckning genom att skapa en testsuite for Controller klasser</li>
-        <li>Dela upp JsonApiController klassen i flera klasser för att minksa LCOM och publika metoder (cf. phpmetrics rapporten)</li>
-        <li>Minska komplexiteten i Game21 class for metoden checkWinStatus()</li>
-        <li>Fixa issues identifierad av Scrutinizer</li>
-        <li></li>
+        <li>Fixa "issues" och "violations" identifierad av Scrutinizer och PhpMetrics</li>
+        <li>Dela upp <code>App\Controller\JsonApiController</code> klassen i flera klasser för att minska LCOM och publika metoder (cf. PhpMetrics rapporten)</li>
+        <li>Minska komplexiteten av metoden <code>checkWinStatus()</code> i <code>App\Game21\Game21</code> klassen </li>
+        <li>Öka kodtäckning genom att skapa en testsuite för App\Controller klasserna</li>
     </ul>
     </p>
+    <p>
+    </p>
+    <div class="cols-2">
     <figure class="figure">
-        <img alt="Issues before improvements" src="{{ asset('img/metrics/scrutinizer_issues.png') }}"
-        style="width: 80%;">
-        <figcaption class="figcaption">
+        <img alt="PhpMetrics violations before improvements" src="{{ asset('img/metrics/phpmetrics_violations_before.png') }}"
+        style="width: 500px;">
+        <figcaption class="figcaption" style="width: 500px;">
+            Problem i PhpMetrics före förbättringar.
+        </figcaption>
+    </figure>
+    <figure class="figure">
+        <img alt="Issues before improvements" src="{{ asset('img/metrics/scrutinizer_issues_before.png') }}"
+        style="width: 100%;">
+        <figcaption class="figcaption" style="width: 100%;">
             Problem i Scrutinizer före förbättringar.
         </figcaption>
     </figure>
+    </div>
+
+    <h3>Efter<h3>
 
     <h2>Diskussion</h2>
     <p>
@@ -209,4 +291,5 @@
     Finns det fördelar och kanske nackdelar?
     Ser du andra möjligheter att jobba mot “clean code”? #}
     </p>
+    </article>
 {% endblock %}

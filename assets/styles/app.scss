@@ -77,6 +77,16 @@ code {
     color: #000;
 }
 
+ul {
+    line-height: $base-line-height;
+    margin: 0; 
+    padding-left: 1rem;
+
+    li {
+        list-style-type: circle;
+    }
+}
+
 .card {
     font-size: 200px;
 }

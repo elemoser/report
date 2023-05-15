@@ -21,9 +21,16 @@
     background-color: #CA8029;
 }
 
+.article {
+    counter-reset: figures;
+}
+
 .figure {
+    margin: 1rem auto;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    counter-increment: figures;
 
     img {
         margin: 0 auto;
@@ -33,6 +40,10 @@
 .figcaption {
     margin: 0 auto;
     width: 80%;
-    text-align: center;
+    // text-align: center;
     font-size: 0.8rem;
+}
+
+.figcaption::before {
+    content: 'Fig. ' counter(figures) ' - ';
 }
