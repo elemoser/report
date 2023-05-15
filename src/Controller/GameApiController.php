@@ -5,8 +5,6 @@ namespace App\Controller;
 use App\Card\Card;
 use App\Card\CardCollection;
 use App\Card\DeckOfCards;
-use App\Game21\Game21;
-use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class JsonApiController extends AbstractController
+class GameApiController extends AbstractController
 {
     #[Route("/api/deck/init", name: "api_deck_init")]
     public function initCallback(
@@ -162,111 +160,6 @@ class JsonApiController extends AbstractController
         }
 
         $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
-    }
-
-    #[Route("/api/game", name: "api_game21", methods: ['POST'])]
-    public function apiGame21(
-        SessionInterface $session
-    ): Response {
-        $data = [
-            "currentPlayer" => "",
-            "playerCards" => [],
-            "playerCardTotal" => 0,
-            "bankCards" => [],
-            "bankCardTotal" => 0,
-            "winner" => "",
-            "loser" => ""
-        ];
-
-        $game = null;
-
-        if ($session->has("game")) {
-            $game = $session->get("game");
-        }
-
-        if ($game instanceof Game21) {
-            $currentPlayer = $game->getCurrentPlayerInQueue();
-            $data["currentPlayer"] = $currentPlayer->name;
-            $winStatus = $game->checkWinStatus();
-
-            if ($winStatus["loser"]) {
-                $data["winner"] = $winStatus["winner"];
-                $data["loser"] = $winStatus["loser"];
-            }
-        }
-
-        if ($session->has("player_cards")) {
-            $data["playerCards"] = $session->get("player_cards");
-        }
-
-        if ($session->has("player_card_total")) {
-            $data["playerCardTotal"] = $session->get("player_card_total");
-        }
-
-        if ($session->has("bank_cards")) {
-            $data["bankCards"] = $session->get("bank_cards");
-        }
-
-        if ($session->has("bank_card_total")) {
-            $data["bankCardTotal"] = $session->get("bank_card_total");
-        }
-
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
-    }
-
-    #[Route("/api/library/books", name: "api_library")]
-    public function apiLibrary(
-        BookRepository $bookRepository
-    ): Response {
-        $books = $bookRepository->findAll();
-
-        $response = $this->json($books);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
-    }
-
-    #[Route("/api/library/book", name: "api_book_isbn_post", methods: "POST")]
-    public function apiBook(
-        Request $request,
-        BookRepository $bookRepository
-    ): Response {
-        $isbn = $request->request->get("isbn");
-
-        if (!$isbn) {
-            $books = $bookRepository->findAll();
-            $isbn = $books[0]->getISBN();
-        }
-
-        // return new Response($isbn);
-        return $this->redirectToRoute('api_book_isbn', ["isbn" => $isbn]);
-    }
-
-    #[Route("/api/library/book/{isbn}", name: "api_book_isbn")]
-    public function apiBookByISBN(
-        BookRepository $bookRepository,
-        string $isbn
-    ): Response {
-        $book = $bookRepository->findBy(
-            ['ISBN' => $isbn]
-        );
-
-        if (empty($book)) {
-            throw $this->createNotFoundException(
-                'No book found for ISBN '.$isbn
-            );
-        }
-
-        $response = $this->json($book);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
