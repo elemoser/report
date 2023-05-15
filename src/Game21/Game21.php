@@ -88,15 +88,13 @@ class Game21
         $currentPlayer = $this->queue[$this->currentInQueue];
         $currentHand = [];
 
-        if ($currentPlayer instanceof Player) {
-            $cardStrings = $currentPlayer->getHandAsString();
-            $cardColors = $currentPlayer->getHandColors();
-            $cardValues = $currentPlayer->getHandValues();
-            $cardTotal = $currentPlayer->getHandCount();
+        $cardStrings = $currentPlayer->getHandAsString();
+        $cardColors = $currentPlayer->getHandColors();
+        $cardValues = $currentPlayer->getHandValues();
+        $cardTotal = $currentPlayer->getHandCount();
 
-            for ($i = 0; $i < $cardTotal; $i++) {
-                $currentHand[$cardStrings[$i]] = [$cardColors[$i], implode(" ", $cardValues[$i])];
-            }
+        for ($i = 0; $i < $cardTotal; $i++) {
+            $currentHand[$cardStrings[$i]] = [$cardColors[$i], implode(" ", $cardValues[$i])];
         }
 
         return $currentHand;

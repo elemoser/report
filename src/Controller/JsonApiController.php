@@ -83,7 +83,7 @@ class JsonApiController extends AbstractController
     ): Response {
         $deck = $session->get("deck");
 
-        $deckSize = 0;
+        // $deckSize = 0;
 
         if ($deck instanceof DeckOfCards) {
             $deckSize = $deck->getCount();
@@ -260,7 +260,7 @@ class JsonApiController extends AbstractController
             ['ISBN' => $isbn]
         );
 
-        if (!$book) {
+        if (empty($book)) {
             throw $this->createNotFoundException(
                 'No book found for ISBN '.$isbn
             );

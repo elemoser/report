@@ -99,7 +99,7 @@ class Game21Controller extends AbstractController
     #[Route("/game/draw", name: "game_draw_card", methods: ["POST"])]
     public function gameDraw(SessionInterface $session): Response
     {
-        $totalCardsPlayed = 0;
+        // $totalCardsPlayed = 0;
         $game = $session->get("game");
 
         if ($game instanceof Game21) {

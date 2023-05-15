@@ -37,12 +37,12 @@ class Card
         $this->minValue = 1;
         $this->maxValue = 13;
 
-        if ($suite == null) {
+        if ($suite === null) {
             $randSuites = array_rand($this->suites, 1);
             $suite = $this->suites[$randSuites];
         }
 
-        if ($number == null) {
+        if ($number === null) {
             $number = random_int($this->minValue, $this->maxValue);
         }
 
