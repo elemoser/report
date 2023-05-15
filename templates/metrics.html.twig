@@ -258,9 +258,9 @@
     <p>
     Här är en sammanställning av de förbättringar jag planerar att genomföra:
     <ul>
-        <li>Fixa "issues" och "violations" identifierad av Scrutinizer och PhpMetrics</li>
-        <li>Dela upp <code>App\Controller\JsonApiController</code> klassen i flera klasser för att minska LCOM och publika metoder (cf. PhpMetrics rapporten)</li>
-        <li>Minska komplexiteten av metoden <code>checkWinStatus()</code> i <code>App\Game21\Game21</code> klassen </li>
+        <li>Fixa "issues" identifierad i Scrutinizer</li>
+        <li>Dela upp <code>App\Controller\JsonApiController</code> klassen i flera klasser för att minska LCOM och publika metoder (se t.ex PhpMetrics "violations")</li>
+        <li>Minska komplexiteten av metoden <code>checkWinStatus()</code> i <code>App\Game21\Game21</code> klassen (se t.ex PhpMetrics "violations")</li>
         <li>Öka kodtäckning genom att skapa en testsuite för App\Controller klasserna</li>
     </ul>
     </p>
@@ -268,17 +268,19 @@
     </p>
     <div class="cols-2">
     <figure class="figure">
-        <img alt="PhpMetrics violations before improvements" src="{{ asset('img/metrics/phpmetrics_violations_before.png') }}"
-        style="width: 500px;">
-        <figcaption class="figcaption" style="width: 500px;">
-            Problem i PhpMetrics före förbättringar.
+        <img alt="Issues before improvements" src="{{ asset('img/metrics/scrutinizer_issues_before.png') }}"
+        style="width: 100%;">
+        <figcaption class="figcaption" style="width: fit-content;">
+            Problem i Scrutinizer före förbättringar.
         </figcaption>
     </figure>
     <figure class="figure">
-        <img alt="Issues before improvements" src="{{ asset('img/metrics/scrutinizer_issues_before.png') }}"
-        style="width: 100%;">
-        <figcaption class="figcaption" style="width: 100%;">
-            Problem i Scrutinizer före förbättringar.
+        <img alt="PhpMetrics violations before improvements" src="{{ asset('img/metrics/phpmetrics_violation1_before.png') }}"
+        style="width: 500px;">
+        <img alt="PhpMetrics violations before improvements" src="{{ asset('img/metrics/phpmetrics_violation2_before.png') }}"
+        style="width: 500px;">
+        <figcaption class="figcaption" style="width: fit-content;">
+            Problem i PhpMetrics före förbättringar.
         </figcaption>
     </figure>
     </div>
