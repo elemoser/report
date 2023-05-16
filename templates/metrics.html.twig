@@ -138,7 +138,7 @@
     <figure class="figure">
         <img alt="Maintainability and Complexity Diagram" src="{{ asset('img/metrics/phpmetrics_maintainability_complexity.png') }}"
         style="width: 400px;">
-        <figcaption class="figcaption">
+        <figcaption class="figcaption" style="width: 80%">
             Varje fil i projektet symboliseras av en cirkel.
             Cirkelns storlek representerar den cyklomatiska komplexiteten;
             cirkelns färg representerar indexet för underhållbarhet.
@@ -175,13 +175,11 @@
         en procentuell poäng för kodtäckning och en flagga som visar om byggningen misslyckades eller godkändes.
     </p>
 
-    <figure class="">
-    <img alt="Scrutinizer badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/quality-score.png?b=main">
-    <img alt="Coverage badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/coverage.png?b=main">
-    <img alt="build badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/build.png?b=main">
-    {# <img alt="code intelligence badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/code-intelligence.svg?b=main"> #}
+    <figure class="figure">
+    <img alt="Scrutinizer score" src="{{ asset('img/metrics/scrutinizer_score_before.png') }}">
+    <img alt="Scrutinizer badges" src="{{ asset('img/metrics/scrutinizer_badges_before.png') }}">
     <figcaption class="figcaption">
-        Badges från Scrutinizer-rapporten.
+        Poäng och badges från Scrutinizer-rapporten.
     </figcaption>
     </figure>
 
@@ -207,8 +205,8 @@
     </p>
     <figure class="figure">
     <img style="width: 80‰;" alt="PhpUnit Coverage" src="{{ asset('img/metrics/phpunit_coverage_before.png') }}">
-    <figcaption style="width: fit-content;" class="figcaption">
-        Kodtäckning enligt PhpUnit.
+    <figcaption class="figcaption">
+        Kodtäckning före förbättringar enligt PhpUnit.
     </figcaption>
     </figure>
 
@@ -237,7 +235,7 @@
         I detta avsnitt presenterar jag de första åtgärderna som jag planerar att genomföra i min kod baserat på resultaten från tidigare avsnitt.
         Efter att ha implementerat dessa förbättringar och genererat nya rapporter, kommer jag i nästa steg att diskutera de uppdaterade PhpMetrics- och Scrutinizer-rapporterna samt analysera hur förbättringarna har påverkat den nya analysen.
     </p>
-    <h3>Före</h3>
+    <h3>Före förbättringar</h3>
     <p>
     Baserat på resultaten ovan har jag identifierat ett antal förbättringar för att öka kvaliteten på min kod.
     Sammanfattningsvis kan man säga att jag bör arbeta med att höja kodkvaliteten genom att åtgärda de identifierade problemen i PhpMetrics- och Scrutinizer-rapporterna.
@@ -266,14 +264,7 @@
     </p>
     <p>
     </p>
-    <div class="cols-2">
-    <figure class="figure">
-        <img alt="Issues before improvements" src="{{ asset('img/metrics/scrutinizer_issues_before.png') }}"
-        style="width: 100%;">
-        <figcaption class="figcaption" style="width: fit-content;">
-            Problem i Scrutinizer före förbättringar.
-        </figcaption>
-    </figure>
+
     <figure class="figure">
         <img alt="PhpMetrics violations before improvements" src="{{ asset('img/metrics/phpmetrics_violation1_before.png') }}"
         style="width: 500px;">
@@ -283,15 +274,128 @@
             Problem i PhpMetrics före förbättringar.
         </figcaption>
     </figure>
-    </div>
 
-    <h3>Efter<h3>
+    <h3>Efter förbättringar</h3>
+    <p>
+        Jag bestämde mig för att förbättra fyra områden i min kod och lyckades genomföra tre av dem framgångsrikt.
+        Först och främst implementerade jag en lösning för de problem som identifierades i den första Scrutinizer-rapporten.
+        Det handlade främst om att åtgärda mindre problem i koden för att göra den mer lättläst och robust.
+        Som man kan se i figurerna nedan kunde jag åtgärda sex av de sju problemen.
+        Det sjunde problemet gällde Kernel-klassen, som är hjärtat i Symfony-ramverket.
+        Den är ansvarig för att starta upp programmet, hantera förfrågningar och hantera exekveringsflödet.
+        Kernelklassen fungerar som den centrala ingångspunkten för alla förfrågningar och kontrollerar initialiseringen och konfigurationen av Symfony-miljön.
+        För att åtgärda detta problem krävs mer kunskap om klassen och ramverket, så jag rörde det inte i den här förbättringsomgången.
+    </p>
+
+    <figure class="figure">
+        <img alt="Issues before improvements" src="{{ asset('img/metrics/scrutinizer_issues_before.png') }}"
+        style="width: 80%;">
+        <figcaption class="figcaption">
+            Problem i Scrutinizer före förbättringar.
+        </figcaption>
+    </figure>
+
+    <figure class="figure">
+        <img alt="Issues after improvements" src="{{ asset('img/metrics/scrutinizer_issues_after.png') }}"
+        style="width: 80%;">
+        <figcaption class="figcaption">
+            Problem i Scrutinizer efter förbättringar.
+        </figcaption>
+    </figure>
+
+    <p>
+        Den nästa förbättring jag implementerade var att dela upp App\Controller\JsonApiController i mindre och mer sammanhängande klasser.
+        Jag bestämde mig att skapa de klasserna App\Controller\Game21ApiController, App\Controller\GameApiController och App\Controller\LibraryApiController
+        för att ersätta den stora App\Controller\JsonApiController.
+        I App\Controller\Game21ApiController placerade jag alla API-router för Tjugoett-spelet.
+        I App\Controller\GameApiController lade jag alla API-router för kortspelet.
+        Slutligen, i App\Controller\LibraryApiController, lade jag alla API-router för biblioteket.
+    </p>
+
+    <figure class="figure">
+        <img alt="Game21 methods improvement" src="{{ asset('img/metrics/scrutinizer_checkWinStatus_improvement.png') }}"
+        style="width: 400px;">
+        <figcaption class="figcaption">
+            Förbättring av metoden checkWinStatus() i App\Game21\Game21 klassen enligt Scrutinizer.
+        </figcaption>
+    </figure>
+
+    <p>
+        Jag ägnade också tid åt att omarbeta metoden checkWinStatus() i klassen App\Game21\Game21 för att minska dess cyklomatiska komplexitet.
+        Det var en utmanande uppgift eftersom jag försökte undvika att ändra metoden's inmatning eller utmatning.
+        Till slut lyckades jag minska komplexiteten genom att flytta en del av koden till en separat metod som jag kallade resolveMultipleWinners().
+        Denna lösning tycks ha haft den önskade effekten.
+    </p>
+
+    <p>
+        Om jag hade haft mer tid tror jag att det skulle vara möjligt att skapa mer eleganta och rena metoder genom att utföra en stor refaktorisering av denna klass och dess metoder,
+        särskilt de som beräknar spelarnas poäng och bestämmer vinnaren/förloraren av spelet.
+        Tyvärr får jag nöja mig med detta för tillfället på grund av tidsbrist.
+    </p>
+
+    <p>
+        Den sista TODO-uppgiften på min förbättringslista visade sig vara mycket tidskrävande och utmanande.
+        Jag spenderade två till tre timmar på att försöka hitta ett sätt att enhetstesta mina App\Controller-klasser,
+        men lyckades inte komma fram till en lösning.
+        Trots att det är möjligt att enhetstesta Symfony controllerklasser,
+        lärde jag att det inte är det mest lämpliga sättet att testa dem.
+        Enligt <a class="link" href="https://stackoverflow.com/questions/47308481/test-controller-action-by-phpunit-symfony">Stack Overflow</a>
+        är funktionella tester mer passande för controllers då de testar hela applikationen, från datahämtning till renderingen av svar.
+        Enhetstester är bättre lämpade för att testa tjänster med få beroenden.
+    </p>
+
+    <p>
+        Under processen för att lösa den sista förbättringsuppgiften kom jag dock på ett sätt att enhetstesta App\Entity-klasserna med hjälp av PHPUnit.
+        Istället för att lägga till testsviter för App\Controller-klasserna skapade jag en testsvit för Entity-klasserna.
+        Eftersom App\Controller-klasserna är ganska komplexa skulle enhetstester ha varit ett bra sätt att öka testtäckningen och minska deras CRAP-poäng.
+        Genom att lägga till testsviten för Entity-klasserna kunde jag öka PHPUnit-täckningen från 35,3 % till 49 % för alla funktioner och metoder,
+        samt täckningen av alla rader från 22,5 % till 25,6 %.
+    </p>
+
+    <figure class="figure">
+    <img style="width: 80‰;" alt="PhpUnit Coverage" src="{{ asset('img/metrics/phpunit_coverage_after.png') }}">
+    <figcaption class="figcaption">
+        Kodtäckning efter förbättringar enligt PhpUnit.
+    </figcaption>
+    </figure>
+
+    <p>
+        Det är intressant att titta på de nya badges i den uppdaterade Scrutinizer-rapporten:
+        <img alt="Scrutinizer badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/quality-score.png?b=main">
+        <img alt="Coverage badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/coverage.png?b=main">
+        <img alt="build badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/build.png?b=main">
+        <img alt="code intelligence badge" src="https://scrutinizer-ci.com/g/elemoser/report/badges/code-intelligence.svg?b=main">
+        <br>Enligt Scrutinizer sjönk täckningsgraden från 24 % till 20 % efter förbättringarna.
+        Rapporten visar att App\Entity-klasserna förbättrades, men att App\Game21-klassen blev sämre (se bild nedan).
+        Även om detta resultat inte är särskilt uppmuntrande verkar förbättringarna ändå ha haft en positiv effekt.
+        Den förbättrade källkoden uppnådde en Scrutinizer-poäng på 9,88, vilket är en ökning med 0,05 poäng.
+    </p>
+
+    <figure class="figure">
+        <img alt="Scrutinizer coverage changes" src="{{ asset('img/metrics/scrutinizer_coverage_changes.png') }}"
+        style="width: 400px;">
+        <figcaption class="figcaption">
+            Ändringar i täckningen enligt Scrutinizer.
+        </figcaption>
+    </figure>
+
+    <p>
+        Sammanfattningsvis, jag genomförde förbättringar i tre områden av koden.
+        Först åtgärdades mindre problem i koden enligt Scrutinizer-rapporten.
+        Sedan delades App\Controller\JsonApiController upp i mindre klasser för att öka strukturen och förtydliga ansvarsområdena.
+        Dessutom minskades cyklomatisk komplexitet i metoden checkWinStatus() genom att dela upp koden i en separat metod.
+        En sista förbättring, att enhetstesta App\Controller, visade sig vara tidskrävande,
+        men jag genomförde enhetstester för Entity-klasserna istället.
+        Scrutinzer täckningsgraden sjönk till 20%.
+        Trots det verkar förbättringarna ha haft en positiv effekt, vilket återspeglas i en Scrutinizer-poäng på 9,88.
+    </p>
 
     <h2>Diskussion</h2>
-    <p>
     {# Kan man aktivt jobba med kodkvalitet och “clean code” på detta sättet?
     Finns det fördelar och kanske nackdelar?
     Ser du andra möjligheter att jobba mot “clean code”? #}
+    <p>
+
     </p>
     </article>
 {% endblock %}
