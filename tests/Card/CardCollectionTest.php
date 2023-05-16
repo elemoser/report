@@ -133,7 +133,12 @@ class CardCollectionTest extends TestCase
         }
 
         $this->assertSame($expected, $cards->getValues());
+
         $cards->shuffle();
+        if ($expected === $cards->getValues()) {
+            $cards->shuffle();
+        }
+
         $this->assertNotSame($expected, $cards->getValues());
         $this->assertSameSize($expected, $cards->getValues());
     }
