@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1684165521">
-  <project timestamp="1684165521">
+<coverage generated="1684223355">
+  <project timestamp="1684223355">
     <file name="/Users/elena/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="14" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="38" coveredelements="38"/>
@@ -20,13 +20,13 @@
       <line num="58" type="method" name="convertCardNumberToString" visibility="protected" complexity="5" crap="5" count="36"/>
       <line num="60" type="stmt" count="36"/>
       <line num="62" type="stmt" count="36"/>
-      <line num="63" type="stmt" count="23"/>
+      <line num="63" type="stmt" count="24"/>
       <line num="66" type="stmt" count="36"/>
-      <line num="67" type="stmt" count="21"/>
+      <line num="67" type="stmt" count="24"/>
       <line num="70" type="stmt" count="36"/>
-      <line num="71" type="stmt" count="24"/>
+      <line num="71" type="stmt" count="23"/>
       <line num="74" type="stmt" count="36"/>
-      <line num="75" type="stmt" count="22"/>
+      <line num="75" type="stmt" count="23"/>
       <line num="78" type="stmt" count="36"/>
       <line num="86" type="method" name="draw" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="89" type="stmt" count="1"/>
@@ -41,7 +41,7 @@
       <line num="122" type="method" name="getColor" visibility="public" complexity="3" crap="3" count="4"/>
       <line num="124" type="stmt" count="4"/>
       <line num="126" type="stmt" count="4"/>
-      <line num="127" type="stmt" count="2"/>
+      <line num="127" type="stmt" count="3"/>
       <line num="130" type="stmt" count="4"/>
       <metrics loc="133" ncloc="94" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="38" coveredelements="38"/>
     </file>
@@ -799,7 +799,7 @@
     </file>
     <file name="/Users/elena/dbwebb-kurser/mvc/me/report/src/Game21/Game21.php">
       <class name="App\Game21\Game21" namespace="global">
-        <metrics complexity="34" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="87" coveredstatements="87" elements="97" coveredelements="97"/>
+        <metrics complexity="34" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="91" coveredstatements="91" elements="102" coveredelements="102"/>
       </class>
       <line num="31" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="14"/>
       <line num="33" type="stmt" count="14"/>
@@ -867,38 +867,43 @@
       <line num="182" type="stmt" count="6"/>
       <line num="183" type="stmt" count="3"/>
       <line num="187" type="stmt" count="10"/>
-      <line num="194" type="method" name="checkWinStatus" visibility="public" complexity="12" crap="12" count="6"/>
+      <line num="194" type="method" name="checkWinStatus" visibility="public" complexity="9" crap="9" count="6"/>
       <line num="196" type="stmt" count="6"/>
       <line num="197" type="stmt" count="6"/>
       <line num="198" type="stmt" count="6"/>
       <line num="200" type="stmt" count="6"/>
       <line num="201" type="stmt" count="6"/>
       <line num="202" type="stmt" count="6"/>
-      <line num="206" type="stmt" count="6"/>
-      <line num="207" type="stmt" count="6"/>
-      <line num="208" type="stmt" count="5"/>
-      <line num="211" type="stmt" count="6"/>
-      <line num="212" type="stmt" count="2"/>
-      <line num="216" type="stmt" count="6"/>
+      <line num="204" type="stmt" count="6"/>
+      <line num="205" type="stmt" count="5"/>
+      <line num="208" type="stmt" count="6"/>
+      <line num="209" type="stmt" count="2"/>
+      <line num="215" type="stmt" count="6"/>
+      <line num="216" type="stmt" count="3"/>
       <line num="217" type="stmt" count="3"/>
       <line num="218" type="stmt" count="3"/>
-      <line num="219" type="stmt" count="3"/>
-      <line num="222" type="stmt" count="3"/>
-      <line num="223" type="stmt" count="3"/>
-      <line num="224" type="stmt" count="3"/>
-      <line num="225" type="stmt" count="3"/>
-      <line num="227" type="stmt" count="3"/>
-      <line num="228" type="stmt" count="1"/>
+      <line num="221" type="stmt" count="6"/>
+      <line num="222" type="stmt" count="1"/>
+      <line num="223" type="stmt" count="1"/>
+      <line num="224" type="stmt" count="1"/>
+      <line num="228" type="stmt" count="6"/>
       <line num="229" type="stmt" count="1"/>
-      <line num="230" type="stmt" count="1"/>
-      <line num="234" type="stmt" count="6"/>
-      <line num="235" type="stmt" count="1"/>
-      <line num="236" type="stmt" count="1"/>
-      <line num="237" type="stmt" count="1"/>
-      <line num="241" type="stmt" count="6"/>
-      <line num="242" type="stmt" count="1"/>
-      <line num="245" type="stmt" count="6"/>
-      <metrics loc="248" ncloc="192" classes="1" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="87" coveredstatements="87" elements="97" coveredelements="97"/>
+      <line num="232" type="stmt" count="6"/>
+      <line num="240" type="method" name="resolveMultipleWinners" visibility="private" complexity="3" crap="3" count="3"/>
+      <line num="242" type="stmt" count="3"/>
+      <line num="243" type="stmt" count="3"/>
+      <line num="244" type="stmt" count="3"/>
+      <line num="247" type="stmt" count="3"/>
+      <line num="248" type="stmt" count="3"/>
+      <line num="249" type="stmt" count="3"/>
+      <line num="250" type="stmt" count="3"/>
+      <line num="252" type="stmt" count="3"/>
+      <line num="253" type="stmt" count="1"/>
+      <line num="254" type="stmt" count="1"/>
+      <line num="255" type="stmt" count="1"/>
+      <line num="256" type="stmt" count="1"/>
+      <line num="259" type="stmt" count="3"/>
+      <metrics loc="262" ncloc="201" classes="1" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="91" coveredstatements="91" elements="102" coveredelements="102"/>
     </file>
     <file name="/Users/elena/dbwebb-kurser/mvc/me/report/src/Game21/Player.php">
       <class name="App\Game21\Player" namespace="global">
@@ -957,6 +962,6 @@
       <line num="38" type="stmt" count="0"/>
       <metrics loc="67" ncloc="36" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
     </file>
-    <metrics files="21" loc="2220" ncloc="1907" classes="19" methods="103" coveredmethods="36" conditionals="0" coveredconditionals="0" statements="727" coveredstatements="163" elements="830" coveredelements="199"/>
+    <metrics files="21" loc="2234" ncloc="1916" classes="19" methods="104" coveredmethods="37" conditionals="0" coveredconditionals="0" statements="731" coveredstatements="167" elements="835" coveredelements="204"/>
   </project>
 </coverage>

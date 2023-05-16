@@ -200,48 +200,62 @@ class Game21
         foreach ($this->queue as $player) {
             if ($player->getHandCount() > 0) {
                 $report[$player->name] = $this->getHandTotal($player);
-            }
-        }
 
-        foreach ($report as $key=>$value) {
-            if ($value <= 21) {
-                array_push($winners, $key);
-            }
+                if ($report[$player->name] <= 21) {
+                    $winners[] = $player->name;
+                }
 
-            if ($value > 21) {
-                array_push($losers, $key);
+                if($report[$player->name] > 21) {
+                    $losers[] = $player->name;
+                }
+
             }
         }
 
         if (count($winners) > 1) {
-            $diff = [];
-            foreach ($report as $key=>$value) {
-                $diff[$key] = 21 - $value;
-            }
-
-            asort($diff);
-            $ranked = array_keys($diff);
-            $winners = [$ranked[0]];
-            $losers = [$ranked[1]];
-
-            if (count($diff) != count(array_unique($diff))) {
-                $winners = ["bank"];
-                unset($diff["bank"]);
-                $losers = array_keys($diff);
-            }
+            $result = $this->resolveMultipleWinners($report);
+            $winners = [$result["winner"]];
+            $losers = [$result["loser"]];
         }
 
-        if (count($winners) == 0) {
+        if (empty($winners)) {
             $winners = [""];
-            if (count($losers) > 0) {
+            if (!empty($losers)) {
                 $winners = ["bank"];
             }
         }
 
-        if (count($losers) == 0) {
+        if (empty($losers)) {
             $losers = [""];
         }
 
         return ["winner" => $winners[0], "loser" => $losers[0]];
+    }
+
+    /**
+     * This method returns the winner and loser, when all players scored under 21.
+     * @param array<string, int> $report
+     * @return array<string, string>
+     */
+    private function resolveMultipleWinners($report)
+    {
+        $diff = [];
+        foreach ($report as $key=>$value) {
+            $diff[$key] = 21 - $value;
+        }
+
+        asort($diff);
+        $ranked = array_keys($diff);
+        $newWinner = $ranked[0];
+        $newLoser = $ranked[1];
+
+        if (count($diff) != count(array_unique($diff))) {
+            $newWinner = "bank";
+            unset($diff["bank"]);
+            $rankedLosers = array_keys($diff);
+            $newLoser = $rankedLosers[0];
+        }
+
+        return ["winner" => $newWinner, "loser" => $newLoser];
     }
 }
