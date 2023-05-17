@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1684240050">
-  <project timestamp="1684240050">
+<coverage generated="1684323196">
+  <project timestamp="1684323196">
     <file name="/Users/elena/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="14" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="38" coveredelements="38"/>
@@ -20,13 +20,13 @@
       <line num="58" type="method" name="convertCardNumberToString" visibility="protected" complexity="5" crap="5" count="40"/>
       <line num="60" type="stmt" count="40"/>
       <line num="62" type="stmt" count="40"/>
-      <line num="63" type="stmt" count="30"/>
+      <line num="63" type="stmt" count="25"/>
       <line num="66" type="stmt" count="40"/>
-      <line num="67" type="stmt" count="25"/>
+      <line num="67" type="stmt" count="26"/>
       <line num="70" type="stmt" count="40"/>
-      <line num="71" type="stmt" count="26"/>
+      <line num="71" type="stmt" count="23"/>
       <line num="74" type="stmt" count="40"/>
-      <line num="75" type="stmt" count="26"/>
+      <line num="75" type="stmt" count="27"/>
       <line num="78" type="stmt" count="40"/>
       <line num="86" type="method" name="draw" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="89" type="stmt" count="1"/>
@@ -41,7 +41,7 @@
       <line num="122" type="method" name="getColor" visibility="public" complexity="3" crap="3" count="5"/>
       <line num="124" type="stmt" count="5"/>
       <line num="126" type="stmt" count="5"/>
-      <line num="127" type="stmt" count="3"/>
+      <line num="127" type="stmt" count="4"/>
       <line num="130" type="stmt" count="5"/>
       <metrics loc="133" ncloc="94" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="38" coveredelements="38"/>
     </file>
