@@ -7,10 +7,10 @@
     <article class="article">
     <p>
         I denna rapport kommer jag att analysera och diskutera kodkvaliteten i mitt PHP-projekt.
-        För att få en överblick över kodens kvalitet kommer jag att använda mig av rapporterna från verktygen <i>phpmetrics</i> och <i>Scrutinizer</i>.
+        För att få en överblick över kodens kvalitet kommer jag att använda mig av rapporterna från verktygen <i>PhpMetrics</i> och <i>Scrutinizer</i>.
         Genom att definiera mätvärden och identifiera svagheter i koden kommer jag sedan att genomföra en serie förbättringar för att höja kodens kvalitet.
-        Slutligen kommer jag att generera nya rapporter baserat på den förbättrade koden och utvärdera om poängen från phpmetrics och Scrutinizer har förbättrats.
-        Resultaten av mina förbättringar kommer att diskuteras i avsnittet för diskussion.
+        Slutligen kommer jag att generera nya rapporter baserat på den förbättrade koden och utvärdera om poängen från PhpMetrics och Scrutinizer har förbättrats.
+        Rapporten avslutas med en diskussion om ren kod och de verktyg som användes i undersökningen.
     </p>
 
     <h2>Introduktion</h2>
@@ -19,26 +19,26 @@
     Exemplifiera, där det passar, med några mätvärden som är kopplad till din egen kod
     och ge en kort förklaring av mätvärdet relaterat till kodkvalitet. #}
         I den här undersökningen, bedömer jag kodens kvalitet enlight sex C om kodkvalitet som kan ses som sex steg till snyggare och bättre kod.
-        I detta avsnitt, föklarar jag de sex C:na om kodkvalitet och hur de kan påverka kodens kvalitet.
+        I detta avsnitt, föklarar jag de sex C:na och hur de kan påverka kodens kvalitet.
     </p>
 
     <h3>1. Codestyle</h3>
     <p>
-        Kodstil är en uppsättning regler och konventioner som används för att skriva läsbar och enhetlig kod.
+        <i>Codestyle</i>, d.v.s. kodstil, är en uppsättning regler och konventioner som används för att skriva läsbar och enhetlig kod.
         Det handlar om att använda en standardiserad och konsekvent stil för variabelnamn, funktioner, kommentarer, indragning, blanksteg och annan formatering av koden.
         En bra kodstil gör det enklare för utvecklare att läsa och förstå koden, särskilt om flera personer samarbetar på samma projekt.
         Det hjälper också till att upprätthålla en hög kvalitetsstandard för koden och gör det lättare att genomföra förändringar och underhåll senare.
 
         Det finns olika kodstilar som används inom olika programmeringsspråk och utvecklingsmiljöer.
         Det är vanligt att använda kodstilsverktyg eller linters för att automatiskt kontrollera att koden följer den valda kodstilen.
-        I denna projekt används verktyg php-cs-fixer, phpstan och phpmd för att säkerställa en god kodstil.
-        Dessutom includerar Scrutinizer och phpmetrics olika mått för att ytterligare bedöma kodens kvalitet.
+        I denna projekt används verktyg PHP-CS-Fixer, PhpStan och PhpMd för att säkerställa en god kodstil.
+        Dessutom includerar Scrutinizer och PhpMetrics olika mått för att ytterligare bedöma kodens kvalitet.
     <p>
 
     <h3>2. Coverage</h3>
     <p>
-        Kodtäckning är en mätning av mängden källkod som har utförts av automatiserade tester.
-        Det syns i Scrutinizer-rapporten och kan också inkluderas i phpmetrics-rapporten genom konfiguration.
+        <i>Coverage</i>, d.v.s. kodtäckning, är en mätning av mängden källkod som har utförts av automatiserade tester.
+        Det syns i Scrutinizer-rapporten och kan också inkluderas i PhpMetrics-rapporten genom konfiguration.
         När automatiserade tester körs på kodbasen kan Scrutinizer identifiera vilka kodrader som utfördes och vilka som inte gjorde det.
         Denna data används sedan för att beräkna kodtäckningen.
         Den uttrycks som en procentandel av totalt antal kodrader som utfördes under testprocessen.
@@ -49,9 +49,9 @@
 
     <h3>3. Complexity</h3>
     <p>
-        Kodkomplexitet definieras med måttet <i>Cyclomatic Complexity</i>.
-        Cyklomatisk komplexitet är visas i både Scrutinizers och phpmetrics rapport.
-        Cyclomatic complexity kan användas för att uppskatta hur svårt det är att förstå,
+        <i>Complexity</i>, d.v.s. kodkomplexitet, definieras med måttet <i>Cyclomatic Complexity</i>.
+        Cyklomatisk komplexitet visas i både Scrutinizers- och PhpMetrics-rapport.
+        Den kan användas för att uppskatta hur svårt det är att förstå,
         testa och underhålla en kodbas.
         Ju högre cyclomatisk komplexitet, desto mer komplext är programmet
         och desto svårare kan det vara att underhålla och ändra det utan att orsaka buggar eller fel.
@@ -59,15 +59,14 @@
         "while"-loopar, "for"-loopar och "case"-satser.
         Sedan adderas 1 till resultatet för varje beslut samt 1 till resultatet för det övergripande flödet.
         Slutresultatet ger antalet oberoende vägar genom koden.
-        Cyclomatic complexity är ett viktigt verktyg för att förbättra kodkvaliteten
-        och underhållbarheten genom att identifiera kod som är svårt att förstå och testa.
+        Cyklomatisk komplexitet är ett viktigt mått för att kunna identifiera kod som är svårt att förstå och testa.
     </p>
 
     <h3>4. Cohesion</h3>
     <p>
         <i>Cohesion</i> refererar till graden av relation mellan olika delar av en modul eller en klass.
         Det är ett mått på hur tätt relaterade olika funktioner och data i en modul eller klass är till varandra.
-        Cohesion finns i både Scrutinizers och phpmetrics rapport, ibland som <i>LCOM</i> ("Lack of Cohesion in Methods").
+        Cohesion finns i både Scrutinizers och PhpMetrics rapport, ibland som <i>LCOM</i> ("Lack of Cohesion in Methods").
         En hög cohesion (men låg LCOM!) innebär att alla funktioner och data i en modul eller klass är tätt kopplade till varandra
         och har en specifik gemensam uppgift eller ansvar.
         Detta innebär att alla delar av modulen eller klassen arbetar tillsammans för att uppfylla en enda uppgift,
@@ -81,15 +80,15 @@
     <h3>5. Coupling</h3>
     <p>
         <i>Coupling</i> avser graden av ömsesidigt beroende mellan moduler eller klasser.
-        I både Scrutinizers och phpmetrics rapport anges den <i>afferent</i> och <i>efferent coupling</i> för klasserna.
+        I både Scrutinizers och PhpMetrics rapport anges den <i>afferent</i> och <i>efferent coupling</i> för klasserna.
         Afferent coupling  (alltså inåtgående koppling) mäter antalet andra moduler som är beroende av en specifik modul eller klass.
-        Ju högre afferent koppling, desto mer använd och central är denna modul eller klass för resten av programmet.
+        Ju högre inåtgående koppling, desto mer använd och central är denna modul eller klass för resten av programmet.
         Om denna modul eller klass skulle förändras, kan det påverka många andra delar av programmet.
         Efferent coupling (alltså utåtgående koppling) mäter antalet andra moduler eller klasser som en specifik modul eller klass är beroende av.
-        Ju högre efferent koppling, desto mer beroende är denna modul eller klass på andra delar av programmet.
+        Ju högre utåtgående koppling, desto mer beroende är denna modul eller klass på andra delar av programmet.
         Om någon av de andra modulerna eller klasserna skulle ändras, kan det påverka funktionen och prestandan i denna modul eller klass.
-        En hög afferent koppling kan indikera att en modul eller klass har för många ansvarsområden och bör delas upp i mindre delar.
-        Å andra sidan kan en hög efferent koppling indikera att en modul eller klass behöver mer testning och skyddande åtgärder,
+        En hög inåtgående koppling kan indikera att en modul eller klass har för många ansvarsområden och bör delas upp i mindre delar.
+        Å andra sidan kan en hög utåtgående koppling indikera att en modul eller klass behöver mer testning och skyddande åtgärder,
         eftersom den har många beroenden som kan påverka dess funktion och prestanda.
     </p>
 
@@ -97,9 +96,9 @@
     <p>
         CRAP står för "Change Risk Analyzer and Predictor"
         och det är ett numeriskt värde som används för att mäta komplexiteten i en kodruta eller en funktion.
-        CRAP-poäng kan ses i Scrutinizer-rapporten och i dashboarden i täckningsrapporten från phpunit.
+        CRAP-poäng kan ses i Scrutinizer-rapporten och i dashboarden i täckningsrapporten från PhpUnit.
         CRAP-måttet beräknas genom att multiplicera två värden: kodtäckning och komplexitet som nämts ovan.
-        Ett högt CRAP indikerar allstå att en kodruta eller funktion har hög komplexitet och är dåligt täckt av automatiserade tester,
+        En klass eller method med ett högt CRAP indikerar allstå att den har hög komplexitet och är dåligt täckt av automatiserade tester,
         vilket är en bra indikation på att det behöver refaktoreras eller förbättras.
         Genom att använda CRAP tillsammans med andra metoder för att mäta kodkvalitet och prestanda, kan utvecklare skapa en kodbas som är mer robust, lättläst och underhållbar.
     </p>
@@ -115,18 +114,18 @@
         Detta kan hjälpa utvecklare att identifiera och åtgärda problem i koden och göra den mer läsbar, effektiv och hållbar.
     </p>
     <p>
-        I PhpMetrics-rapporten framkommer några intressanta resultat.
+        I PhpMetrics-rapporten som genererades för mitt projekt framkommer några intressanta resultat.
         Först och främst visas de <i>Violations</i> som hittats i koden.
-        I detta avsnitt framgår det att JsonApiController inte följer principen om ett enda ansvar, vilket inte är så konstigt eftersom klassen hanterar flera olika anrop och ansvarar för alla API-rutter.
+        I detta avsnitt framgår det att klassen App\Controller\JsonApiController inte följer principen om ett enda ansvar, vilket inte är så konstigt eftersom denna klass hanterar flera olika anrop och ansvarar för alla API-rutter.
         Att bryta mot principen om enkel ansvarsskyldighet kan öka klassens komplexitet och göra det svårt att testa koden.
-        Det är inte överraskande att JsonApiController också har en hög LCOM-poäng (se <i>Coupling</i> avsnittet),
-        vilket innebär att klassen har låg sammanhållning/Cohesion.
+        Det är inte överraskande att App\Controller\JsonApiController också har en hög LCOM-poäng,
+        vilket innebär att klassen har låg Cohesion.
         En hög LCOM-poäng indikerar att metoderna i App\Controller\JsonApiController-klassen har mindre relation till varandra som gör klassen svårare att testa och underhålla.
     </p>
     <p>
         En annan klass som framkommer som en <i>Violations</i> är App\Game21\Game21, vilket tyder på att koden är alltför komplex.
         PhpMetrics uppskattar att den mest komplexa metoden i den här klassen har en cyklomatisk komplexitet på 12
-        (phpmd påpekar att en klass inte bör ha en komplexitet på mer än 10).
+        (i PhpMd påpekas att en klass inte bör ha en komplexitet på mer än 10).
         En möjlig lösning för att minska komplexiteten och göra klassen lättare att testa och mindre benägen för fel är att delegera viss kod till andra objekt eller dela upp metoden.
     </p>
     <p>
@@ -152,8 +151,8 @@
         </figcaption>
     </figure>
     <p>
-        PhpMetrics visar att App\Controller-klasser tenderar att ha hög utgående koppling/afferent coupling (beroende av andra klasser),
-        medan App\Card-klasser tenderar att ha hög inkommande koppling/efferent coupling (andra klasser är beroende av dem).
+        PhpMetrics visar att App\Controller-klasser tenderar att ha hög utåtgående koppling/afferent coupling (beroende av andra klasser),
+        medan App\Card-klasser tenderar att ha hög inåtgående koppling/efferent coupling (andra klasser är beroende av dem).
         Detta innebär att många moduler och klasser är beroende av App\Card-klasserna, vilket gör att ändringar i dessa klasser påverkar resten av programmet och bör genomföras med försiktighet.
         Å andra sidan är App\Controller-klasserna starkt beroende av andra klasser och moduler, vilket kan indikera att de har för mycket ansvar och bör delas upp i mindre delar. Det är tydligt att App\Controller-klasserna är känsliga för instabilitet.
     </p>
@@ -194,10 +193,9 @@
     </p>
     <p>
         Den andra badge:n från Scrutinizer visar att kodtäckningen är mycket låg.
-        Endast 24% av koden testas enligt Scrutinizer's uppskattning.
-        Enlight kodtäckningsrapporten från phpunit är 35,3% av alla functioner och metoder,
+        Endast 24% av koden testas enligt Scrutinizer.
+        Enlight kodtäckningsrapporten från PhpUnit är 35,3% av alla functioner och metoder,
         men bara 22,5% av all rader kod täckade med de nuvarande enhetstesterna.
-        Enligt kodtäckningsrapporten från phpunit täcker enhetstesterna endast 35,3% av alla funktioner och metoder, och endast 22,5% av alla kodrader.
         Det finns alltså ett betydande gap mellan den nuvarande testtäckningen och den totala koden.
         En god kodtäckning bör vara minst 70 % av koden.
         För närvarande testas inte App\Controller-klasserna, som utgör en stor del av kodbasen.
@@ -232,7 +230,7 @@
 
     <h2>Förbättringar</h2>
     <p>
-        I detta avsnitt presenterar jag de första åtgärderna som jag planerar att genomföra i min kod baserat på resultaten från tidigare avsnitt.
+        I detta avsnitt presenterar jag först de åtgärderna som jag planerar att genomföra i min kod baserat på resultaten från tidigare avsnitt.
         Efter att ha implementerat dessa förbättringar och genererat nya rapporter, kommer jag i nästa steg att diskutera de uppdaterade PhpMetrics- och Scrutinizer-rapporterna samt analysera hur förbättringarna har påverkat den nya analysen.
     </p>
     <h3>Före förbättringar</h3>
@@ -250,8 +248,7 @@
     Detta kommer att göra koden mer läsbar och lättare att förstå, underhålla och testa.
     Dessutom kan jag överväga att dela upp App\Controller\JsonApiController i mindre klasser för att förbättra kodens struktur och ansvarsfördelning.
 
-    Genom att genomföra dessa förbättringar hoppas jag att jag gör min kod mer robust, lättare att underhålla och testa.
-    Det kommer också att minska risken för buggar och felaktigt beteende.
+    Genom att genomföra dessa förbättringar hoppas jag att minska risken för buggar och felaktigt beteende.
     </p>
     <p>
     Här är en sammanställning av de förbättringar jag planerar att genomföra:
@@ -271,7 +268,7 @@
         <img alt="PhpMetrics violations before improvements" src="{{ asset('img/metrics/phpmetrics_violation2_before.png') }}"
         style="width: 500px;">
         <figcaption class="figcaption" style="width: fit-content;">
-            Problem i PhpMetrics före förbättringar.
+            Problem identifierad i PhpMetrics-rapporten före förbättringar.
         </figcaption>
     </figure>
 
@@ -284,14 +281,14 @@
         Det sjunde problemet gällde Kernel-klassen, som är hjärtat i Symfony-ramverket.
         Den är ansvarig för att starta upp programmet, hantera förfrågningar och hantera exekveringsflödet.
         Kernelklassen fungerar som den centrala ingångspunkten för alla förfrågningar och kontrollerar initialiseringen och konfigurationen av Symfony-miljön.
-        För att åtgärda detta problem krävs mer kunskap om klassen och ramverket, så jag rörde det inte i den här förbättringsomgången.
+        För att åtgärda detta problem krävs mer kunskap om klassen och ramverket, så jag rörde den inte i den här förbättringsomgången.
     </p>
 
     <figure class="figure">
         <img alt="Issues before improvements" src="{{ asset('img/metrics/scrutinizer_issues_before.png') }}"
         style="width: 80%;">
         <figcaption class="figcaption">
-            Problem i Scrutinizer före förbättringar.
+            Problem i Scrutinizer-rapporten före förbättringar.
         </figcaption>
     </figure>
 
@@ -299,7 +296,7 @@
         <img alt="Issues after improvements" src="{{ asset('img/metrics/scrutinizer_issues_after.png') }}"
         style="width: 80%;">
         <figcaption class="figcaption">
-            Problem i Scrutinizer efter förbättringar.
+            Problem i Scrutinizer-rapporten efter förbättringar.
         </figcaption>
     </figure>
 
@@ -312,6 +309,13 @@
         Slutligen, i App\Controller\LibraryApiController, lade jag alla API-router för biblioteket.
     </p>
 
+    <p>
+        Jag ägnade också tid åt att omarbeta metoden checkWinStatus() i klassen App\Game21\Game21 för att minska dess cyklomatiska komplexitet.
+        Det var en utmanande uppgift eftersom jag försökte undvika att ändra metodens inmatning eller utmatning.
+        Till slut lyckades jag minska komplexiteten genom att flytta en del av koden till en separat metod som jag kallade resolveMultipleWinners().
+        Denna lösning tycks ha haft den önskade effekten.
+    </p>
+
     <figure class="figure">
         <img alt="Game21 methods improvement" src="{{ asset('img/metrics/scrutinizer_checkWinStatus_improvement.png') }}"
         style="width: 400px;">
@@ -321,14 +325,7 @@
     </figure>
 
     <p>
-        Jag ägnade också tid åt att omarbeta metoden checkWinStatus() i klassen App\Game21\Game21 för att minska dess cyklomatiska komplexitet.
-        Det var en utmanande uppgift eftersom jag försökte undvika att ändra metoden's inmatning eller utmatning.
-        Till slut lyckades jag minska komplexiteten genom att flytta en del av koden till en separat metod som jag kallade resolveMultipleWinners().
-        Denna lösning tycks ha haft den önskade effekten.
-    </p>
-
-    <p>
-        Om jag hade haft mer tid tror jag att det skulle vara möjligt att skapa mer eleganta och rena metoder genom att utföra en stor refaktorisering av denna klass och dess metoder,
+        Om jag hade haft mer tid tror jag att det skulle vara möjligt att skapa mer eleganta och rena metoder genom att utföra en stor refaktorisering av App\Game21\Game21 klassen och dess metoder,
         särskilt de som beräknar spelarnas poäng och bestämmer vinnaren/förloraren av spelet.
         Tyvärr får jag nöja mig med detta för tillfället på grund av tidsbrist.
     </p>
@@ -336,19 +333,19 @@
     <p>
         Den sista TODO-uppgiften på min förbättringslista visade sig vara mycket tidskrävande och utmanande.
         Jag spenderade två till tre timmar på att försöka hitta ett sätt att enhetstesta mina App\Controller-klasser,
-        men lyckades inte komma fram till en lösning.
-        Trots att det är möjligt att enhetstesta Symfony controllerklasser,
+        men lyckades inte komma fram till en fungerande lösning.
+        Trots att det är möjligt att enhetstesta Symfony Controller-klasser,
         lärde jag att det inte är det mest lämpliga sättet att testa dem.
         Enligt <a class="link" href="https://stackoverflow.com/questions/47308481/test-controller-action-by-phpunit-symfony">Stack Overflow</a>
-        är funktionella tester mer passande för controllers då de testar hela applikationen, från datahämtning till renderingen av svar.
+        är funktionella tester mer passande för Controllers då de testar hela applikationen, från datahämtning till renderingen av svar.
         Enhetstester är bättre lämpade för att testa tjänster med få beroenden.
     </p>
 
     <p>
-        Under processen för att lösa den sista förbättringsuppgiften kom jag dock på ett sätt att enhetstesta App\Entity-klasserna med hjälp av PHPUnit.
+        Under processen för att lösa den sista förbättringsuppgiften kom jag dock på ett sätt att enhetstesta App\Entity-klasserna med hjälp av PhpUnit.
         Istället för att lägga till testsviter för App\Controller-klasserna skapade jag en testsvit för Entity-klasserna.
         Eftersom App\Controller-klasserna är ganska komplexa skulle enhetstester ha varit ett bra sätt att öka testtäckningen och minska deras CRAP-poäng.
-        Genom att lägga till testsviten för Entity-klasserna kunde jag öka PHPUnit-täckningen från 35,3 % till 49 % för alla funktioner och metoder,
+        Genom att lägga till testsviten för Entity-klasserna kunde jag dock öka PhpUnit-täckningen från 35,3 % till 49 % för alla funktioner och metoder,
         samt täckningen av alla rader från 22,5 % till 25,6 %.
     </p>
 
@@ -380,7 +377,7 @@
     </figure>
 
     <p>
-        Sammanfattningsvis, jag genomförde förbättringar i tre områden av koden.
+        Sammanfattningsvis genomförde jag förbättringar i tre områden av koden.
         Först åtgärdades mindre problem i koden enligt Scrutinizer-rapporten.
         Sedan delades App\Controller\JsonApiController upp i mindre klasser för att öka strukturen och förtydliga ansvarsområdena.
         Dessutom minskades cyklomatisk komplexitet i metoden checkWinStatus() genom att dela upp koden i en separat metod.
@@ -395,7 +392,25 @@
     Finns det fördelar och kanske nackdelar?
     Ser du andra möjligheter att jobba mot “clean code”? #}
     <p>
-
+        Genom att använda verktyg som PhpMetrics och Scrutinizer kan jag aktivt jobba med kodkvalitet. 
+        Med dessa verktyg kan jag som utvecklare analysera källkoden, få insikt i kodens kvalitet och identifiera områden som behöver förbättras. 
+        PHPMetrics ger insikt i olika aspekter av kodkvalitet, inklusive komplexitet, beroenden och kodtäckning.
+        Scrutinizer-rapporten ger en djupgående analys av koden. Det utför statisk analys och inspekterar koden för att hitta potentiella problem, inklusive kodlukt (code smells), duplicering och säkerhetsrisker.
+    </p>
+    <p>
+        Verktygen som PhpMetrics, Scrutinizer (samt PHP-CS-Fixer, PhpMd och PhpStan) kan dessutom hjälpa till att upprätthålla en standardiserad kodbas och främja bästa praxis genom att flagga avvikelser från definierade kodstandarder och principer.
+        I projekt i den verkliga världen, kan potentiella problem och felaktigheter upptäckas tidigt i utvecklingsprocessen genom att använda statisk analys av verktygen.
+        Detta kan minska risken för att dessa problem att nå produktion.
+    </p>
+    <p>
+        Jag tycker att jobba med dessa verktyg ledde till mer läsbar och kanske även mer underhållbar kod i mitt projekt.
+        Det finns dock också några nackdelar med dessa verktyg upptäckte jag under min undersökning.
+        Nackdelarna med att använda båda PhpMetrics och Scrutinizer är att de kan vara lite komplexa att konfigurera och använda. Det kräver också tid och resurser att analysera och åtgärda de problem som verktygen identifierar.
+    </p>
+    <p>
+        Utöver de nämnda verktygen, finns det även andra möjligheter att arbeta mot "clean code" nämligen automatiserade tester.
+        Att skapa och underhålla omfattande tester hjälper till att säkerställa att koden fungerar som förväntat och ger en tryggare grund för förändringar och refaktoreringar.
+        Sammanfattningsvis kan kombinationen av verktyg som PHPMetrics och Scrutinizer med andra verktyg som PHP-CS-Fixer, PhpMd och PhpStan samt andra metoder som unit testning med PhpUnit ge en stark grund för att arbeta mot "clean code" och förbättra kodkvaliteten.
     </p>
     </article>
 {% endblock %}
