@@ -15,7 +15,7 @@
         <li><a class="button lila-button" href="#kmom03">Kmom03</a></li>
         <li><a class="button lila-button" href="#kmom04">Kmom04</a></li>
         <li><a class="button lila-button" href="#kmom05">Kmom05</a></li>
-        <li><a class="button" href="#kmom06">Kmom06</a></li>
+        <li><a class="button lila-button" href="#kmom06">Kmom06</a></li>
         <li><a class="button" href="#kmom10">Kmom07/10</a></li>
     </ul>
 
@@ -263,6 +263,39 @@
         Detta gör koden lättare att underhålla.
     </p>
     </section>
+
     <h2 id="kmom06">Kmom06</h2>
+    <section>
+    <p>
+        Det här kursmomentet analyserade vi PhpMetrics- och Scrutinizer-rapporterna för att reflektera över kodkvaliteten och göra ett urval förbättringar i vårt projekts kod.
+        PhpMetrics är verkligen ett kraftfullt verktyg som gör ett bra jobb när det gäller att ge en detaljerad rapport om statusen för ens kod.
+        Mätvärden som LOC (lines of Code), underhållsindex, komplexitet, klassrankning och många fler är alla tillgängliga på en och samma sida.
+        För mitt undersökning tyckte jag att poängen för afferent och efferent koppling var särskilt värdefulla.
+        Vid första anblicken känns rapporten lite överväldigande och man måste ägna en hel del tid åt att läsa och förstå den.
+        Jag tyckte att graferna var särskilt kryptiska och svåra att tyda.
+    </p>
+    <p>
+        Jag tycker att Scrutinizer-rapporten är mycket lättare att förstå och greppa, men vissa mätvärden är fortfarande vaga.
+        Jag är till exempel inte riktigt säker på vad betygen för klasserna representerar och vad som kan resultera i ett B i stället för ett A.
+        Jag tyckte att Scrutinizer var till stor hjälp när det gällde att identifiera och förklara problem i koden.
+        Genom att åtgärda dessa problem kunde jag förbättra det totala betyget, men täckningen sjönk från 24 % till 20 %, vilket jag till en början tyckte var förvirrande.
+        Det är dock troligt att jag flyttade eller ändrade kod som tidigare täcktes.
+        Jag skulle behöva lägga mer tid på att testa de olika komponenterna i applikationen för att öka Scrutinizer-täckningsresultatet.
+    </p>
+    <p>
+        Jag gillar båda verktygen och har lärt mig att man inte ska använda metriska mått isolerat, utan tillsammans med andra för att få en bättre bild.
+        Jag upptäckte att jag uppskattade några få utvalda mätvärden som var lätta att förstå och agera på.
+        Av den anledningen föredrar jag Scrutinizer.
+    </p>
+    <p>
+        Min TIL detta kursmoment handlar om begreppet <i>kodlukt</i> (code smells), vilket beskriver egenskaper eller symptom i kod som indikerar potentiella design- eller implementeringsproblem.
+        De är inte bugs i sig själva, men visar på problemområden som kan leda till försämrad kodkvalitet och underhållbarhet.
+        Exempel på detta är dubblerad kod, långa och complexa metoder eller klasser och inkonsekventa namnkonventioner.
+        Att identifiera och åtgärda kodlukt genom refaktorisering förbättrar kodens läsbarhet och underhållbarhet.
+    </p>
+    </section>
+
     <h2 id="kmom10">Kmom07/10</h2>
+    <section>
+    </section>
 {% endblock %}
