@@ -1,0 +1,29 @@
+{% extends "adventure/base.html.twig" %}
+
+{% block title %}Adventure Game{% endblock %}
+
+{% block body %}
+<div class="adventure-sidebar">
+        <header class="adventure-header">
+            <span class="adventure-title">
+            {# <h1>My Adventure Game</h1> #}
+            <a href="{{ path('proj_home') }}">
+                <img src="{{ asset('img/adventure/strawberry-svgrepo-com.svg') }}" alt="Strawberry">
+            </a>
+            </span>
+            <nav class="adventure-nav">
+                <ul>
+                    <li><a class="adventure-navlink" href="{{ path('proj_home') }}">Home</a></li>
+                    <li><a class="adventure-navlink" href="{{ path('proj_about') }}">About</a></li>
+                    <li><a class="adventure-navlink" href="{{ path('proj_api') }}">API</a></li>
+                </ul>
+            </nav>
+        </header>
+        <footer class="adventure-footer">
+            <p>&copy; Elena Moser</p>
+        </footer>
+        </div>
+        <main class="adventure-main">
+        {% block main %}{% endblock %}
+        </main>
+{% endblock %}

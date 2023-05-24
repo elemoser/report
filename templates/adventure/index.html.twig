@@ -1,0 +1,19 @@
+{% extends "adventure/sidebar-view.html.twig" %}
+
+{# {% block title %}Adventure Game{% endblock %} #}
+
+{% block main %}
+    <h1>Adventure Game</h1>
+    <h2>Welcome to my adventure game!</h2>
+    <p>
+        Test.
+    </p>
+
+    <a class="adventure-button" href="{{ path('proj_game') }}">Start Game</a>
+
+    {# <div class="img-profile">
+        <a href="{{ asset('img/sunflower.jpg') }}">
+            <img src="{{ asset('img/sunflower.jpg') }}" alt="Picture of a sunflower">
+        </a>
+    </div> #}
+{% endblock %}
