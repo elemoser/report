@@ -85,6 +85,33 @@ $sans-serif: 'Raleway', sans-serif;
     padding: 2rem;
     color: #000;
     font-family: $sans-serif;
+
+    h1,
+    h2,
+    h3 {
+        margin: 0.5rem 0 1rem;
+    }
+
+    p {
+        margin: 0.6rem 0;
+    }
+}
+
+.adventure-link {
+    text-decoration: none;
+    font-variant: small-caps;
+    font-weight: 600;
+    color: rgb(29, 47, 111);
+}
+
+.adventure-link:hover {
+    font-style: italic;
+    border-bottom: 1px solid rgb(29, 47, 111);
+}
+
+.adventure-link:visited {
+    color: rgb(29, 47, 111);
+    border-bottom: 1px solid rgb(29, 47, 111);
 }
 
 .adventure-footer {
@@ -92,19 +119,28 @@ $sans-serif: 'Raleway', sans-serif;
     font-family: $handwriting;
 }
 
-.adventure-button:visited,
 .adventure-button {
-    margin: 3.5rem auto;
-    padding: 0.9rem;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    display: block;
     text-decoration: none;
+    text-align: center;
     background-color: #93ddf5;
     color: #eb5e65;
     font-size: $base-font-size * 1.2;
     border-radius: 10px;
 }
 
+.adventure-full-width {
+    width: 100%;
+}
+
 .adventure-button:hover {
     background-color: darken(#93ddf5, 10%);
+}
+
+.adventure-button:visited {
+    color: #eb5e65;
 }
 
 .adventure-room {

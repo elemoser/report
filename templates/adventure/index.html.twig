@@ -3,17 +3,30 @@
 {# {% block title %}Adventure Game{% endblock %} #}
 
 {% block main %}
-    <h1>Adventure Game</h1>
-    <h2>Welcome to my adventure game!</h2>
-    <p>
-        Test.
-    </p>
-
-    <a class="adventure-button" href="{{ path('proj_game') }}">Start Game</a>
-
-    {# <div class="img-profile">
+    <h1>Jordgubbstårta</h1>
+    {# <div class="img-banner">
         <a href="{{ asset('img/sunflower.jpg') }}">
             <img src="{{ asset('img/sunflower.jpg') }}" alt="Picture of a sunflower">
         </a>
     </div> #}
+    <h2>Welcome to my adventure game!</h2>
+    <p>
+        <i>Jordgubbstårta</i> is a cozy adventure game, inspired by classic/text-based adventure games,
+        in which you as a player can explore different places and gather items in your basket.
+        The goal of the game is to gather all the needed ingredients for a strawberry cake.
+        In total you will need ten ingredients, which you can find in three different places.
+    </p>
+    <p>
+        There are two play modes: You can choose to challenge yourself and play without recipe.
+        In that case, you can start the game and discover the recipe at your pace.
+        If you are pressed on time or just generally impatient, you can consult <a class="adventure-link">this recipe</a>
+        while playing.
+    </p>
+    <p>
+        Good luck!
+    <p>
+
+    <a class="adventure-button adventure-full-width" href="{{ path('proj_game') }}" target="_blank">Play</a>
+
+
 {% endblock %}
