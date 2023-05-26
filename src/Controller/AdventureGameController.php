@@ -32,4 +32,10 @@ class AdventureGameController extends AbstractController
     {
         return $this->render('adventure/api.html.twig');
     }
+
+    #[Route('/proj/recipe', name: 'proj_cheat')]
+    public function projectCheat(): Response
+    {
+        return $this->render('adventure/recipe.html.twig');
+    }
 }
