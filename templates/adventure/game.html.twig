@@ -4,34 +4,28 @@
 
 {% block body %}
     <div class="adventure-room">
-    <img class="adventure-img" src="{{ asset('img/adventure/roam-in-color-z3QZ6gjGRt4-unsplash.jpg') }}" alt="Kitchen">
+    <img class="adventure-img" src="{{ asset('img/adventure/') }}{{image}}" alt="Kitchen">
     </div>
     <div class="adventure-basket">
-        <div><img alt="Beans" title="Beans" src="{{ asset('img/adventure/beans-svgrepo-com.svg') }}"></div>
-        <div><img alt="Jam" title="Jam" src="{{ asset('img/adventure/jam-breakfast-svgrepo-com.svg') }}"></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        {% for i in 0..10 %}
+            {% if basket[i] is defined %}
+            <div><img alt="item" title="item" src="{{ asset('img/adventure/') }}{{basket[i]}}"></div>
+            {% else %}
+            <div id="item{{ i }}"></div>
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="adventure-text">
         <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            {{ description }}
+            {{ directions }}
         </p>
     </div>
     <footer class="adventure-gamebar">
-        <p>Kitchen</p>
-        <form class="adventure-form">
+        <p>{{ place }}</p>
+        <form class="adventure-form" action="{{ path('proj_game_input') }}" method="POST">
             <input class="adventure-input" type="text" name="input" placeholder="Write here.">
+            <input class="button" type="submit" value="ok">
         </form>
         <a class="button" href="{{ path('proj_home') }}">&#10005;</a>
     </footer>
