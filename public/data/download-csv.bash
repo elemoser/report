@@ -4,7 +4,7 @@ url="https://docs.google.com/spreadsheets/d/1iNe0jUhg4FoOCejpKxICD-c73C0CrvS-MNe
 
 for target in Items Room; do
     printf "%s\\n" "$target"
-    curl --silent "$url=$target" > "$target.csv"
+    curl --silent "$url=$target" > "./$target.csv"
 done
 
 ls -l -- *.csv
