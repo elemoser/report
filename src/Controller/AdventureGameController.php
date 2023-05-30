@@ -7,8 +7,8 @@ use App\Entity\AdventureItems;
 use App\Entity\AdventureRoom;
 use App\Repository\AdventureItemsRepository;
 use App\Repository\AdventureRoomRepository;
-use Doctrine\Persistence\ManagerRegistry;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
+// use Doctrine\Persistence\ManagerRegistry;
+// use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,11 +25,21 @@ class AdventureGameController extends AbstractController
 
     #[Route('/proj/init/game', name: 'proj_init_game')]
     public function projectInitGame(
+        AdventureRoomRepository $roomRepository,
+        AdventureItemsRepository $itemsRepository,
         SessionInterface $session
     ): Response
     {
-        $game = new Game();
+        $start = $roomRepository->findOneBy(['name' => 'kitchen']);
+        // $items = $itemsRepository->findBy(['room' => 'kitchen']);
+
+        if(!$start) {
+            return new Response('There seems to be an issue with the database.');
+        }
+
+        $game = new Game($start, []);
         $session->set("adventure", $game);
+        $session->set("action", "");
 
         return $this->redirectToRoute('proj_game');
     }
@@ -45,6 +55,8 @@ class AdventureGameController extends AbstractController
             "image" => "",
             "description" => "",
             "directions" => "",
+            "action" => "",
+            "options" => [],
             "basket" => []
         ];
 
@@ -55,15 +67,17 @@ class AdventureGameController extends AbstractController
         $game = $session->get("adventure");
         $currentRoom = $game->getCurrentRoom();
 
-        $room = $roomRepository->findOneBy(['name' => $currentRoom]);
-
-        if ($room) {
-            $data["place"] = $room->getName();
-            $data["image"] = $room->getImage();
-            $data["description"] = 'You are at '.$room->getDescription().'.';
-            $directions = [];
+        if ($currentRoom) {
+            $data["place"] = $currentRoom->getName();
+            $data["image"] = $currentRoom->getImage();
+            $data["description"] = 'You are at '.$currentRoom->getDescription().'.';
+            $data['directions'] = $game->getDirectionsAsString($currentRoom);
+            $data['options'] = $game->getActions();
         }
 
+        if ($session->get("action")) {
+            $data["action"] = $session->get("action");
+        }
 
         $items = $itemsRepository->findAll();
 
@@ -72,7 +86,7 @@ class AdventureGameController extends AbstractController
 
             foreach ($items as $item) {
                 $itemLocation = $item->getRoom();
-                if ($itemLocation == $currentRoom) {
+                if ($itemLocation == $currentRoom->getName()) {
                     array_push($itemsInCurrentRoom, $item->getImage());
                 }
             }
@@ -96,16 +110,39 @@ class AdventureGameController extends AbstractController
             return $this->redirectToRoute('proj_init_game');
         }
 
-        $inputStr = (string) $request->request->get('input');
-        $input = explode(" ", $inputStr);
-        
-        if (in_array("go", $input)) {
-            $game = $session->get("adventure");
-            $game->goTo($input[1]);
-            $session->set("adventure", $game);
+        $game = $session->get("adventure");
+        $action = (string) $request->request->get('action');
+        $input = (string) $request->request->get('input');
+        $cleanedInput = trim($input);
+        // $input = explode(" ", $inputStr);
+        $result = "";
+
+        if ($action == "inspect") {
+            $result = $game->inspect($cleanedInput);
         }
 
+        if ($action == "pick up") {
+            // pick up object
+        }
+
+        if ($action == "put back") {
+            // put down object
+        }
+
+        if ($action == "go") {
+            $locationAtDirection = $game->getLocationOfDirection($cleanedInput);
+            if ($locationAtDirection) {
+                $newPlace = $roomRepository->findOneBy(['name' => $locationAtDirection]);
+                $items = $itemsRepository->findBy(['room' => $locationAtDirection]);
+                $game->setRoomTo($newPlace, $items);
+            }
+        }
+
+        $session->set("adventure", $game);
+        $session->set("action", $result);
+
         return $this->redirectToRoute('proj_game');
+        // return new Response("Input: ".$action);
     }
 
     #[Route('/proj/about', name: 'proj_about')]

@@ -2,6 +2,7 @@
 
 namespace App\AdventureGame;
 
+use App\Entity\AdventureItems;
 use App\Entity\AdventureRoom;
 // use Doctrine\ORM\EntityManagerInterface;
 // use Doctrine\ORM\EntityRepository;
@@ -9,9 +10,14 @@ use App\Entity\AdventureRoom;
 class Game
 {
     /**
-     * @var string $currentRoom
+     * @var AdventureRoom $currentRoom
      */
     protected $currentRoom;
+
+    /**
+     * @var array<int,AdventureItems> $currentItems
+     */
+    protected $currentItems;
 
     /**
      * @var array<int,string> $basket
@@ -30,10 +36,11 @@ class Game
      * The constructor.
      * @return void
      */
-    public function __construct()
+    public function __construct(AdventureRoom $startLocation, array $items)
     // public function __construct(EntityManagerInterface $entityManager, EntityRepository $repository)
     {
-        $this->currentRoom = "kitchen";
+        $this->currentRoom = $startLocation;
+        $this->currentItems = $items;
         $this->basket = [];
         $this->visited = [];
 
@@ -53,8 +60,8 @@ class Game
     }
 
     /**
-     * This method returns the name of the current location.
-     * @return string
+     * This method returns the current location as object.
+     * @return object
      */
     public function getCurrentRoom()
     {
@@ -62,17 +69,36 @@ class Game
     }
 
     /**
+     * This method returns all items in the room as an array of strings.
+     * @return array<int,string>
+     */
+    public function getCurrentRoomItems()
+    {
+        $items = [];
+
+        if (count($this->currentItems) > 0) {
+            foreach ($this->currentItems as $item) {
+                array_push($items, $item->getName());
+            }
+        }
+
+        return $items;
+    }
+
+    /**
      * This method updates the internal game values.
      * @return void
      */
-    public function goTo(string $place)
+    public function setRoomTo(AdventureRoom $newLocation, array $items)
     {
-        if ($place != $this->currentRoom) {
-            $this->currentRoom = $place;
+        $newLocationName = $newLocation->getName();
+        if ($newLocationName != $this->currentRoom->getName()) {
+            $this->currentRoom = $newLocation;
+            $this->currentItems = $items;
         }
 
-        if (in_array($place, $this->visited)) {
-            array_push($this->visited, $place);
+        if (!in_array($newLocationName, $this->visited)) {
+            array_push($this->visited, $newLocationName);
         }
     }
 
@@ -89,36 +115,133 @@ class Game
      * This method returns an array containing all the possible direction from location.
      * @return string
      */
-    public function getDirections(AdventureRoom $roomObject)
+    public function getDirectionsAsString()
     {
         $message = "From here you can go ";
         $directions = [];
 
-        if ($roomObject->getNorth() != null) {
-            $directions[] = "north to the ".$roomObject->getNorth();
+        if ($this->currentRoom->getNorth() != "null") {
+            $directions[] = "north to the ".$this->currentRoom->getNorth();
         }
 
-        if ($roomObject->getEast() != null) {
-            $directions[] = "east to the ".$roomObject->getEast();
+        if ($this->currentRoom->getEast() != "null") {
+            $directions[] = "east to the ".$this->currentRoom->getEast();
         }
 
-        if ($roomObject->getSouth() != null) {
-            $directions[] = "south to the ".$roomObject->getSouth();
+        if ($this->currentRoom->getSouth() != "null") {
+            $directions[] = "south to the ".$this->currentRoom->getSouth();
         }
 
-        if ($roomObject->getWest() != null) {
-            $directions[] = "west to the ".$roomObject->getWest();
+        if ($this->currentRoom->getWest() != "null") {
+            $directions[] = "west to the ".$this->currentRoom->getWest();
         }
 
-        $message += $directions[0];
+        $message .= $directions[0];
 
         // add other items to $message separated by a coma
-        // if (count($directions) > 1) {
-        //     join(", ", $directions);
-        // }
+        if (count($directions) > 1) {
+            array_splice($directions, 0, 1);
+            $message .= ", or ";
+            $message .= join(", or ", $directions);
+        }
 
+        return $message.".";
+    }
 
-        return $this->visited;
+    /**
+     * This method returns an array with the possible directions.
+     * @return array<int, string>
+     */
+    public function getDirections()
+    {
+        $directions = [];
+
+        if ($this->currentRoom->getNorth() != "null") {
+            $directions[] = "north";
+        }
+
+        if ($this->currentRoom->getEast() != "null") {
+            $directions[] = "east";
+        }
+
+        if ($this->currentRoom->getSouth() != "null") {
+            $directions[] = "south";
+        }
+
+        if ($this->currentRoom->getWest() != "null") {
+            $directions[] = "west";
+        }
+
+        return $directions;
+    }
+
+    /**
+     * This method returns true if the input is a valid direction.
+     * @return boolean
+     */
+    public function checkValidDirection(string $input)
+    {
+        $valid = False;
+        $directions = $this->getDirections();
+
+        if (in_array($input, $directions)) {
+            $valid = True;
+        }
+
+        return $valid;
+    }
+
+    /**
+     * This method returns the name of the place in the given direction.
+     * @return boolean
+     */
+    public function getLocationOfDirection(string $input)
+    {
+        $result = $this->checkValidDirection($input);
+
+        $location = "";
+
+        if ($input == "north") {
+            $location = $this->currentRoom->getNorth();
+        }
+
+        if ($input == "east") {
+            $location = $this->currentRoom->getEast();
+        }
+
+        if ($input == "south") {
+            $location = $this->currentRoom->getSouth();
+        }
+
+        if ($input == "west") {
+            $location = $this->currentRoom->getWest();
+        }
+
+        if (!$result) {
+            $location = "";
+        }
+
+        return $location;
+    }
+
+    /**
+     * This method returns all actions allowed.
+     * @return array<int, string>
+     */
+    public function getActions()
+    {
+        $roomName = $this->currentRoom->getName();
+        $actions = [
+            "inspect" => $roomName." or object",
+            "pick up" => "object",
+            "put back" => "object",
+        ];
+        
+        $directions = $this->getDirections();
+
+        $actions["go"] = join(" or ", $directions);
+
+        return $actions;
     }
 
     /**
@@ -151,13 +274,30 @@ class Game
     }
 
     /**
-     * This method ...
+     * This method returns the text when player "inspects" the current room.
      * @return string
      */
     public function inspect(string $object)
     {
-        // returns the description for a place or an item
-        return $object;
+        $result = "You cannot inspect '".$object."'. Try something else.";
+
+        if ($object == $this->currentRoom->getName()) {
+            $result = "You look around... ";
+            $result .= $this->currentRoom->getInspect();
+        }
+
+        $items = $this->getCurrentRoomItems();
+
+        if (in_array($object, $items)) {
+            foreach ($this->currentItems as $item) {
+                if ($item->getName() == $object) {
+                    $result = "You see ";
+                    $result .= $item->getDescription().".";
+                }
+            }
+        }
+
+        return $result;
     }
 
     /**

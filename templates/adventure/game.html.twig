@@ -16,15 +16,32 @@
         {% endfor %}
     </div>
     <div class="adventure-text">
+        {% if action %}
+        <p>
+            {{ action }}
+        <p>
+        {% else %}
         <p>
             {{ description }}
+        </p>
+        <p>
             {{ directions }}
+        </p>
+        {% endif %}
+        <p class="animated">
+            What do you want to do next?
         </p>
     </div>
     <footer class="adventure-gamebar">
         <p>{{ place }}</p>
         <form class="adventure-form" action="{{ path('proj_game_input') }}" method="POST">
-            <input class="adventure-input" type="text" name="input" placeholder="Write here.">
+            <select class="adventure-select" name="action" style="">
+                <option value="" disabled>Choose your next action</option>
+                {% for key, option in options %}
+                <option value="{{key}}">{{key}}</option>
+                {% endfor %}
+            </select>
+            <input class="adventure-input" type="text" name="input" placeholder="Example ">
             <input class="button" type="submit" value="ok">
         </form>
         <a class="button" href="{{ path('proj_home') }}">&#10005;</a>
