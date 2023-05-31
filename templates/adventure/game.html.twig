@@ -4,22 +4,34 @@
 
 {% block body %}
     <div class="adventure-room">
-    <img class="adventure-img" src="{{ asset('img/adventure/') }}{{image}}" alt="Kitchen">
+    {% if gameEnd %}
+    <img class="adventure-img" src="{{ asset('img/adventure/calum-lewis-rkT_TG5NKF8-unsplash.jpg') }}" alt="{{ place }}">
+    {% else %}
+    <img class="adventure-img" src="{{ asset('img/adventure/') }}{{image}}" alt="{{ place }}">
+    {% endif %}
     </div>
-    <div class="adventure-basket">
-        {% for i in 0..10 %}
+    <div class="adventure-basket" title="Your Basket">
+        {% for i in 0..9 %}
             {% if basket[i] is defined %}
-            <div><img alt="item" title="item" src="{{ asset('img/adventure/') }}{{basket[i]}}"></div>
+            <div><img alt="item{{i}}" src="{{ asset('img/adventure/') }}{{basket[i]}}"></div>
             {% else %}
             <div id="item{{ i }}"></div>
             {% endif %}
         {% endfor %}
     </div>
+    <span class="adventure-basket-label">In Your Basket</span>
     <div class="adventure-text">
         {% if action %}
         <p>
             {{ action }}
         <p>
+            {% if gameEnd %}
+            <img style="width: 100px; height: 100px;" src="{{ asset('img/adventure/cake-svgrepo-com.svg') }}" alt="Cake">
+            {% else %}
+            <p class="animated">
+                What do you want to do next?
+            </p>
+            {% endif %}
         {% else %}
         <p>
             {{ description }}
@@ -27,13 +39,15 @@
         <p>
             {{ directions }}
         </p>
-        {% endif %}
         <p class="animated">
             What do you want to do next?
         </p>
+        {% endif %}
+
     </div>
     <footer class="adventure-gamebar">
         <p>{{ place }}</p>
+        {% if not gameEnd %}
         <form class="adventure-form" action="{{ path('proj_game_input') }}" method="POST">
             <select class="adventure-select" name="action" style="">
                 <option value="" disabled>Choose your next action</option>
@@ -41,9 +55,10 @@
                 <option value="{{key}}">{{key}}</option>
                 {% endfor %}
             </select>
-            <input class="adventure-input" type="text" name="input" placeholder="Example ">
+            <input class="adventure-input" type="text" name="input" placeholder="something">
             <input class="button" type="submit" value="ok">
         </form>
-        <a class="button" href="{{ path('proj_home') }}">&#10005;</a>
+        {% endif %}
+        <a class="adventure-button" href="{{ path('proj_home') }}">&#10005;</a>
     </footer>
 {% endblock %}

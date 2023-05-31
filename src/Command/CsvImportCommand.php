@@ -33,8 +33,7 @@ class CsvImportCommand extends Command
     protected function execute(
         InputInterface $input,
         OutputInterface $output
-    )
-    {
+    ) {
         $iObj = new SymfonyStyle($input, $output);
 
         $iObj->title('Attempting to import feed...');
@@ -45,18 +44,20 @@ class CsvImportCommand extends Command
         $rooms = $readerRoom->getRecords();
 
         foreach ($rooms as $header => $row) {
-            $room = (new AdventureRoom())
-            ->setName($row['name'])
-            ->setDescription($row['description'])
-            ->setImage($row['image'])
-            ->setNorth($row['north'])
-            ->setEast($row['east'])
-            ->setSouth($row['south'])
-            ->setWest($row['west'])
-            ->setInspect($row['inspect'])
-            ;
+            if (!empty($row)) {
+                $room = (new AdventureRoom())
+                ->setName($row['name'])
+                ->setDescription($row['description'])
+                ->setImage($row['image'])
+                ->setNorth($row['north'])
+                ->setEast($row['east'])
+                ->setSouth($row['south'])
+                ->setWest($row['west'])
+                ->setInspect($row['inspect'])
+                ;
 
-            $this->emi->persist($room);
+                $this->emi->persist($room);
+            }
         }
 
         $readerItems = Reader::createFromPath(path: '%kernel.root_dir%/../public/data/Items.csv');

@@ -4,8 +4,6 @@ namespace App\AdventureGame;
 
 use App\Entity\AdventureItems;
 use App\Entity\AdventureRoom;
-// use Doctrine\ORM\EntityManagerInterface;
-// use Doctrine\ORM\EntityRepository;
 
 class Game
 {
@@ -20,7 +18,7 @@ class Game
     protected $currentItems;
 
     /**
-     * @var array<int,string> $basket
+     * @var array<int,AdventureItems> $basket
      */
     protected $basket;
 
@@ -29,34 +27,18 @@ class Game
      */
     protected $visited;
 
-    // private $entityManager;
-    // private $repository;
-
     /**
      * The constructor.
+     * @param AdventureRoom $startLocation
+     * @param array<int,AdventureItems> $items
      * @return void
      */
-    public function __construct(AdventureRoom $startLocation, array $items)
-    // public function __construct(EntityManagerInterface $entityManager, EntityRepository $repository)
+    public function __construct($startLocation, $items)
     {
         $this->currentRoom = $startLocation;
         $this->currentItems = $items;
         $this->basket = [];
         $this->visited = [];
-
-        // initiate game by loading all the data from csv in database
-        // $this->entityManager = $entityManager;
-        // $this->repository = $repository;
-    }
-
-    /**
-     * This method ...
-     * @return void
-     */
-    public function initiate()
-    {
-        // get information about the new place and return?
-        // update $currentRoom and $visited
     }
 
     /**
@@ -70,13 +52,13 @@ class Game
 
     /**
      * This method returns all items in the room as an array of strings.
-     * @return array<int,string>
+     * @return array<int,string|null>
      */
     public function getCurrentRoomItems()
     {
         $items = [];
 
-        if (count($this->currentItems) > 0) {
+        if (!empty($this->currentItems)) {
             foreach ($this->currentItems as $item) {
                 array_push($items, $item->getName());
             }
@@ -87,15 +69,20 @@ class Game
 
     /**
      * This method updates the internal game values.
+     * @param AdventureRoom $newLocation
+     * @param array<int,AdventureItems> $items
      * @return void
      */
-    public function setRoomTo(AdventureRoom $newLocation, array $items)
+    public function setRoomTo($newLocation, $items)
     {
         $newLocationName = $newLocation->getName();
-        if ($newLocationName != $this->currentRoom->getName()) {
-            $this->currentRoom = $newLocation;
-            $this->currentItems = $items;
-        }
+        // if ($newLocationName != $this->currentRoom->getName()) {
+        //     $this->currentRoom = $newLocation;
+        //     $this->currentItems = $items;
+        // }
+
+        $this->currentRoom = $newLocation;
+        $this->currentItems = $items;
 
         if (!in_array($newLocationName, $this->visited)) {
             array_push($this->visited, $newLocationName);
@@ -118,31 +105,22 @@ class Game
     public function getDirectionsAsString()
     {
         $message = "From here you can go ";
-        $directions = [];
 
-        if ($this->currentRoom->getNorth() != "null") {
-            $directions[] = "north to the ".$this->currentRoom->getNorth();
+        $directions = $this->getDirections();
+        $strings = [];
+
+        foreach ($directions as $direction) {
+            $locationName = $this->getLocationOfDirection($direction);
+            array_push($strings, $direction." to the ".$locationName);
         }
 
-        if ($this->currentRoom->getEast() != "null") {
-            $directions[] = "east to the ".$this->currentRoom->getEast();
-        }
-
-        if ($this->currentRoom->getSouth() != "null") {
-            $directions[] = "south to the ".$this->currentRoom->getSouth();
-        }
-
-        if ($this->currentRoom->getWest() != "null") {
-            $directions[] = "west to the ".$this->currentRoom->getWest();
-        }
-
-        $message .= $directions[0];
+        $message .= $strings[0];
 
         // add other items to $message separated by a coma
-        if (count($directions) > 1) {
-            array_splice($directions, 0, 1);
+        if (count($strings) > 1) {
+            array_splice($strings, 0, 1);
             $message .= ", or ";
-            $message .= join(", or ", $directions);
+            $message .= join(", or ", $strings);
         }
 
         return $message.".";
@@ -181,11 +159,11 @@ class Game
      */
     public function checkValidDirection(string $input)
     {
-        $valid = False;
+        $valid = false;
         $directions = $this->getDirections();
 
         if (in_array($input, $directions)) {
-            $valid = True;
+            $valid = true;
         }
 
         return $valid;
@@ -193,7 +171,7 @@ class Game
 
     /**
      * This method returns the name of the place in the given direction.
-     * @return boolean
+     * @return string|null
      */
     public function getLocationOfDirection(string $input)
     {
@@ -226,20 +204,22 @@ class Game
 
     /**
      * This method returns all actions allowed.
-     * @return array<int, string>
+     * @return array<string, string>
      */
     public function getActions()
     {
+        // REFACTOR!
         $roomName = $this->currentRoom->getName();
         $actions = [
             "inspect" => $roomName." or object",
             "pick up" => "object",
             "put back" => "object",
         ];
-        
+
         $directions = $this->getDirections();
 
         $actions["go"] = join(" or ", $directions);
+        $actions["bake"] = "";
 
         return $actions;
     }
@@ -250,7 +230,7 @@ class Game
      */
     public function checkIngredients()
     {
-        $complete = true;
+        $complete = false;
         $ingredients = [
             "salt",
             "sugar",
@@ -264,22 +244,33 @@ class Game
             "butter"
         ];
 
+        $count = count($ingredients);
+
         foreach ($this->basket as $item) {
-            if (!in_array($item, $ingredients)) {
-                $complete = false;
+            if (in_array($item->getName(), $ingredients)) {
+                $count -= 1;
             }
+        }
+
+        if ($count == 0) {
+            $complete = true;
         }
 
         return $complete;
     }
 
     /**
-     * This method returns the text when player "inspects" the current room.
+     * This method returns the text when player "inspects" a room or an object.
      * @return string
      */
     public function inspect(string $object)
     {
         $result = "You cannot inspect '".$object."'. Try something else.";
+
+        if (empty($object)) {
+            $result = "You need to specify what you want to inspect. ";
+            $result .= "For example, 'inspect ".$this->currentRoom->getName()."'";
+        }
 
         if ($object == $this->currentRoom->getName()) {
             $result = "You look around... ";
@@ -297,6 +288,17 @@ class Game
             }
         }
 
+        $itemIsInBasket = $this->checkItemInBasket($object);
+
+        if ($itemIsInBasket) {
+            foreach ($this->basket as $item) {
+                if ($item->getName() == $object) {
+                    $result = "In your basket, you have ";
+                    $result .= $item->getDescription().".";
+                }
+            }
+        }
+
         return $result;
     }
 
@@ -304,16 +306,17 @@ class Game
      * This method adds the given item to the basket.
      * @return string
      */
-    public function pickUp(string $item)
+    public function pickUp(AdventureItems $item)
     {
         $message = "The basket is full.";
 
         if (count($this->basket) < 10) {
-            $message = "You have picked up the ".$item.".";
+            $itemName = $item->getName();
+            $message = "You already have picked up ".$itemName.".";
 
             if (!in_array($item, $this->basket)) {
                 array_push($this->basket, $item);
-                $message = "You already have picked up ".$item.".";
+                $message = "You have picked up the ".$itemName.".";
             }
         }
 
@@ -324,17 +327,18 @@ class Game
      * This method removes the given item from the basket.
      * @return string
      */
-    public function putDown(string $item)
+    public function putDown(AdventureItems $item)
     {
         $message = "The basket is empty.";
 
         if (count($this->basket) > 0) {
-            $message = "The ".$item." are not in the basket.";
+            $itemName = $item->getName();
+            $message = "The ".$itemName." are not in the basket.";
 
             if (in_array($item, $this->basket)) {
                 $key = array_search($item, $this->basket);
                 unset($this->basket[$key]);
-                $message = "You put down the ".$item.".";
+                $message = "You put down the ".$itemName.".";
             }
         }
 
@@ -343,10 +347,30 @@ class Game
 
     /**
      * This method return the basket as an array.
-     * @return array<int, string>
+     * @return array<int, object>
      */
     public function getBasket()
     {
         return $this->basket;
+    }
+
+    /**
+     * This method returns True if given item is in basket.
+     * @return boolean
+     */
+    public function checkItemInBasket(string $input)
+    {
+        $valid = false;
+
+        if (count($this->basket) > 0) {
+            foreach ($this->basket as $item) {
+                $itemName = $item->getName();
+                if ($itemName == $input) {
+                    $valid = true;
+                }
+            }
+        }
+
+        return $valid;
     }
 }

@@ -120,15 +120,23 @@ $sans-serif: 'Raleway', sans-serif;
 }
 
 .adventure-button {
-    margin-top: 1rem;
-    padding: 0.8rem;
-    display: block;
+    margin: 1rem 0;
+    padding: 0.8rem 0.9rem;
+    height: fit-content;
+    box-sizing: border-box;
+    display: inline-block;
     text-decoration: none;
     text-align: center;
     background-color: #93ddf5;
     color: #eb5e65;
     font-size: $base-font-size * 1.2;
     border-radius: 10px;
+}
+
+.adventure-start {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    display: block;
 }
 
 .adventure-full-width {
@@ -144,11 +152,12 @@ $sans-serif: 'Raleway', sans-serif;
 }
 
 .adventure-room {
-    background-color: rgb(29, 47, 111);
+    background-color: rgb(248, 141, 173);
     height: 300px;
     width: 100%;
     display: flex;
     flex-flow: row wrap;
+    opacity: 60%;
 }
 
 .adventure-img{
@@ -180,12 +189,23 @@ $sans-serif: 'Raleway', sans-serif;
     }
 }
 
+.adventure-basket-label {
+    display: block;
+    margin: 0;
+    padding: 0.2rem 0.6rem;
+    background-color: rgb(250, 199, 72);
+    font-size: $base-font-size * 1.2;
+    font-family: $handwriting;
+    text-align: right;
+}
+
 .adventure-text {
     margin: 1rem auto 300px;
     width: 80%;
     font-family: $sans-serif;
-    font-size: $base-font-size * 1.2;
+    font-size: $base-font-size * 1.3;
     text-align: center;
+    overflow: auto;
 }
 
 // .animated {
@@ -218,6 +238,9 @@ $sans-serif: 'Raleway', sans-serif;
     }
 }
 
+// media query for small screens
+// display: flex column center
+
 .adventure-input,
 .adventure-select {
     margin: 0;
@@ -242,7 +265,7 @@ $sans-serif: 'Raleway', sans-serif;
 }
 
 .adventure-input:focus {
-    outline: rgb(250, 199, 72)
+    outline: rgb(250, 199, 72);
 }
 
 // .input:valid {
