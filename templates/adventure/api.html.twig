@@ -5,13 +5,52 @@
 {% block main %}
     <h1>API</h1>
 
-    <p>
-        Test.
-    </p>
+    <p>On this page you can find all JSON routes for this project.</p>
 
-    {# <div class="img-profile">
-        <a href="{{ asset('img/sunflower.jpg') }}">
-            <img src="{{ asset('img/sunflower.jpg') }}" alt="Picture of a sunflower">
-        </a>
-    </div> #}
+    <div>
+        <h2>Current Room</h2>
+        <p>
+            This route takes you to a page that displays a JSON object containing information about
+            the name of the room, in which the player is situated in the current game, as well as the items that can be found in that room.
+        </p>
+        <a class="adventure-button" href="{{ path('proj_api_room') }}">api/room</a>
+    </div>
+
+    <div>
+        <h2>Directions</h2>
+        <p>
+            This route takes you to a page that displays a JSON object containing information about
+            the directions, in which the player can move from where they are standing.
+        </p>
+        <a class="adventure-button" href="{{ path('proj_api_directions') }}">api/directions</a>
+    </div>
+
+    <div>
+        <h2>Basket</h2>
+        <p>
+            This route takes you to a page that displays a JSON object with the items in the players basket in the current game.
+        </p>
+        <a class="adventure-button" href="{{ path('proj_api_basket') }}">api/basket</a>
+    </div>
+
+    <div>
+        <h2>Visited Rooms</h2>
+        <p>
+            This route takes you to a page that displays a JSON object with a list of all the rooms that were visited in the current game.
+        </p>
+        <a class="adventure-button" href="{{ path('proj_api_visited') }}">api/visited</a>
+    </div>
+
+        <div>
+        <h2>Inspect</h2>
+        <p>
+            This route takes you to a page that displays a JSON object with a description of the given room or item.
+        </p>
+        <form class="form-inline">
+        <input class="input-field" type="text" name="object" maxlength="50" placeholder="room or item">
+        <input class="adventure-button" type="submit" value="api/inspect"
+            onClick="this.form.action='{{ path('proj_api_inspect') }}';this.form.method='post';"
+        >
+        </form>
+    </div>
 {% endblock %}
