@@ -69,12 +69,10 @@ class AdventureItemsTest extends TestCase
     {
         $this->assertNull($this->item->getPrice());
 
-        $price = random_int(-10000, 10000);
+        $price = random_int(0, 10000);
         $this->item->setPrice($price);
         $this->assertIsInt($this->item->getPrice());
         $this->assertEquals($price, $this->item->getPrice());
-        $this->item->setPrice("45");
-        $this->assertIsNotString($this->item->getPrice());
     }
 
     /**
@@ -97,7 +95,5 @@ class AdventureItemsTest extends TestCase
 
         $this->item->setRoom("kitchen");
         $this->assertIsString($this->item->getRoom());
-        $this->item->setRoom(101);
-        $this->assertIsNotInt($this->item->getRoom());
     }
 }

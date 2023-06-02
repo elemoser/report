@@ -38,7 +38,9 @@ class Game
         $this->currentRoom = $startLocation;
         $this->currentItems = $items;
         $this->basket = [];
-        $this->visited = [];
+        if ($startLocation->getName()) {
+            $this->visited = [$startLocation->getName()];
+        }
     }
 
     /**
@@ -76,10 +78,6 @@ class Game
     public function setRoomTo($newLocation, $items)
     {
         $newLocationName = $newLocation->getName();
-        // if ($newLocationName != $this->currentRoom->getName()) {
-        //     $this->currentRoom = $newLocation;
-        //     $this->currentItems = $items;
-        // }
 
         $this->currentRoom = $newLocation;
         $this->currentItems = $items;
@@ -204,22 +202,17 @@ class Game
 
     /**
      * This method returns all actions allowed.
-     * @return array<string, string>
+     * @return array<int, string>
      */
     public function getActions()
     {
-        // REFACTOR!
-        $roomName = $this->currentRoom->getName();
         $actions = [
-            "inspect" => $roomName." or object",
-            "pick up" => "object",
-            "put back" => "object",
+            "inspect",
+            "pick up",
+            "put back",
+            "go",
+            "bake"
         ];
-
-        $directions = $this->getDirections();
-
-        $actions["go"] = join(" or ", $directions);
-        $actions["bake"] = "";
 
         return $actions;
     }

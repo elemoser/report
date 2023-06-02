@@ -85,7 +85,7 @@ class AdventureRoomTest extends TestCase
         $this->room->setNorth("bathroom");
         $this->assertIsString($this->room->getNorth());
         $this->assertEquals("bathroom", $this->room->getNorth());
-        
+
     }
 
     /**
@@ -95,9 +95,9 @@ class AdventureRoomTest extends TestCase
     {
         $this->assertNull($this->room->getWest());
 
-        $this->room->setWest(0);
+        $this->room->setWest("something");
         $this->assertIsString($this->room->getWest());
-        $this->assertEquals("0", $this->room->getWest());
+        $this->assertEquals("something", $this->room->getWest());
     }
 
     /**

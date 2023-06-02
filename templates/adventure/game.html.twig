@@ -51,8 +51,8 @@
         <form class="adventure-form" action="{{ path('proj_game_input') }}" method="POST">
             <select class="adventure-select" name="action" style="">
                 <option value="" disabled>Choose your next action</option>
-                {% for key, option in options %}
-                <option value="{{key}}">{{key}}</option>
+                {% for option in options %}
+                <option value="{{option}}">{{option}}</option>
                 {% endfor %}
             </select>
             <input class="adventure-input" type="text" name="input" placeholder="something">
