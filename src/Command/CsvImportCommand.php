@@ -44,20 +44,41 @@ class CsvImportCommand extends Command
         $rooms = $readerRoom->getRecords();
 
         foreach ($rooms as $header => $row) {
-            if (!empty($row)) {
-                $room = (new AdventureRoom())
-                ->setName($row['name'])
-                ->setDescription($row['description'])
-                ->setImage($row['image'])
-                ->setNorth($row['north'])
-                ->setEast($row['east'])
-                ->setSouth($row['south'])
-                ->setWest($row['west'])
-                ->setInspect($row['inspect'])
-                ;
+            $room = new AdventureRoom();
 
-                $this->emi->persist($room);
+            if ($row['name']) {
+                $room->setName($row['name']);
             }
+
+            if ($row['description']) {
+                $room->setDescription($row['description']);
+            }
+
+            if ($row['image']) {
+                $room->setImage($row['image']);
+            }
+
+            if ($row['north']) {
+                $room->setNorth($row['north']);
+            }
+
+            if ($row['east']) {
+                $room->setEast($row['east']);
+            }
+
+            if ($row['south']) {
+                $room->setSouth($row['south']);
+            }
+
+            if ($row['west']) {
+                $room->setWest($row['west']);
+            }
+
+            if ($row['inspect']) {
+                $room->setInspect($row['inspect']);
+            }
+
+            $this->emi->persist($room);
         }
 
         $readerItems = Reader::createFromPath(path: '%kernel.root_dir%/../public/data/Items.csv');
@@ -66,13 +87,27 @@ class CsvImportCommand extends Command
         $items = $readerItems->getRecords();
 
         foreach ($items as $header => $row) {
-            $item = (new AdventureItems())
-            ->setName($row['name'])
-            ->setDescription($row['description'])
-            ->setPrice($row['price'])
-            ->setImage($row['image'])
-            ->setRoom($row['room'])
-            ;
+            $item = new AdventureItems();
+
+            if ($row['name']) {
+                $item->setName($row['name']);
+            }
+
+            if ($row['description']) {
+                $item->setDescription($row['description']);
+            }
+
+            if ($row['price']) {
+                $item->setPrice(intval($row['price']));
+            }
+
+            if ($row['image']) {
+                $item->setImage($row['image']);
+            }
+
+            if ($row['room']) {
+                $item->setRoom($row['room']);
+            }
 
             $this->emi->persist($item);
         }
