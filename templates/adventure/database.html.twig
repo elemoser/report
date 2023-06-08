@@ -1,0 +1,93 @@
+{% extends "adventure/sidebar-view.html.twig" %}
+
+{# {% block title %}Adventure Game{% endblock %} #}
+
+{% block main %}
+    <h1>About the Database</h1>
+
+    <p>
+        For this course, I utilized SQLite to create a database.
+        As part of the final project, I introduced two tables: <i>adventure_room</i> and <i>adventure_items</i>.
+        These tables store comprehensive information about the rooms and items featured in the adventure game.
+        An ER diagram illustrating both tables is provided below.
+    </p>
+
+    <img src="{{ asset('img/adventure/er.svg') }}" alt="ER diagram" title="ER diagram for the table AdventureRoom and AdventureItems">
+
+    <p>
+        The <i>adventure_room</i> table includes fields for the room <i>name</i>, a brief <i>description</i>, and a representative <i>image</i>.
+        Additionally, it stores the adjacent rooms in the north, east, south, and west directions.
+        If a particular direction lacks a connecting room, the value "null" is assigned.
+        Lastly, the inspect column contains a more detailed description of each room.
+    </p>
+
+    <p>
+        Similarly, the adventure_items table stores the item name, a short description, and an associated image for each item in the adventure game.
+        Originally, I planned to incorporate a monetary system, which led me to include a column for the item's price.
+        The room column specifies the location where the item can be found.
+    </p>
+
+    <p>
+        While designing the tables, I intentionally avoided establishing relationships through foreign keys or other mechanisms.
+        My goal was to maintain simplicity within the tables to facilitate the creation, updating,
+        querying and deleting of records.
+        I opted to utilize Doctrine, an ORM framework, to define object-oriented classes that correspond to the database tables.
+        {# By doing so, Doctrine handles tasks such as record creation, updating, querying, and deletion within the database. #}
+    </p>
+
+    <h2>Advantages and drawbacks of ORM</h2>
+
+    <p>
+        As mentioned above, I decided to utilize Doctrine, an ORM framework,
+        instead of working with a data access abstraction layer like PHP PDO.
+        My reason for this was that Doctrine uses an object-oriented approach to managing database interactions,
+        which means that I can interact with the database using PHP objects instead of SQL.
+        This simplifies the code and makes it easier for me to use with other classes.
+    </p>
+    <p>
+        Another advantage of Doctrine over PHP PDO is that, like all ORM frameworks, it
+        automates many common database tasks, such as CRUD operations (create, read, update, delete),
+        data validation, and query generation.
+        This can significantly simplify and speed up development, because it reduces the amount of repetitive code required.
+    </p>
+    <p>
+        Futher advantages mentioned about ORM frameworks is that they provide a layer of abstraction
+        that allows developers to work with different database systems without having to change the application code significantly.
+        This makes the code easier to maintain and enables flexibility when it comes to choosing the database backend (SQLite, MariaDB, etc.).
+        Moreover ORM frameworks often include built-in mechanisms for data validation,
+        input sanitization, and protection against common security vulnerabilities like SQL injection.
+        These features help maintain data integrity and enhance application security.
+    </p>
+
+    <p>
+        Doctrine and other ORM frameworks have however also considerable drawbacks,
+        the most important one being that acquiring proficiency in using the chosen framework effectively requires dedicated time and effort.
+        Moreover, while ORM frameworks excel at handling simple CRUD operations, they can become complex when dealing with intricate queries, joins, or performance optimization scenarios.
+        Crafting efficient queries using ORM requires a good understanding of the framework's query generation capabilities.
+        This is why the learning curve is known to be steep.
+        After having worked with Doctrine for a few weeks within the framework of this course, I have become familiar with the basics,
+        however moving beyond is challenging and time-intensive.
+        This is why I tried from the start to keep my tables (described above) as simple as possible.
+    </p>
+
+    <p>
+        Further drawbacks mentioned about ORM frameworks is that they prioritize providing a generic interface for working with different databases,
+        which can result in limited exposure to advanced features or optimizations specific to a particular database.
+        Moreover the additional layer introduced by ORM frameworks between the application and the database can lead to bad performance.
+        The automatic query generation and mapping processes may not always produce the most optimized SQL queries, potentially impacting application performance.
+    </p>
+
+    <h2>Unit testing</h2>
+
+    <p>
+        In order to test the interactions between Doctrine and the tables in the database,
+        I created a series of unit tests for all Entities generated by Doctrine based on the structure of these tables.
+        These tests can be found in the folder <i>report/tests/Entity/</i>.
+        The only check that these tests perform is to verrify whether the setter and getter methods of each property return the expected output.
+        My test are limited in what they test, and in a real-world scenario one might create more tests to ensure a well functioning interaction between the application and the database.
+        Due to limitations in time and skills, I however judge my unittesting to be enough for the complexity and size of the application.
+    </p>
+    {# write more here about Scrutinizer results #}
+
+
+{% endblock %}
