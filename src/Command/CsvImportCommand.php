@@ -4,9 +4,7 @@ namespace App\Command;
 
 use App\Entity\AdventureItems;
 use App\Entity\AdventureRoom;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use League\Csv\Reader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -38,78 +36,82 @@ class CsvImportCommand extends Command
 
         $iObj->title('Attempting to import feed...');
 
-        $readerRoom = Reader::createFromPath(path: '%kernel.root_dir%/../public/data/Room.csv');
+        $roomCSV = '%kernel.root_dir%/../public/data/Room.csv';
+        if (($handle = fopen($roomCSV, 'r')) !== false) {
+            $header = fgetcsv($handle); // Read and discard the header row
 
-        $readerRoom->setHeaderOffset(0);
-        $rooms = $readerRoom->getRecords();
+            while (($row = fgetcsv($handle)) !== false) {
+                $room = new AdventureRoom();
 
-        foreach ($rooms as $header => $row) {
-            $room = new AdventureRoom();
+                if ($row[0]) {
+                    $room->setName($row[0]);
+                }
 
-            if ($row['name']) {
-                $room->setName($row['name']);
+                if ($row[1]) {
+                    $room->setDescription($row[1]);
+                }
+
+                if ($row[2]) {
+                    $room->setImage($row[2]);
+                }
+
+                if ($row[3]) {
+                    $room->setNorth($row[3]);
+                }
+
+                if ($row[4]) {
+                    $room->setEast($row[4]);
+                }
+
+                if ($row[5]) {
+                    $room->setSouth($row[5]);
+                }
+
+                if ($row[6]) {
+                    $room->setWest($row[6]);
+                }
+
+                if ($row[7]) {
+                    $room->setInspect($row[7]);
+                }
+
+                $this->emi->persist($room);
             }
 
-            if ($row['description']) {
-                $room->setDescription($row['description']);
-            }
-
-            if ($row['image']) {
-                $room->setImage($row['image']);
-            }
-
-            if ($row['north']) {
-                $room->setNorth($row['north']);
-            }
-
-            if ($row['east']) {
-                $room->setEast($row['east']);
-            }
-
-            if ($row['south']) {
-                $room->setSouth($row['south']);
-            }
-
-            if ($row['west']) {
-                $room->setWest($row['west']);
-            }
-
-            if ($row['inspect']) {
-                $room->setInspect($row['inspect']);
-            }
-
-            $this->emi->persist($room);
+            fclose($handle);
         }
 
-        $readerItems = Reader::createFromPath(path: '%kernel.root_dir%/../public/data/Items.csv');
+        $itemsCSV = '%kernel.root_dir%/../public/data/Items.csv';
+        if (($handle = fopen($itemsCSV, 'r')) !== false) {
+            $header = fgetcsv($handle); // Read and discard the header row
 
-        $readerItems->setHeaderOffset(0);
-        $items = $readerItems->getRecords();
+            while (($row = fgetcsv($handle)) !== false) {
+                $room = new AdventureItems();
 
-        foreach ($items as $header => $row) {
-            $item = new AdventureItems();
+                if ($row[0]) {
+                    $room->setName($row[0]);
+                }
 
-            if ($row['name']) {
-                $item->setName($row['name']);
+                if ($row[1]) {
+                    $room->setDescription($row[1]);
+                }
+
+                if (intval($row[2]) >= 0) {
+                    $room->setPrice($row[2]);
+                }
+
+                if ($row[3]) {
+                    $room->setImage($row[3]);
+                }
+
+                if ($row[4]) {
+                    $room->setRoom($row[4]);
+                }
+
+                $this->emi->persist($room);
             }
 
-            if ($row['description']) {
-                $item->setDescription($row['description']);
-            }
-
-            if ($row['price']) {
-                $item->setPrice(intval($row['price']));
-            }
-
-            if ($row['image']) {
-                $item->setImage($row['image']);
-            }
-
-            if ($row['room']) {
-                $item->setRoom($row['room']);
-            }
-
-            $this->emi->persist($item);
+            fclose($handle);
         }
 
         $this->emi->flush();
