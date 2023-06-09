@@ -1,5 +1,87 @@
 var classes = [
     {
+        "name": "App\\Repository\\AdventureItemsRepository",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "__construct",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "save",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "remove",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 3,
+        "nbMethods": 3,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 3,
+        "nbMethodsGetter": 0,
+        "nbMethodsSetters": 0,
+        "wmc": 5,
+        "ccn": 3,
+        "ccnMethodMax": 2,
+        "externals": [
+            "Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
+            "Doctrine\\Persistence\\ManagerRegistry",
+            "App\\Entity\\AdventureItems",
+            "App\\Entity\\AdventureItems"
+        ],
+        "parents": [
+            "Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository"
+        ],
+        "implements": [],
+        "lcom": 2,
+        "length": 16,
+        "vocabulary": 5,
+        "volume": 37.15,
+        "difficulty": 1.75,
+        "effort": 65.01,
+        "level": 0.57,
+        "bugs": 0.01,
+        "time": 4,
+        "intelligentContent": 21.23,
+        "number_operators": 2,
+        "number_operands": 14,
+        "number_operators_unique": 1,
+        "number_operands_unique": 4,
+        "cloc": 32,
+        "loc": 53,
+        "lloc": 22,
+        "mi": 105.99,
+        "mIwoC": 59.32,
+        "commentWeight": 46.67,
+        "kanDefect": 0.29,
+        "relativeStructuralComplexity": 25,
+        "relativeDataComplexity": 0.28,
+        "relativeSystemComplexity": 25.28,
+        "totalStructuralComplexity": 75,
+        "totalDataComplexity": 0.83,
+        "totalSystemComplexity": 75.83,
+        "package": "App\\Repository\\",
+        "pageRank": 0.01,
+        "afferentCoupling": 1,
+        "efferentCoupling": 3,
+        "instability": 0.75,
+        "numberOfUnitTests": 0,
+        "violations": {}
+    },
+    {
         "name": "App\\Repository\\ProductRepository",
         "interface": false,
         "abstract": false,
@@ -82,6 +164,88 @@ var classes = [
         "violations": {}
     },
     {
+        "name": "App\\Repository\\AdventureRoomRepository",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "__construct",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "save",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "remove",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 3,
+        "nbMethods": 3,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 3,
+        "nbMethodsGetter": 0,
+        "nbMethodsSetters": 0,
+        "wmc": 5,
+        "ccn": 3,
+        "ccnMethodMax": 2,
+        "externals": [
+            "Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
+            "Doctrine\\Persistence\\ManagerRegistry",
+            "App\\Entity\\AdventureRoom",
+            "App\\Entity\\AdventureRoom"
+        ],
+        "parents": [
+            "Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository"
+        ],
+        "implements": [],
+        "lcom": 2,
+        "length": 16,
+        "vocabulary": 5,
+        "volume": 37.15,
+        "difficulty": 1.75,
+        "effort": 65.01,
+        "level": 0.57,
+        "bugs": 0.01,
+        "time": 4,
+        "intelligentContent": 21.23,
+        "number_operators": 2,
+        "number_operands": 14,
+        "number_operators_unique": 1,
+        "number_operands_unique": 4,
+        "cloc": 32,
+        "loc": 53,
+        "lloc": 22,
+        "mi": 105.99,
+        "mIwoC": 59.32,
+        "commentWeight": 46.67,
+        "kanDefect": 0.29,
+        "relativeStructuralComplexity": 25,
+        "relativeDataComplexity": 0.28,
+        "relativeSystemComplexity": 25.28,
+        "totalStructuralComplexity": 75,
+        "totalDataComplexity": 0.83,
+        "totalSystemComplexity": 75.83,
+        "package": "App\\Repository\\",
+        "pageRank": 0.01,
+        "afferentCoupling": 1,
+        "efferentCoupling": 3,
+        "instability": 0.75,
+        "numberOfUnitTests": 0,
+        "violations": {}
+    },
+    {
         "name": "App\\Repository\\BookRepository",
         "interface": false,
         "abstract": false,
@@ -156,7 +320,7 @@ var classes = [
         "totalDataComplexity": 0.83,
         "totalSystemComplexity": 75.83,
         "package": "App\\Repository\\",
-        "pageRank": 0.04,
+        "pageRank": 0.03,
         "afferentCoupling": 3,
         "efferentCoupling": 3,
         "instability": 0.5,
@@ -250,7 +414,7 @@ var classes = [
         "totalDataComplexity": 16.5,
         "totalSystemComplexity": 22.5,
         "package": "App\\Card\\",
-        "pageRank": 0.38,
+        "pageRank": 0.34,
         "afferentCoupling": 5,
         "efferentCoupling": 0,
         "instability": 0,
@@ -394,7 +558,7 @@ var classes = [
         "totalDataComplexity": 0.67,
         "totalSystemComplexity": 8.67,
         "package": "App\\Card\\",
-        "pageRank": 0.03,
+        "pageRank": 0.02,
         "afferentCoupling": 4,
         "efferentCoupling": 1,
         "instability": 0.2,
@@ -514,7 +678,7 @@ var classes = [
         "totalDataComplexity": 12,
         "totalSystemComplexity": 93,
         "package": "App\\Card\\",
-        "pageRank": 0.14,
+        "pageRank": 0.12,
         "afferentCoupling": 4,
         "efferentCoupling": 1,
         "instability": 0.2,
@@ -613,11 +777,150 @@ var classes = [
         "totalDataComplexity": 85,
         "totalSystemComplexity": 85,
         "package": "App\\Entity\\",
-        "pageRank": 0.06,
+        "pageRank": 0.05,
         "afferentCoupling": 3,
         "efferentCoupling": 0,
         "instability": 0,
         "numberOfUnitTests": 1,
+        "violations": {}
+    },
+    {
+        "name": "App\\Entity\\AdventureRoom",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "getId",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getName",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setName",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getDescription",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setDescription",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getImage",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setImage",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getNorth",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setNorth",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getEast",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setEast",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getSouth",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setSouth",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getWest",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setWest",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getInspect",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setInspect",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 17,
+        "nbMethods": 0,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 0,
+        "nbMethodsGetter": 9,
+        "nbMethodsSetters": 8,
+        "wmc": 0,
+        "ccn": 1,
+        "ccnMethodMax": 0,
+        "externals": [],
+        "parents": [],
+        "implements": [],
+        "lcom": 0,
+        "length": 73,
+        "vocabulary": 13,
+        "volume": 270.13,
+        "difficulty": 4.36,
+        "effort": 1178.76,
+        "level": 0.23,
+        "bugs": 0.09,
+        "time": 65,
+        "intelligentContent": 61.91,
+        "number_operators": 25,
+        "number_operands": 48,
+        "number_operators_unique": 2,
+        "number_operands_unique": 11,
+        "cloc": 12,
+        "loc": 101,
+        "lloc": 89,
+        "mi": 65.76,
+        "mIwoC": 40.32,
+        "commentWeight": 25.45,
+        "kanDefect": 0.15,
+        "relativeStructuralComplexity": 0,
+        "relativeDataComplexity": 17.47,
+        "relativeSystemComplexity": 17.47,
+        "totalStructuralComplexity": 0,
+        "totalDataComplexity": 297,
+        "totalSystemComplexity": 297,
+        "package": "App\\Entity\\",
+        "pageRank": 0.03,
+        "afferentCoupling": 2,
+        "efferentCoupling": 0,
+        "instability": 0,
+        "numberOfUnitTests": 6,
         "violations": {}
     },
     {
@@ -692,10 +995,282 @@ var classes = [
         "totalDataComplexity": 27,
         "totalSystemComplexity": 27,
         "package": "App\\Entity\\",
-        "pageRank": 0.04,
+        "pageRank": 0.03,
         "afferentCoupling": 2,
         "efferentCoupling": 0,
         "instability": 0,
+        "numberOfUnitTests": 1,
+        "violations": {}
+    },
+    {
+        "name": "App\\Entity\\AdventureItems",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "getId",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getName",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setName",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getDescription",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setDescription",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getPrice",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setPrice",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getImage",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setImage",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getRoom",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setRoom",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 11,
+        "nbMethods": 0,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 0,
+        "nbMethodsGetter": 6,
+        "nbMethodsSetters": 5,
+        "wmc": 0,
+        "ccn": 1,
+        "ccnMethodMax": 0,
+        "externals": [],
+        "parents": [],
+        "implements": [],
+        "lcom": 0,
+        "length": 45,
+        "vocabulary": 10,
+        "volume": 149.49,
+        "difficulty": 3.63,
+        "effort": 541.89,
+        "level": 0.28,
+        "bugs": 0.05,
+        "time": 30,
+        "intelligentContent": 41.24,
+        "number_operators": 16,
+        "number_operands": 29,
+        "number_operators_unique": 2,
+        "number_operands_unique": 8,
+        "cloc": 9,
+        "loc": 68,
+        "lloc": 59,
+        "mi": 72.72,
+        "mIwoC": 46.01,
+        "commentWeight": 26.71,
+        "kanDefect": 0.15,
+        "relativeStructuralComplexity": 0,
+        "relativeDataComplexity": 11.45,
+        "relativeSystemComplexity": 11.45,
+        "totalStructuralComplexity": 0,
+        "totalDataComplexity": 126,
+        "totalSystemComplexity": 126,
+        "package": "App\\Entity\\",
+        "pageRank": 0.05,
+        "afferentCoupling": 3,
+        "efferentCoupling": 0,
+        "instability": 0,
+        "numberOfUnitTests": 10,
+        "violations": {}
+    },
+    {
+        "name": "App\\AdventureGame\\Game",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "__construct",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getCurrentRoom",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getCurrentRoomItems",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setRoomTo",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getVisitedRooms",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getDirectionsAsString",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getDirections",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "checkValidDirection",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getLocationOfDirection",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getActions",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "checkIngredients",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "inspect",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "pickUp",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "putDown",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getBasket",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "checkItemInBasket",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 16,
+        "nbMethods": 13,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 13,
+        "nbMethodsGetter": 3,
+        "nbMethodsSetters": 0,
+        "wmc": 47,
+        "ccn": 35,
+        "ccnMethodMax": 9,
+        "externals": [
+            "App\\Entity\\AdventureItems",
+            "App\\Entity\\AdventureItems"
+        ],
+        "parents": [],
+        "implements": [],
+        "lcom": 2,
+        "length": 379,
+        "vocabulary": 76,
+        "volume": 2367.96,
+        "difficulty": 18.48,
+        "effort": 43771.47,
+        "level": 0.05,
+        "bugs": 0.79,
+        "time": 2432,
+        "intelligentContent": 128.1,
+        "number_operators": 135,
+        "number_operands": 244,
+        "number_operators_unique": 10,
+        "number_operands_unique": 66,
+        "cloc": 81,
+        "loc": 284,
+        "lloc": 203,
+        "mi": 58.14,
+        "mIwoC": 21.33,
+        "commentWeight": 36.81,
+        "kanDefect": 3.49,
+        "relativeStructuralComplexity": 144,
+        "relativeDataComplexity": 1.13,
+        "relativeSystemComplexity": 145.13,
+        "totalStructuralComplexity": 2304,
+        "totalDataComplexity": 18,
+        "totalSystemComplexity": 2322,
+        "package": "App\\AdventureGame\\",
+        "pageRank": 0.01,
+        "afferentCoupling": 1,
+        "efferentCoupling": 1,
+        "instability": 0.5,
         "numberOfUnitTests": 1,
         "violations": {}
     },
@@ -1236,10 +1811,288 @@ var classes = [
         "totalDataComplexity": 2.5,
         "totalSystemComplexity": 2168.5,
         "package": "App\\Controller\\",
-        "pageRank": 0.02,
+        "pageRank": 0.01,
         "afferentCoupling": 1,
         "efferentCoupling": 6,
         "instability": 0.86,
+        "numberOfUnitTests": 0,
+        "violations": {}
+    },
+    {
+        "name": "App\\Controller\\AdventureGameApiController",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "projectApi",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectApiCurrentRoom",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectApiDirections",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectApiBasket",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectApiVisited",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectApiInspect",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 6,
+        "nbMethods": 6,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 6,
+        "nbMethodsGetter": 0,
+        "nbMethodsSetters": 0,
+        "wmc": 12,
+        "ccn": 7,
+        "ccnMethodMax": 3,
+        "externals": [
+            "App\\Controller\\AdventureGameController",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\JsonResponse",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\JsonResponse",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\JsonResponse",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\JsonResponse",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Request",
+            "Symfony\\Component\\HttpFoundation\\JsonResponse"
+        ],
+        "parents": [
+            "App\\Controller\\AdventureGameController"
+        ],
+        "implements": [],
+        "lcom": 6,
+        "length": 172,
+        "vocabulary": 36,
+        "volume": 889.23,
+        "difficulty": 8.13,
+        "effort": 7224.97,
+        "level": 0.12,
+        "bugs": 0.3,
+        "time": 401,
+        "intelligentContent": 109.44,
+        "number_operators": 42,
+        "number_operands": 130,
+        "number_operators_unique": 4,
+        "number_operands_unique": 32,
+        "cloc": 6,
+        "loc": 86,
+        "lloc": 80,
+        "mi": 56.79,
+        "mIwoC": 36.9,
+        "commentWeight": 19.89,
+        "kanDefect": 0.73,
+        "relativeStructuralComplexity": 121,
+        "relativeDataComplexity": 0.58,
+        "relativeSystemComplexity": 121.58,
+        "totalStructuralComplexity": 726,
+        "totalDataComplexity": 3.5,
+        "totalSystemComplexity": 729.5,
+        "package": "App\\Controller\\",
+        "pageRank": 0.01,
+        "afferentCoupling": 0,
+        "efferentCoupling": 5,
+        "instability": 1,
+        "numberOfUnitTests": 0,
+        "violations": {}
+    },
+    {
+        "name": "App\\Controller\\AdventureGameController",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "projectHome",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectInitGame",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectPlay",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectGameInput",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectGameBake",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectGameGo",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectGamePickup",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectGamPutDown",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectAbout",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectAboutDb",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "projectCheat",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 11,
+        "nbMethods": 11,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 11,
+        "nbMethodsGetter": 0,
+        "nbMethodsSetters": 0,
+        "wmc": 37,
+        "ccn": 27,
+        "ccnMethodMax": 7,
+        "externals": [
+            "Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "App\\Repository\\AdventureRoomRepository",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "App\\AdventureGame\\Game",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Request",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "App\\Repository\\AdventureRoomRepository",
+            "App\\Repository\\AdventureItemsRepository",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "App\\Repository\\AdventureItemsRepository",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "App\\Repository\\AdventureItemsRepository",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Response"
+        ],
+        "parents": [
+            "Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController"
+        ],
+        "implements": [],
+        "lcom": 1,
+        "length": 451,
+        "vocabulary": 95,
+        "volume": 2963,
+        "difficulty": 13.68,
+        "effort": 40539.29,
+        "level": 0.07,
+        "bugs": 0.99,
+        "time": 2252,
+        "intelligentContent": 216.57,
+        "number_operators": 107,
+        "number_operands": 344,
+        "number_operators_unique": 7,
+        "number_operands_unique": 88,
+        "cloc": 13,
+        "loc": 192,
+        "lloc": 179,
+        "mi": 42.53,
+        "mIwoC": 22.92,
+        "commentWeight": 19.61,
+        "kanDefect": 2.06,
+        "relativeStructuralComplexity": 441,
+        "relativeDataComplexity": 1.07,
+        "relativeSystemComplexity": 442.07,
+        "totalStructuralComplexity": 4851,
+        "totalDataComplexity": 11.77,
+        "totalSystemComplexity": 4862.77,
+        "package": "App\\Controller\\",
+        "pageRank": 0.01,
+        "afferentCoupling": 1,
+        "efferentCoupling": 7,
+        "instability": 0.88,
         "numberOfUnitTests": 0,
         "violations": {}
     },
@@ -1717,6 +2570,91 @@ var classes = [
         "violations": {}
     },
     {
+        "name": "App\\Command\\CsvImportCommand",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "__construct",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "configure",
+                "role": null,
+                "public": false,
+                "private": true,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "execute",
+                "role": null,
+                "public": false,
+                "private": true,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 3,
+        "nbMethods": 3,
+        "nbMethodsPrivate": 2,
+        "nbMethodsPublic": 1,
+        "nbMethodsGetter": 0,
+        "nbMethodsSetters": 0,
+        "wmc": 20,
+        "ccn": 18,
+        "ccnMethodMax": 18,
+        "externals": [
+            "Symfony\\Component\\Console\\Command\\Command",
+            "Doctrine\\ORM\\EntityManagerInterface",
+            "Symfony\\Component\\Console\\Input\\InputInterface",
+            "Symfony\\Component\\Console\\Output\\OutputInterface",
+            "Symfony\\Component\\Console\\Style\\SymfonyStyle",
+            "App\\Entity\\AdventureRoom",
+            "App\\Entity\\AdventureItems"
+        ],
+        "parents": [
+            "Symfony\\Component\\Console\\Command\\Command"
+        ],
+        "implements": [],
+        "lcom": 2,
+        "length": 143,
+        "vocabulary": 32,
+        "volume": 715,
+        "difficulty": 12.46,
+        "effort": 8910,
+        "level": 0.08,
+        "bugs": 0.24,
+        "time": 495,
+        "intelligentContent": 57.38,
+        "number_operators": 35,
+        "number_operands": 108,
+        "number_operators_unique": 6,
+        "number_operands_unique": 26,
+        "cloc": 2,
+        "loc": 81,
+        "lloc": 79,
+        "mi": 48.25,
+        "mIwoC": 36.2,
+        "commentWeight": 12.05,
+        "kanDefect": 1.66,
+        "relativeStructuralComplexity": 225,
+        "relativeDataComplexity": 0.13,
+        "relativeSystemComplexity": 225.13,
+        "totalStructuralComplexity": 675,
+        "totalDataComplexity": 0.38,
+        "totalSystemComplexity": 675.38,
+        "package": "App\\Command\\",
+        "pageRank": 0.01,
+        "afferentCoupling": 0,
+        "efferentCoupling": 7,
+        "instability": 1,
+        "numberOfUnitTests": 0,
+        "violations": {}
+    },
+    {
         "name": "App\\Game21\\Bank",
         "interface": false,
         "abstract": false,
@@ -1774,7 +2712,7 @@ var classes = [
         "totalDataComplexity": 0,
         "totalSystemComplexity": 1,
         "package": "App\\Game21\\",
-        "pageRank": 0.02,
+        "pageRank": 0.01,
         "afferentCoupling": 1,
         "efferentCoupling": 1,
         "instability": 0.5,
@@ -1908,7 +2846,7 @@ var classes = [
         "totalDataComplexity": 7.83,
         "totalSystemComplexity": 1338.83,
         "package": "App\\Game21\\",
-        "pageRank": 0.02,
+        "pageRank": 0.01,
         "afferentCoupling": 1,
         "efferentCoupling": 2,
         "instability": 0.67,
@@ -2007,7 +2945,7 @@ var classes = [
         "totalDataComplexity": 4.33,
         "totalSystemComplexity": 154.33,
         "package": "App\\Game21\\",
-        "pageRank": 0.07,
+        "pageRank": 0.06,
         "afferentCoupling": 3,
         "efferentCoupling": 2,
         "instability": 0.4,
