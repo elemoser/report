@@ -2,7 +2,7 @@
 
 This project is created within the framework of the course *Objektorienterade webbteknologier* (a.k.a [mvc](https://dbwebb.se/kurser/mvc-v2)) at Blekinge Tekniska Högskolan.
 
-Below are the badges from the Scrutinizer analysis results:
+Below are the badges from the (latest) Scrutinizer analysis results:
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/elemoser/report/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/elemoser/report/?branch=main) [![Code Coverage](https://scrutinizer-ci.com/g/elemoser/report/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/elemoser/report/?branch=main) [![Build Status](https://scrutinizer-ci.com/g/elemoser/report/badges/build.png?b=main)](https://scrutinizer-ci.com/g/elemoser/report/build-status/main) [![Code Intelligence Status](https://scrutinizer-ci.com/g/elemoser/report/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
 
 ## Application
@@ -27,6 +27,19 @@ php bin/console cache:clear
 # Show available commands
 php bin/console
 
+```
+
+### Database
+
+I chose SQLite for my database backend and the ORM framework Doctrine for managing database interactions.
+I followed this guide to set up Doctrine and integrate it with the database **var/data.db**.
+As part of the set up, I created an Entity class for each table in the database, which can be viewed in the folder **src/Entity/**. In the folder **src/Repository/**, you can also find a Repository for each Entity class, which is created automatically by Doctrine.
+
+For my project (kmom10), I further created a PHP script that handles the transfer of all the data from a CSV file into the database. I followed this tutorial to set up the script. The code for the script can be viewed at **src/Command/CsvImportCommand.php**. The script can be run with the following command. Make sure to delete all rows in the tables adventure_room and adventure_items before running the command.
+
+```
+# to run php script (src/Command/CsvImportCommand.php)
+php bin/console csv:import
 ```
 
 ## PHP Linter and Mess Detection
