@@ -149,7 +149,6 @@ class AdventureGameController extends AbstractController
         assert($game instanceof Game);
         $currentRoom = $game->getCurrentRoom();
         assert($currentRoom instanceof AdventureRoom);
-        $result = "";
 
         $completeRecipe = $game->checkIngredients();
         $result = "You cannot bake anything with the ingredients you have in your basket.";
@@ -214,7 +213,6 @@ class AdventureGameController extends AbstractController
 
         $game = $session->get("adventure");
         assert($game instanceof Game);
-        $result = "";
 
         $items = $game->getCurrentRoomItems();
         $result = "You look around, but there is no ".$input." to pick up in this place. ";
@@ -244,7 +242,6 @@ class AdventureGameController extends AbstractController
 
         $game = $session->get("adventure");
         assert($game instanceof Game);
-        $result = "";
 
         $itemIsInBasket = $game->checkItemInBasket($input);
         $result = "You reach into your basket to put back the ".$input;
@@ -266,6 +263,12 @@ class AdventureGameController extends AbstractController
     public function projectAbout(): Response
     {
         return $this->render('adventure/about.html.twig');
+    }
+
+    #[Route('/proj/about/database', name: 'proj_about_db')]
+    public function projectAboutDb(): Response
+    {
+        return $this->render('adventure/database.html.twig');
     }
 
     #[Route('/proj/recipe', name: 'proj_cheat')]
