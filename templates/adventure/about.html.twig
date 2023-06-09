@@ -6,9 +6,27 @@
     <h1>About</h1>
 
     <p>
-        This application was created within the framework of the course <i>Objektorienterade webbteknologier</i>
+        This web application was created within the framework of the course <i>Objektorienterade webbteknologier</i>
         (a.k.a <a class="adventure-link" href="https://dbwebb.se/kurser/mvc-v2">mvc</a>) at Blekinge Tekniska Högskolan.
-        The game <i>Jordgubbstårta</i> was developed for the final course project (kmom10).
+        For the final project (kmom10) of the course, I developed the adventure game <i>Jordgubbstårta</i>,
+        following the requirements provided <a class="adventure-link" href="https://dbwebb.se/kurser/mvc-v2/kmom10">here</a>.
+    </p>
+
+    <h2>Game</h2>
+    <p>
+        The game <i>Jordgubbstårta</i> contains four rooms (i.e. kitchen, pantry, garden, farm) through which the player can navigate
+        by going "north", "east", "south" or "west".
+        Instead of the typical backpack found in classical adventure games, the player in <i>Jordgubbstårta</i> collects items in a basket.
+        The basket can hold a total of ten items.
+        The goal of the game is to <em>go</em> to each room, <em>investigate</em> it and <em>pick up</em> all ten ingredients needed for a strawberry cake.
+        Once all the ingredients are collected, the player needs to go back to the kitchen in order to <em>bake</em> the cake and finish the game.
+        A cheatsheet to the game is given <a class="adventure-link" href="{{ path('proj_cheat') }}" target="_blank">here</a>.
+    </p>
+
+    <h2>Database</h2>
+    <p>
+        For this final project, I created two database tables that hold the information about the rooms and items.
+        All the details about the database can be viewed <a class="adventure-link" href="{{ path('proj_about_db') }}">here</a>.
     </p>
 
     {# <div class="img-profile">
