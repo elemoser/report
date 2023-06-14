@@ -28,7 +28,7 @@ class Game
     protected $visited;
 
     /**
-     * The constructor.
+     * The constructor takes two arguments, i.e. an AdventureRoom object and an array containing AdventureItems objects.
      * @param AdventureRoom $startLocation
      * @param array<int,AdventureItems> $items
      * @return void
@@ -70,7 +70,7 @@ class Game
     }
 
     /**
-     * This method updates the internal game values.
+     * This method updates class properties with given arguments.
      * @param AdventureRoom $newLocation
      * @param array<int,AdventureItems> $items
      * @return void
@@ -97,7 +97,7 @@ class Game
     }
 
     /**
-     * This method returns an array containing all the possible direction from location.
+     * This method returns a string containing all the possible direction from location.
      * @return string
      */
     public function getDirectionsAsString()
@@ -168,7 +168,7 @@ class Game
     }
 
     /**
-     * This method returns the name of the place in the given direction.
+     * This method returns the name of the place/room in the given direction.
      * @return string|null
      */
     public function getLocationOfDirection(string $input)
@@ -218,7 +218,7 @@ class Game
     }
 
     /**
-     * This method checks if the basket contains the ingredients for the cake.
+     * This method returns True if the basket contains all the ingredients for the cake.
      * @return boolean
      */
     public function checkIngredients()
@@ -339,7 +339,7 @@ class Game
     }
 
     /**
-     * This method return the basket as an array.
+     * This method returns the content of the basket as an array.
      * @return array<int, object>
      */
     public function getBasket()
@@ -348,7 +348,7 @@ class Game
     }
 
     /**
-     * This method returns True if given item is in basket.
+     * This method returns True if the given item is in the basket.
      * @return boolean
      */
     public function checkItemInBasket(string $input)
