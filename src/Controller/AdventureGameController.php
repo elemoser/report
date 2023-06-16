@@ -190,7 +190,7 @@ class AdventureGameController extends AbstractController
         if ($locationAtDirection) {
             $newPlace = $roomRepository->findOneBy(['name' => $locationAtDirection]);
             $items = $itemsRepository->findBy(['room' => $locationAtDirection]);
-            if ($newPlace and $items) {
+            if ($newPlace and is_array($items)) {
                 $game->setRoomTo($newPlace, $items);
             }
         }
