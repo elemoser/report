@@ -111,6 +111,10 @@ class AdventureGameController extends AbstractController
             $result = $game->inspect($cleanedInput);
         }
 
+        if (empty($cleanedInput)) {
+            $cleanedInput = "none";
+        }
+
         if ($action == "pick up") {
             return $this->redirectToRoute('proj_game_pickup', ['input' => $cleanedInput]);
         }
@@ -163,6 +167,9 @@ class AdventureGameController extends AbstractController
                 $result = "Your jordgubbstårta is done. Great job! Just in time... ";
                 $session->set("cake", "done");
             }
+        }
+        if ($input == "none") {
+            $result = "You need to specify what you want to bake (for example 'cake').";
         }
 
         $session->set("adventure", $game);
@@ -223,6 +230,10 @@ class AdventureGameController extends AbstractController
                 $result = $game->pickUp($itemToPickUp);
             }
         }
+        if($input == "none") {
+            $result = "You need to specify what you want to pick up.";
+            $result .= " Inspect the room first if you are not sure what you can pick up here.";
+        }
 
         $session->set("adventure", $game);
         $session->set("action", $result);
@@ -251,6 +262,11 @@ class AdventureGameController extends AbstractController
             if ($itemToPutDown) {
                 $result = $game->putDown($itemToPutDown);
             }
+        }
+
+        if($input == "none") {
+            $result = "You need to specify what you want to put down.";
+            $result .= " All items you have picked up are in your basket.";
         }
 
         $session->set("adventure", $game);
