@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\AdventureGame\Game;
 use App\Entity\AdventureRoom;
 use App\Entity\AdventureItems;
+use App\Repository\AdventureItemsRepository;
+use App\Repository\AdventureRoomRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -118,20 +120,36 @@ class AdventureGameApiController extends AdventureGameController
 
     #[Route('/proj/api/inspect', name: 'proj_api_inspect')]
     public function projectApiInspect(
-        SessionInterface $session,
+        AdventureRoomRepository $roomRepository,
+        AdventureItemsRepository $itemsRepository,
         Request $request
     ): Response {
         $data = [
-            "inspectedObject" => ""
+            "inspectedObject" => "",
+            "description" => ""
         ];
 
         $input = (string) $request->request->get('object');
         $cleanedInput = strtolower(trim($input));
 
-        if ($session->get("adventure")) {
-            $game = $session->get("adventure");
-            assert($game instanceof Game);
-            $data["inspectedObject"] = $game->inspect($cleanedInput);
+        if (empty($cleanedInput)) {
+            $cleanedInput = "kitchen";
+        }
+
+        $data["inspectedObject"] = $cleanedInput;
+
+        $object = $roomRepository->findOneBy(['name' => $cleanedInput]);
+
+        if ($object) {
+            assert($object instanceof AdventureRoom);
+            $data["description"] = $object->getInspect();
+        }
+
+        $object = $itemsRepository->findOneBy(['name' => $cleanedInput]);
+
+        if ($object) {
+            assert($object instanceof AdventureItems);
+            $data["description"] = $object->getDescription();
         }
 
         $response = new JsonResponse($data);
