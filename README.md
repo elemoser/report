@@ -69,8 +69,33 @@ As part of the database set up, I created an Entity class for each table in the 
 For the final project (kmom10) of this course, I further created a PHP script to facilitate the transfer of data from a CSV file into the database. I followed [this tutorial](https://www.youtube.com/watch?v=TJxeIhQbn1Y&t=231s) to set up this script. The code for the script can be viewed at *src/Command/CsvImportCommand.php*. The script can be run with the following command, however ensure that all rows in the tables adventure_room and adventure_items are deleted before running the command.
 
 ```
+# Step by step guide 
+# for transfering (updated) csv data into the database
+
+# download updated csv files
+cd public/data
+bash download-csv.bash
+
+# go back to root of repository
+cd ../..
+
+# ensure tables in db are empty
+sqlite3 var/data.db
+delete from adventure_room;
+select * from adventure_room;
+delete from adventure_items;
+select * from adventure_items;
+.exit
+
 # to run php script (src/Command/CsvImportCommand.php)
+# transfer data from updated csv to database via Doctrine
 php bin/console csv:import
+
+# check that tables in db contain the new data
+sqlite3 var/data.db
+select name from adventure_room;
+select name from adventure_items;
+.exit
 ```
 
 ## PHP Linter and Mess Detection
