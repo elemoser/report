@@ -16,7 +16,7 @@
         <li><a class="button lila-button" href="#kmom04">Kmom04</a></li>
         <li><a class="button lila-button" href="#kmom05">Kmom05</a></li>
         <li><a class="button lila-button" href="#kmom06">Kmom06</a></li>
-        <li><a class="button" href="#kmom10">Kmom07/10</a></li>
+        <li><a class="button lila-button" href="#kmom10">Kmom07/10</a></li>
     </ul>
 
     <section>
@@ -297,5 +297,106 @@
 
     <h2 id="kmom10">Kmom07/10</h2>
     <section>
+    For my final project I decided to create an adventure game.
+    All files for this project was added to the existing repo for the report web application.
+    In order to comply to the requirements, I updated the README.md file to include short guide on how to clone and start the webapplication as well as informative descriptions about frameworks and tools used in the project.
+    Please refer to the README.md file for an overview of the repository's structure.
+
+    <h3>Baskrav</h3>
+    As mentioned above, I created an adventure game for my final project in this course.
+    The inspiration for it came to me when passing by a stand selling the first Swedish strawberries.
+    The name of my adventure game is "Jordgubbstårta".
+    In the game, a player can go to different directions, inspect places and items, pick up and put back items into the player's basket and, with the right ingredients, bake a strawberry cake.
+    The game ends when the player has managed to bake the strawberry cake.
+    To play the game or read more information about it, visit the website that I have implemented for the project under the route proj/.
+
+    Even though the website for the final project is part of the report web application, on which I have been working during the course, it has a distinct style seperate from the styling of the other parts.
+    It differs from the other webpages in that it has a separate navbar, and a different color palette and font selection.
+    To achieve this I added a SCSS file to the style folder, which stores all the classes specific for the webpages of the final project.
+    I import that SCSS file (i.e. assets/style/adventure.scss) into the main style sheet (i.e. assets/style/app.scss).
+
+    On the website for the final project you can find, among others, a home page introducing the adventure game.
+    The home page also contains a link to a recipe page, where you can find a cheatsheet to play the game through by means of the fastest route.
+    In the webiste's navbar, you can find the link to the about page, which contains more information about the background of the project.
+    From the about page, you can reach the about page for the database via a link.
+    Moreover, in the website navbar, you can find a link to the API page (see next section).
+
+    <h3>Krav 4: JSON API</h3>
+
+    For this part for the project, I created an AdventureGameApiController in the src folder, which defines five api routes.
+    All api routes output a json response.
+    As I explain further down, I created a Game class (src/AdventureGame/Game.php), which I update and save after each action in the session storage.
+    I then use session storage to get the current game information for the API.
+    To view all class methods checkout the documentation.
+    <p><a class="link" href="">documentation</a></p>
+
+    A requirement for the API page is to include at least one POST route.
+    I decided to give a user of the API the option to look up (i.e. inspect) a room or item.
+    The code for this route does not use session storage and the methods from the AdvenutreGame/Game class, but instead uses AdentureRoomRepository and AdventureItemsRepository (src/Repository/) and calls the methods from the classes AdventureRoom and AdventureItems (src/Entity/) to return the room's/item's description.
+
+    <h3>Krav 5: ORM</h3>
+    I use the ORM framework Doctrine to manage the interaction between my SQLite database and the source code.
+    My database contains two tables, one that holds details about the game's room, and one that holds the details about the items that are found in the rooms.
+    Details about the database are explained /proj/about/database, where you can find an ER diagram for each database table.
+
+    Planning and creating the database and its content was the most challenging and time-consumming part of my project.
+    I started my project by planning the content and structure of the tables in the database.
+    I created a csv for the content and an ER diagram for the table structure.
+    Then I drafted a structure for the game class (see src/AdventureGame/Game.php).
+    My preliminary plan for this class can be viewed here.
+    For the final class properties and methods checkout the documentation.
+
+    <a class="link" href="{{ asset('img/adventure/AdventureGame_ER-notes.jpg') }}">
+        here
+    </a>
+
+    <h3>Krav 6: Avancerade features</h3>
+
+    Once thing that was challeging is to find a practical solution for transfering the data from csv into the database via Doctrine.
+    While reaserching I found a YouTube tutorial, in which a developer shows how to create a PHP script that can be run with a specific command transfering data from a csv file to a database via Doctrine.
+    The solution proposed didn't work as it was, so I problem solved my way to a script that worked given my situation.
+    The code for the script can be viewed at scr/Command/CsvImportCommand.php.
+    Even though I spent a few hours on the script, I think this solution saved me a lot of hassle and time on the long run.
+    I was able to update the content of the database fairly easy in only a few steps.
+
+    The code quality of the script seems to be rather low.
+    Scrutinizer estimates that it is the most problematic class.
+    The method Command\CsvImportCommand::execute() scores a D (A being the highest and F being the lowest possible score) and is rated highest under "Worst rated PHP Operations" and "Least tested PHP Operations".
+    Since this method is only used by me and never called in the source code of the game, I did not worry about it too much.
+    Nevertheless I would be interested in learning more about how these type of classes work and how to improve and test them.
+
+    A part of the project that I found conceptually challenging to solve was to figure out the properties, methods and general structure of the AdventureGame\Game class and how to use it in the Controller\AdventureGameController class.
+    Following object oriented principles, I was striving for creating a Game class that is loosely coupled to the Entity classes automatically created by Doctrine based on the tables in the database.
+    To achieve this I decided to inject the classes Entity/AdventureGame and Entity/AdventureItems into the AdventureGame/Game class.
+    Further I was striving for a class as low in complexity as possible.
+    This was especially challenging when creating the methods AdventureGame\Game::inspect() and Controller\AdventureGameController::projectGameInput(), because they need to consider many conditions.
+    AdventureGame\Game::inspect() returns the text when player "inspects" a room or an object.
+    Controller\AdventureGameController::projectGameInput() handles the input of the player.
+
+    Connected to this, another part I struggled for a while is to decide how to obtain and process the input data from the player.
+    Finally, I got inspiration from another adventure game created with PHP (https://github.com/jalbam/lavilladel6).
+    In order to obtain the player's input for the next action, I created a form with a select option for all actions and an input field for the object of the action.
+    When the player submit their input, the data can be accessed via post method from the route Controller\AdventureGameController::projectGameInput(), where it is handled and the necessary methods are called.
+
+    <h3>Projekt</h3>
+    This project was challenging for me in many ways:
+    Since the requirements were quite loose/not strict, I had to take many decisions about how to approach this project with the given restrictions.
+    Prior to this, I had little experience with playing or developing adventure games.
+    Finally, the time planning to complete this project that I had made at the beginning was messed up by misreading the first deadline, sickness and then my summer job.
+    I am very happy to have finished it despite the challenges.
+    Generally, I think the final project was appropriate for this course.
+    Personally I would appreciate more concrete and specific requirements, but I appreciate that we are given the opportunity to use our creativity and train our problem solving skills.
+
+    There are a few things I would improve:
+    - make the web application more responsive
+    - add the requirement to pay for the ingredients bought at the fram
+    - code quality
+
+    <h3>Kurs</h3>
+    learned a lot in this course
+    creative and fun projects
+    considerable workload
+    sometimes more sturcture and limitations help in knowing what to focus on and manage deadlines
+
     </section>
 {% endblock %}
